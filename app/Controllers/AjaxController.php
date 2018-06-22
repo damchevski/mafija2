@@ -2,10 +2,40 @@
 
 namespace App\Controllers;
 use App\Models\User;
-use App\Models\Payments;
-use App\Models\People;
 
 class AjaxController extends Controller
 {
-// ajax functions for the game
+
+  public function getValidation($request, $response)
+  {
+    $type = $request->getParam('type');
+    $val = $request->getParam('val');
+    $password = $request->getParam('password');
+
+    switch ($type) {
+      case 'username':
+      $v = $this->Validator->validate(['username' => [$val,'required|alnumDash|max(20)|uniqueUsername'] ]);
+      break;
+
+      case 'email':
+      $v = $this->Validator->validate(['email' => [$val,'required|email|uniqueEmail'] ]);
+      break;
+
+      case 'password':
+      $v = $this->Validator->validate(['password' => [$val,'required|min(6)'] ]);
+      break;
+
+      case 'password_confirm':
+      $v = $this->Validator->validate([
+        'password' => [$password,'required'],
+        'password_confirm' => [$val,'required|matches(password)'] ]);
+      break;
+    }
+
+      if ($v->passes()){
+        return 'true';
+      }else {
+          return $v->errors()->first();
+      }
+  }
 }

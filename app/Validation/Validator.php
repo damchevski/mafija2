@@ -20,8 +20,10 @@ class Validator extends Violin
           'uniqueUsername' => 'Тоа корисничко име е превземено'
         ]
       ]);
+      //mejavanje na rulse na mk i angliski
       $this->addRuleMessages([
-        'checkPassword' => 'That dosent match you`re curent password'
+        'checkPassword' => 'That dosent match you`re curent password',
+        'required'=> 'You better fill in the {field} field, or else.'
       ]);
   }
   public function validate_uniqueEmail($value, $input , $args)

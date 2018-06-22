@@ -12,20 +12,7 @@
     <script type="text/javascript" src="{{baseUrl}}/resources/js/jquery-3.2.1.js"></script>
     {%include 'templates/partials/navigation.twig' %}
     <script type="text/javascript" src="{{baseUrl}}/resources/js/nav.js"> </script>
-    <div id="main" class="container-fluid">
-      <div id="toolbox"class="toolbox">
-        <div id="box">
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" value="on" id="checkbox">
-            Select All
-          </label>
-          <button class="btn btn-secondary addPeople" type="button">Додај Корисници</button>
-          <input type="text" class="form-control search" placeholder="Search" />
-        </div>
-        <div id="hover_toolbox"></div>
-      </div>
-    <div id="select-show">
-    </div>
+    <div id="main" class="container-fluid">  
     {%include 'templates/partials/flash.twig' %}
     {% block content %} {% endblock %}
     </div>

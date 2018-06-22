@@ -22,6 +22,8 @@ $app->group('',function() use ($app){
   $app->get('/reset-password', 'UserController:getResetPassword')->setName('password.reset');
   $app->post('/reset-password', 'UserController:postResetPassword');
 
+  $app->get('/ajax/validate', 'AjaxController:getValidation')->setName('validate');
+
 })->add(new GuestMiddleware($container));
 
 $app->group('',function() use ($app){

@@ -57,8 +57,8 @@ class AuthController extends Controller
       $user = User::create([
       'username'    => $username,
       'email'       => $email,
-      'drzava'        => $drzava,
-      'pol'        => $pol,
+      'drzava'      => $drzava,
+      'pol'         => $pol,
       'password'    => password_hash($password, PASSWORD_DEFAULT),
       'active'      => false,
       'active_hash' => $this->hash->hash($activate)
