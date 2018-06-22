@@ -5,7 +5,8 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-  public function getUpdate($request, $response){
+  public function getUpdate($request, $response)
+  {
     $user = $this->auth->user();
     return $this->view->render($response, 'update/update.twig',[
     'user' => $user

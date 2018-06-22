@@ -9,7 +9,7 @@
   "db":{
     "driver":"mysql",
     "host":"localhost",
-    "database":"site",
+    "database":"mafija",
     "username":"root",
     "password":"",
     "collation":"utf_unicode_ci",
