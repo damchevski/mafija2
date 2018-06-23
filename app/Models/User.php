@@ -20,6 +20,12 @@ class User Extends Model
     'remember_identifier',
     'remember_token'
 	];
+	public function updateEnergy()
+	{
+		return $this->hasMany('App\Models\Energy');
+	}
+
+
 	public function updateRememberCredentials($identifier, $token)
 	{
 		$this->update([

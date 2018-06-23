@@ -1,6 +1,7 @@
 <?php
 namespace App\Auth;
 use App\Models\User;
+use App\Models\Energy;
 use Carbon\Carbon;
 
 class Auth
@@ -37,11 +38,28 @@ class Auth
 				setcookie($this->config['auth.remember'], "{$rememberIdentifier}___{$rememberToken}", Carbon::parse('+1 week ')->timestamp,'/');
       }
 			$_SESSION[$this->config['auth.session']] = $user->id;
+
+		  $energy = Energy::where('user_id',$user->id)->first();
+      if($energy->energija <=100){
+         //razlika vo sekundi za vreminja
+				 $difference_in_seconds = strtotime(Carbon::now()) - strtotime($energy->updated_at);
+				 $addEnergija = $difference_in_seconds / 10;//na kolku sekundi se polni eden poen
+				 if($energy->energija + $addEnergija < 100){
+				 		$energy->update(['energija' => $energy->energija + $addEnergija ]);
+			   }else {
+				 	  $energy->update(['energija' => 100 ]);
+				 }
+			}
+			$user->updateEnergy()->update(['status' => 1 ]);
+
+
 			return true;
 		}
 	}
 	public function logout()
 	{
+    $this->user()->updateEnergy()->update(['status' => 0 ]);
+		
 		if(isset($_COOKIE[$this->config['auth.remember']])){
       $this->user()->removeRememberCredentials();
 			setcookie($this->config['auth.remember'], null, 1, "/", null);
