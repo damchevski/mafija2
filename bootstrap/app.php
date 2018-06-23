@@ -79,6 +79,9 @@ $container['AuthController'] = function($container){
 $container['UserController'] = function($container){
     return new \App\Controllers\UserController($container);
 };
+$container['AdminController'] = function($container){
+    return new \App\Controllers\AdminController($container);
+};
 $container['Mail'] = function($container){
   $mailer = new PHPMailer;
   $mailer->SMTPDebug =  $container->config['mail.smtp_debug'];

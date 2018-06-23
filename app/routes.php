@@ -2,6 +2,7 @@
 
 use App\Middleware\AuthMiddleware;
 use App\Middleware\GuestMiddleware;
+use App\Middleware\AdminMiddleware;
 
 $app->get('/', 'HomeController:getPeople')->setName('home');
 $app->post('/', 'HomeController:postPeople');
@@ -34,3 +35,9 @@ $app->group('',function() use ($app){
   $app->post('/update/profile', 'UserController:postUpdate');
 
 })->add(new AuthMiddleware($container));
+
+$app->group('',function() use ($app){
+
+  $app->get('/admin', 'AdminController:getAdmin')->setName('admin');
+
+})->add(new AdminMiddleware($container));

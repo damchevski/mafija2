@@ -24,7 +24,15 @@ class User Extends Model
 	{
 		return $this->hasMany('App\Models\Energy');
 	}
+	public function mainProm()
+	{
+		return $this->hasMany('App\Models\MainProm');
+	}
 
+	public function permissions()
+	{
+		return $this->hasMany('App\Models\UserPermission');
+	}
 
 	public function updateRememberCredentials($identifier, $token)
 	{

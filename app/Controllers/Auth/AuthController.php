@@ -3,7 +3,7 @@
 namespace App\Controllers\Auth;
 
 use App\Models\User;
-use App\Models\UserPermissions;
+use App\Models\UserPermission;
 use App\Controllers\Controller;
 use Carbon\Carbon;
 
@@ -63,9 +63,21 @@ class AuthController extends Controller
       'active'      => false,
       'active_hash' => $this->hash->hash($activate)
       ]);
+
+      $user->permissions()->create(UserPermission::$defaults);
+
       $user->updateEnergy()->create([
         'energija' => 20,
         'status' => 0
+      ]);
+      $user->mainProm()->create([
+        'mok' => 100,
+        'pocit' => 20,
+        'pari' => 1402,
+        'ubistva' => 0,
+        'atack_points' => 5,
+        'atack_wins' => 0,
+        'atack_loses' => 0
       ]);
 
       $this->Mail->send('email/auth/activate.twig',['user' => $user, 'activate' => $activate],function($message) use ($user){
