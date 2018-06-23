@@ -47,9 +47,9 @@ class AuthController extends Controller
     $pol = $request->getParam('pol');
 
     $v = $this->Validator->validate([
-      'username' => [$username,'required|alnumDash|max(20)|uniqueUsername'],
-      'email' => [$email,'required|email|uniqueEmail'],
-      'password' => [$password,'required|min(6)'],
+      'username' => [$username,'required|alnumDash|max(50)|min(5)|uniqueUsername'],
+      'email' => [$email,'required|max(100)|email|uniqueEmail'],
+      'password' => [$password,'required|min(8)|alnumDash'],
       'password_confirm' => [$password_confirm,'required|matches(password)']
     ]);
     if ($v->passes()){

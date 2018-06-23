@@ -14,15 +14,15 @@ class AjaxController extends Controller
 
     switch ($type) {
       case 'username':
-      $v = $this->Validator->validate(['username' => [$val,'required|alnumDash|max(20)|uniqueUsername'] ]);
+      $v = $this->Validator->validate(['username' => [$val,'required|alnumDash|max(50)|min(5)|uniqueUsername'] ]);
       break;
 
       case 'email':
-      $v = $this->Validator->validate(['email' => [$val,'required|email|uniqueEmail'] ]);
+      $v = $this->Validator->validate(['email' => [$val,'required|max(100)|email|uniqueEmail'] ]);
       break;
 
       case 'password':
-      $v = $this->Validator->validate(['password' => [$val,'required|min(6)'] ]);
+      $v = $this->Validator->validate(['password' => [$val,'required|min(8)|alnumDash'] ]);
       break;
 
       case 'password_confirm':
