@@ -1,8 +1,16 @@
 {%extends 'templates/app.twig'%}
 {% block head %}
-<link rel="stylesheet" href= "{{baseUrl}}/resources/css/home.css">
+<link rel="stylesheet" href= "{{baseUrl}}/resources/css/admin.css">
 {% endblock %}
 {% block content %}
-kako si
-  <script type="text/javascript" src="{{baseUrl}}/resources/js/home.js"></script>
+
+  <div id="drink">
+    <label for="drink">Pivo</label>
+    <form action="{{path_for('admin')}}" method="post" autocomplete="off">
+      <input type="number" name="kolicina" value="">
+      <input type="submit" name="drink" value="Bye">
+          {{ csrf_field() | raw }}
+    </form>
+  </div>
+  <script type="text/javascript" src="{{baseUrl}}/resources/js/admin.js"></script>
 {% endblock %}

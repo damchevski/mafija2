@@ -39,5 +39,6 @@ $app->group('',function() use ($app){
 $app->group('',function() use ($app){
 
   $app->get('/admin', 'AdminController:getAdmin')->setName('admin');
+  $app->post('/admin', 'AdminController:postAdmin');
 
 })->add(new AdminMiddleware($container));

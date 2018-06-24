@@ -13,6 +13,7 @@ class MainProm Extends Model
 		'pari',
 		'ubistva',
 		'finished_missions',
+		'drinks_zaliha',
 		'atack_points',
 		'atack_wins',
     'atack_loses'
