@@ -20,18 +20,18 @@ class User Extends Model
     'remember_identifier',
     'remember_token'
 	];
-	public function updateEnergy()
+	public function energy()
 	{
-		return $this->hasMany('App\Models\Energy');
+		return $this->hasOne('App\Models\Energy');
 	}
 	public function mainProm()
 	{
-		return $this->hasMany('App\Models\MainProm');
+		return $this->hasOne('App\Models\MainProm');
 	}
 
 	public function permissions()
 	{
-		return $this->hasMany('App\Models\UserPermission');
+		return $this->hasOne('App\Models\UserPermission');
 	}
 
 	public function updateRememberCredentials($identifier, $token)

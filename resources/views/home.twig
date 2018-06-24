@@ -3,5 +3,15 @@
 <link rel="stylesheet" href= "{{baseUrl}}/resources/css/home.css">
 {% endblock %}
 {% block content %}
+
+  <div id="rabota">
+    <label for="kurir">Klikni tuka da rabotis</label>
+    <form action="{{path_for('home')}}" method="post" autocomplete="off">
+        <input type="submit" name="rabota" value="ok">
+          {{ csrf_field() | raw }}
+    </form>
+  </div>
+
+
   <script type="text/javascript" src="{{baseUrl}}/resources/js/home.js"></script>
 {% endblock %}

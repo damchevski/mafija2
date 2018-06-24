@@ -5,6 +5,7 @@ namespace App\Controllers\Auth;
 use App\Models\User;
 use App\Models\UserPermission;
 use App\Models\MainProm;
+use App\Models\Energy;
 use App\Controllers\Controller;
 use Carbon\Carbon;
 
@@ -66,13 +67,9 @@ class AuthController extends Controller
       ]);
 
       $user->permissions()->create(UserPermission::$defaults);
+      $user->energy()->create(Energy::$defaults);
+      $user->mainProm()->create(MainProm::$defaults);
 
-      $user->updateEnergy()->create([
-        'energija' => 20,
-        'status' => 0
-      ]);
-      $user->mainProm()->create(UserPermission::$defaults);
-        
       $this->Mail->send('email/auth/activate.twig',['user' => $user, 'activate' => $activate],function($message) use ($user){
         $message->to($user->email);
         $message->subject('Vi blagodarime za registracijata');

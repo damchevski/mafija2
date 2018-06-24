@@ -12,6 +12,10 @@ class Energy Extends Model
 		'energija',
     'status'
 	];
+	public static $defaults=[
+		'energija' => 20,
+		'status' => 0
+	];
 	public function calculateEnergy(){
 		if($this->energija <=100){
 			 //razlika vo sekundi za vreminja

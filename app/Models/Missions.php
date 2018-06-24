@@ -2,8 +2,6 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\MainProm;
-use App\Models\User;
 
 
 class Missions Extends Model
@@ -25,7 +23,7 @@ class Missions Extends Model
 			//prom => negovi promenlivi
 			$missions_ids = explode('_', $prom->finished_missions);
 
-			for ($id=0; $id < Missions::count() ; $id++) {
+			for ($id=1; $id <= Missions::count() ; $id++) {
 				if(!in_array((string)$id, $missions_ids)){
 
 				$missions = Missions::where('id',$id)->first();

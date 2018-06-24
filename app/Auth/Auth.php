@@ -1,7 +1,6 @@
 <?php
 namespace App\Auth;
 use App\Models\User;
-use App\Models\Energy;
 use Carbon\Carbon;
 
 class Auth
@@ -39,16 +38,14 @@ class Auth
       }
 			$_SESSION[$this->config['auth.session']] = $user->id;
 
-		  $energy = Energy::where('user_id',$user->id)->first();
-			$energy->calculateEnergy();
-			$user->updateEnergy()->update(['status' => 1 ]);
+			$user->energy->calculateEnergy();
+			$user->energy->update(['status' => 1 ]);
 			return true;
 		}
 	}
 	public function logout()
 	{
-    $this->user()->updateEnergy()->update(['status' => 0 ]);
-
+    $this->user()->energy->update(['status' => 0 ]);
 		if(isset($_COOKIE[$this->config['auth.remember']])){
       $this->user()->removeRememberCredentials();
 			setcookie($this->config['auth.remember'], null, 1, "/", null);
