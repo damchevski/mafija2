@@ -12,9 +12,20 @@ class MainProm Extends Model
 		'pocit',
 		'pari',
 		'ubistva',
+		'finished_missions',
 		'atack_points',
 		'atack_wins',
     'atack_loses'
 	];
+	public static $defaults=[
+    'mok' => 0,
+		'pocit' => 0,
+		'pari' => 0,
+		'ubistva' => 0,
+		'finished_missions' => 0,
+		'atack_points' => 0,
+		'atack_wins' => 0,
+		'atack_loses' => 0
+  ];
 
 }
