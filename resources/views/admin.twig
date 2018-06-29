@@ -4,6 +4,16 @@
 {% endblock %}
 {% block content %}
 
+<div id="rabota">
+  <label for="kurir">Drug Store</label>
+  <form action="{{path_for('admin')}}" method="post" autocomplete="off">
+    <input type="number" name="kolicina">
+      <input type="submit" name="rabota" value="ok">
+        {{ csrf_field() | raw }}
+  </form>
+</div>
+
+
 <input type="hidden" id="id" value="{{user.id}}">
 <input type="hidden" id="username" value="{{user.username}}">
   <script type="text/javascript" src="{{baseUrl}}/resources/js/admin.js"></script>

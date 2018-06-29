@@ -14,6 +14,8 @@ class MainProm Extends Model
 		'ubistva',
 		'finished_missions',
 		'drinks_zaliha',
+		'drugs_zaliha',
+		'crime_chance',
 		'atack_points',
 		'atack_wins',
     'atack_loses'

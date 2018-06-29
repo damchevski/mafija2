@@ -47,11 +47,12 @@ class HomeController extends Controller
          }
      }else if($rabota->type == 'crime'){
        //kriminal opija da te fatat nema i tajmer
-       if( $this->randomlib->generateInt(0, 100) <= $rabota->chance){
           $user = $this->auth->user();
+       if( $user->energy->energija >= $rabota->energija){
           $prices = json_decode($rabota->price,true);
-
-          if($user->energy->energija >= $rabota->energija){
+         	$crime_chances = explode('_', $user->mainProm->crime_chance);
+          //treba ubavo da se stavat idta za criminal za bava spredba
+          if($this->randomlib->generateInt(0, 100) <= (int)$crime_chances[$rabota->id-2]){
               foreach ($prices as $key => $value) {
                 $user->mainProm->update([ $key => $user->mainProm->{$key} + $value ]);
               }
@@ -60,11 +61,11 @@ class HomeController extends Controller
               $this->flash->addMessage('info','Kriminalot e uspesen. Pocekajte '.$rabota->complete_time.' sekundi');
               return $response->withRedirect($this->router->pathFor('home'));
             }else{
-              $this->flash->addMessage('info','Nemas dovolno energija');
+              $this->flash->addMessage('info','Kriminalot e neuspesen');
               return $response->withRedirect($this->router->pathFor('home'));
             }
        }else{
-         $this->flash->addMessage('info','Kriminalot e neuspesen');
+         $this->flash->addMessage('info','Nemas dovolno energija');
          return $response->withRedirect($this->router->pathFor('home'));
        }
      }

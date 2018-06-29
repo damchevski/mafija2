@@ -87,7 +87,6 @@ var app = {
         this.chat.on('message', function(message) {
             app.renderMessage(message);
         });
-
     },
     renderMessage: function(message) {
 
@@ -125,7 +124,6 @@ var app = {
         $('.emoji').css('height', '26px');
         $('.emoji').parents('.message').css({"padding-top": "9px","padding-bottom": "9px"});
         this.scrollToBottom();
-
     },
     sendMessage: function() {
 
@@ -147,8 +145,8 @@ var app = {
         }
     },
     scrollToBottom: function() {
-      //neraboti
-        this.$chatHistory.scrollTop(this.$chatHistory[0].scrollHeight);
+      //finaly done for siplebar
+      $('.simplebar-scroll-content').scrollTop(10000000);
     },
     parseTime: function(time) {
         return time.toLocaleDateString() + ", " + time.toLocaleTimeString().
@@ -163,5 +161,4 @@ var app = {
     }
 
 };
-
 app.init();
