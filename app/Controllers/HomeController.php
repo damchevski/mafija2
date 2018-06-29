@@ -9,10 +9,14 @@ class HomeController extends Controller
 {
   public function getPeople($request, $response)
   {
-     //check na maissite koi se zavrseni
+    //missii check
      $user = $this->auth->user();
-     Missions::checkMissions($user , $user->mainProm);
-    return $this->view->render($response, 'home.twig');
+     if($user){
+       Missions::checkMissions($user , $user->mainProm);
+     }
+    return $this->view->render($response, 'home.twig',[
+      'user'  => $user,
+    ]);
   }
   public function postPeople($request, $response)
   {

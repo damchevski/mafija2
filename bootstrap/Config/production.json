@@ -1,6 +1,6 @@
 {
   "app":{
-    "baseUrl" : "http://mktechportal.con.mk/",
+    "baseUrl" : "http://opimusnewsfresh.com/",
     "hash":{
       "algo": "PASSWORD_BCRYPT",
       "cost": 10

@@ -3,15 +3,17 @@
 <link rel="stylesheet" href= "{{baseUrl}}/resources/css/home.css">
 {% endblock %}
 {% block content %}
+ {% if auth.check %}
+ <div id="rabota">
+   <label for="kurir">Klikni tuka da rabotis</label>
+   <form action="{{path_for('home')}}" method="post" autocomplete="off">
+       <input type="submit" name="rabota" value="ok">
+         {{ csrf_field() | raw }}
+   </form>
+ </div>
 
-  <div id="rabota">
-    <label for="kurir">Klikni tuka da rabotis</label>
-    <form action="{{path_for('home')}}" method="post" autocomplete="off">
-        <input type="submit" name="rabota" value="ok">
-          {{ csrf_field() | raw }}
-    </form>
-  </div>
-
-
+ {% else %}
+   heloo
+{% endif %}
   <script type="text/javascript" src="{{baseUrl}}/resources/js/home.js"></script>
 {% endblock %}

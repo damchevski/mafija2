@@ -9,7 +9,9 @@ class AdminController extends Controller
   public function getAdmin($request, $response)
   {
     $user = $this->auth->user();
-    return $this->view->render($response, 'admin.twig');
+    return $this->view->render($response, 'admin.twig',[
+      'user'  => $user,
+    ]);
   }
   public function postAdmin($request, $response)
   {

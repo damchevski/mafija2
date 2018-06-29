@@ -38,4 +38,10 @@ class AjaxController extends Controller
           return $v->errors()->first();
       }
   }
+
+  public function getUser($request, $response)
+  {
+    $user = $this->auth->user();
+    return $user->id.' '.$user->username;
+  }
 }
