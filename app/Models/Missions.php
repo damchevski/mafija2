@@ -18,7 +18,7 @@ class Missions Extends Model
 	];
 	//terba da se napravi opp za poveke opcii
 	public function checkMissions($user , $prom)
-	{
+	{   
 			//user => glavniot
 			//prom => negovi promenlivi
 			$missions_ids = explode('_', $prom->finished_missions);

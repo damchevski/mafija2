@@ -11,6 +11,7 @@ class MainProm Extends Model
 		'mok',
 		'pocit',
 		'pari',
+		'iskustvo',
 		'ubistva',
 		'finished_missions',
 		'drinks_zaliha',

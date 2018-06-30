@@ -20,7 +20,7 @@ class HomeController extends Controller
   }
   public function postPeople($request, $response)
   {
-    //rabota is done osven tajmerot za kolky da ceka
+    //rabota is done osven tajmerot za kolky da ceka final
     $job = $request->getParam('rabota');
      if($job == 'ok'){
        $rabota = Rabota::where('id',2)->first();
@@ -52,25 +52,62 @@ class HomeController extends Controller
           $prices = json_decode($rabota->price,true);
          	$crime_chances = explode('_', $user->mainProm->crime_chance);
           //treba ubavo da se stavat idta za criminal za bava spredba
-          if($this->randomlib->generateInt(0, 100) <= (int)$crime_chances[$rabota->id-2]){
-              foreach ($prices as $key => $value) {
-                $user->mainProm->update([ $key => $user->mainProm->{$key} + $value ]);
-              }
-              $user->energy->update([ 'energija' => $user->energy->energija - $rabota->energija ]);
+          $sansi = $this->randomlib->generateInt(0, 100);
+          if($sansi <= $crime_chances[$rabota->id-2]){
+            foreach ($prices as $key => $value) {
+              if(!is_numeric($value)){
+                if($key == "crime_chance"){
+                    $values = explode('_', $value);
+                    //dodava na sansata dobivkata
+                  if($crime_chances[$rabota->id-2] + $values[0] <100){
+                  $crime_chances[$rabota->id-2] += $values[0];
+                  $val = (string) implode("_", $crime_chances);
 
-              $this->flash->addMessage('info','Kriminalot e uspesen. Pocekajte '.$rabota->complete_time.' sekundi');
-              return $response->withRedirect($this->router->pathFor('home'));
-            }else{
-              $this->flash->addMessage('info','Kriminalot e neuspesen');
-              return $response->withRedirect($this->router->pathFor('home'));
+                  $user->mainProm->update([ $key => $val ]);
+                }
+                }else{
+                  $values = explode('_', $value);
+                  $user->mainProm->update([ $key => $user->mainProm->{$key} + $values[0]]);
+                }
+              }else{
+
+              $user->mainProm->update([ $key => $user->mainProm->{$key} + $value ]);
+               }
             }
+            $user->energy->update([ 'energija' => $user->energy->energija - $rabota->energija ]);
+            $this->flash->addMessage('info','Kriminalot e uspesen. Pocekajte '.$rabota->complete_time.' sekundi');
+            return $response->withRedirect($this->router->pathFor('home'));
+
+          }else if ($sansi > $crime_chances[$rabota->id-2] && $sansi <= $crime_chances[$rabota->id-2] + 20 ) {
+            $prices = json_decode($rabota->price,true);
+            $crime_chances = explode('_', $user->mainProm->crime_chance);
+            $values = explode('_', $prices["crime_chance"]);
+              if($crime_chances[$rabota->id-2] + $values[0] <100){
+            $crime_chances[$rabota->id-2] += $values[1];
+            $val = (string) implode("_", $crime_chances);
+            $user->mainProm->update([ "crime_chance" => $val ]);
+            }
+            $this->flash->addMessage('info','Kriminalot e neuspesen i ne te fati policija');
+            return $response->withRedirect($this->router->pathFor('home'));
+          }else{
+            $prices = json_decode($rabota->price,true);
+           	$crime_chances = explode('_', $user->mainProm->crime_chance);
+            $values = explode('_', $prices["crime_chance"]);
+            if($crime_chances[$rabota->id-2] + $values[0] <100){
+            $crime_chances[$rabota->id-2] += $values[2];
+            $val = (string) implode("_", $crime_chances);
+            $user->mainProm->update([ "crime_chance" => $val ]);
+          }
+            $this->flash->addMessage('info','Kriminalot e neuspesen i  te fati policija');
+            return $response->withRedirect($this->router->pathFor('home'));
+          }
        }else{
          $this->flash->addMessage('info','Nemas dovolno energija');
          return $response->withRedirect($this->router->pathFor('home'));
        }
      }
 
-     }
+   }
   }
 
 }

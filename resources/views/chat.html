@@ -297,6 +297,7 @@
       });
       $('.emoji-btn').click(function(){
         $('#message-to-send').val($('#message-to-send').val() + $(this).attr('name'));
+        $('#message-to-send').focus();
       });
 
   });
