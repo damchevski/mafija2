@@ -28,5 +28,8 @@ class Energy Extends Model
 			 }
 		}
 	}
+	public function check($val){
+		return ($this->energija >= $val ? true:false);
+	}
 
 }

@@ -5,6 +5,13 @@
  border: 1px solid red;
  color: white;
 }
+#place{
+ position: absolute;
+ top: 200px;
+ left: 300px;
+ border: 1px solid red;
+ color: white;
+}
 #toolbox{
   margin-top: 40px;
 }

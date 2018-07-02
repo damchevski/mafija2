@@ -9,6 +9,7 @@ class MainProm Extends Model
 
 	protected $fillable = [
 		'mok',
+		'place',
 		'pocit',
 		'pari',
 		'iskustvo',
@@ -31,5 +32,8 @@ class MainProm Extends Model
 		'atack_wins' => 0,
 		'atack_loses' => 0
   ];
+	public function hasMoney($val){
+		return ($this->pari >= $val ? true:false);
+	}
 
 }

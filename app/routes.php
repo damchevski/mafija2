@@ -41,6 +41,6 @@ $app->group('',function() use ($app){
   $app->get('/admin', 'AdminController:getAdmin')->setName('admin');
   $app->post('/admin', 'AdminController:postAdmin');
 
-  $app->get('/ajax/user', 'AjaxController:getUser')->setName('user');
+  $app->get('/ajax/status', 'AjaxController:getStatus')->setName('status');
 
 })->add(new AdminMiddleware($container));

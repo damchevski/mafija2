@@ -18,14 +18,13 @@ class AdminController extends Controller
     $kolicina = $request->getParam('kolicina');
     $user = $this->auth->user();
     $drink = DrinksDrugs::find(2);
-     //opp done zivis iod id so ke se odbere 
+     //opp done zivis iod id so ke se odbere
      if($drink->add($user,$kolicina)){
        $this->flash->addMessage('info','Uspesno nadopolni kokanin');
        return $response->withRedirect($this->router->pathFor('admin'));
-     }else{
-       $this->flash->addMessage('info','Limitot e postignat');
-       return $response->withRedirect($this->router->pathFor('admin'));
      }
+     $this->flash->addMessage('info','Neuspeso');
+     return $response->withRedirect($this->router->pathFor('admin'));
   }
 
 }

@@ -11,6 +11,22 @@
          {{ csrf_field() | raw }}
    </form>
  </div>
+ <div id="place">
+   <label for="grad">Smeni mesto na ziveenje:</label>
+   <form action="{{path_for('home')}}" method="post" autocomplete="off">
+      <select name="grad">
+          <option value="MK">Makegonija</option>
+            <option value="SR">Srbija</option>
+              <option value="AL">Alabanija</option>
+                <option value="BG">Bugarija</option>
+                  <option value="GR">Germanija</option>
+                    <option value="US">Amerika</option>
+                      <option value="IT">Italija</option>
+      </select>
+       <input type="submit" name="sub" value="oke">
+         {{ csrf_field() | raw }}
+   </form>
+ </div>
 
  {% else %}
    heloo

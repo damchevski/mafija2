@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\User;
 
 class AjaxController extends Controller
 {
@@ -39,9 +38,9 @@ class AjaxController extends Controller
       }
   }
 
-  public function getUser($request, $response)
+  public function getStatus($request, $response)
   {
-    $user = $this->auth->user();
-    return $user->id.' '.$user->username;
+    //  $this->auth->user()->energy->update(['status' => 0 ]);
+      return  'oke';
   }
 }
