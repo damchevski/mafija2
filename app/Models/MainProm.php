@@ -17,6 +17,8 @@ class MainProm Extends Model
 		'finished_missions',
 		'drinks_zaliha',
 		'drugs_zaliha',
+		'friends',
+		'pending',
 		'crime_chance',
 		'atack_points',
 		'atack_wins',

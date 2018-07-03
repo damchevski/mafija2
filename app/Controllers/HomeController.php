@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Missions;
 use App\Models\Rabota;
 use App\Models\Drzava;
+use App\Models\Clan;
 
 class HomeController extends Controller
 {
@@ -21,7 +22,7 @@ class HomeController extends Controller
   }
   public function postPeople($request, $response)
   {
-    //rabota is done osven tajmerot za kolky da ceka final
+    /*rabota is done osven tajmerot za kolky da ceka final
     $job = $request->getParam('rabota');
      if($job == 'oks'){
        $rabota = Rabota::find(2);
@@ -75,8 +76,26 @@ class HomeController extends Controller
 
       $this->flash->addMessage('info','Neuspesno obidete se povtorno');
       return $response->withRedirect($this->router->pathFor('home'));
+      //creiranje na clan
+     $name = $request->getParam('name');
+     $moto = $request->getParam('moto');
+     $user = $this->auth->user();
+     $user = Clan::create([
+     'owner'    => $user->id,
+     'name'       => $name,
+     'moto'      => $moto
+     ]);
 
-
+     $this->flash->addMessage('info','Uspesno go napravi clanot '.$user->name);
+     return $response->withRedirect($this->router->pathFor('home'));  */
+     //isto ke bide i za dodavanje na clan
+     //akcept ke bide opp sega treba da se pravi
+     $me = $this->auth->user();
+     $name = $request->getParam('name');
+     $user = User::where('username',$name)->first();
+     $user->mainProm->update(['pending' => $me->id.'_']);
+     $this->flash->addMessage('info','Isprati poraka za prijatelstvo na '.$user->username);
+     return $response->withRedirect($this->router->pathFor('home'));
   }
 
 }

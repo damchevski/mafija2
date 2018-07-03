@@ -28,6 +28,25 @@
    </form>
  </div>
 
+ <div id="clan">
+   <label for="clan">Sozdadi klan</label>
+   <form action="{{path_for('home')}}" method="post" autocomplete="off">
+       <input type="text" name="name" placeholder="Name of clan....">
+       <input type="text" name="moto" placeholder="Moto of clan...">
+       <input type="submit" name="clan" value="GO">
+         {{ csrf_field() | raw }}
+   </form>
+ </div>
+ <div id="friend">
+   <label for="clan">Dodadi prijatel</label>
+   <form action="{{path_for('home')}}" method="post" autocomplete="off">
+       <input type="text" name="name" placeholder="Name of player....">
+       <input type="submit" name="clan" value="GO">
+         {{ csrf_field() | raw }}
+   </form>
+ </div>
+
+
  {% else %}
    heloo
 {% endif %}
