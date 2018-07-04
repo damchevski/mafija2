@@ -28,6 +28,10 @@ class User Extends Model
 	{
 		return $this->hasOne('App\Models\Inventory');
 	}
+	public function contact()
+	{
+		return $this->hasOne('App\Models\Contact');
+	}
 	public function mainProm()
 	{
 		return $this->hasOne('App\Models\MainProm');

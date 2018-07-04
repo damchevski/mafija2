@@ -45,6 +45,14 @@
          {{ csrf_field() | raw }}
    </form>
  </div>
+ <div id="shop">
+   <label for="clan">Kupi pistol</label>
+   <form action="{{path_for('home')}}" method="post" autocomplete="off">
+       <input type="number" name="kolicina">
+       <input type="submit" name="rabota" value="ok">
+         {{ csrf_field() | raw }}
+   </form>
+ </div>
 
 
  {% else %}

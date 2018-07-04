@@ -7,6 +7,7 @@ use App\Models\UserPermission;
 use App\Models\MainProm;
 use App\Models\Inventory;
 use App\Models\Energy;
+use App\Models\Contact;
 use App\Controllers\Controller;
 use Carbon\Carbon;
 
@@ -50,7 +51,7 @@ class AuthController extends Controller
     $pol = $request->getParam('pol');
 
     $v = $this->Validator->validate([
-      'username' => [$username,'required|alnumDash|max(50)|min(5)|uniqueUsername'],
+      'username' => [$username,'required|alnumDash|max(50)|min(4)|uniqueUsername'],
       'email' => [$email,'required|max(100)|email|uniqueEmail'],
       'password' => [$password,'required|min(8)|alnumDash'],
       'password_confirm' => [$password_confirm,'required|matches(password)']
@@ -71,6 +72,7 @@ class AuthController extends Controller
       $user->energy()->create(Energy::$defaults);
       $user->mainProm()->create(MainProm::$defaults);
       $user->inventory()->create(Inventory::$defaults);
+      $user->contact()->create(Contact::$defaults);
 
       $this->Mail->send('email/auth/activate.twig',['user' => $user, 'activate' => $activate],function($message) use ($user){
         $message->to($user->email);

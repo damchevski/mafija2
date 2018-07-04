@@ -13,7 +13,7 @@ class AjaxController extends Controller
 
     switch ($type) {
       case 'username':
-      $v = $this->Validator->validate(['username' => [$val,'required|alnumDash|max(50)|min(5)|uniqueUsername'] ]);
+      $v = $this->Validator->validate(['username' => [$val,'required|alnumDash|max(50)|min(4)|uniqueUsername'] ]);
       break;
 
       case 'email':

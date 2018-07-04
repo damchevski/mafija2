@@ -6,6 +6,7 @@ use App\Models\Missions;
 use App\Models\Rabota;
 use App\Models\Drzava;
 use App\Models\Clan;
+use App\Models\Shop;
 
 class HomeController extends Controller
 {
@@ -22,7 +23,7 @@ class HomeController extends Controller
   }
   public function postPeople($request, $response)
   {
-    //rabota is done osven tajmerot za kolky da ceka final
+  /*  //rabota is done osven tajmerot za kolky da ceka final
     $job = $request->getParam('rabota');
      if($job == 'ok'){
        $rabota = Rabota::find(3);
@@ -64,7 +65,7 @@ class HomeController extends Controller
          return $response->withRedirect($this->router->pathFor('home'));
        }
      }
-   }/*
+   }
    //premestuvanje gradovi gotovo
     $grad = $request->getParam('grad');
       $user = $this->auth->user();
@@ -89,14 +90,49 @@ class HomeController extends Controller
 
      $this->flash->addMessage('info','Uspesno go napravi clanot '.$user->name);
      return $response->withRedirect($this->router->pathFor('home'));
-     //isto ke bide i za dodavanje na clan
-     //akcept ke bide opp sega treba da se pravi
-     $me = $this->auth->user();
-     $name = $request->getParam('name');
-     $user = User::where('username',$name)->first();
-     $user->mainProm->update(['pending' => $me->id.'_']);
-     $this->flash->addMessage('info','Isprati poraka za prijatelstvo na '.$user->username);
-     return $response->withRedirect($this->router->pathFor('home'));*/
+
+     $kolicina = $request->getParam('kolicina');
+     $user = $this->auth->user();
+     $gun = Shop::find(2);
+     if($gun->add_wepons($user,$kolicina)){
+       $this->flash->addMessage('info','Uspesno nadopolni gunovi');
+       return $response->withRedirect($this->router->pathFor('home'));
+     }
+     $this->flash->addMessage('error','Neuspeso nemate dovolno pari');
+     return $response->withRedirect($this->router->pathFor('home'));
+
+//isto ke bide i za dodavanje na clan
+    $me = $this->auth->user();
+    $name = $request->getParam('name');
+    $user = User::where('username',$name)->first();
+    if($me->contact->isFriend($user)){
+      if($user->contact->add($me)){
+        $this->flash->addMessage('info','Isprati poraka za prijatelstvo na '.$user->username);
+        return $response->withRedirect($this->router->pathFor('home'));
+        }
+    }else{
+      $this->flash->addMessage('info','Veke ste prijateli');
+      return $response->withRedirect($this->router->pathFor('home'));
+    }
+    $this->flash->addMessage('info','Neyspesno prakanje na poraka');
+    return $response->withRedirect($this->router->pathFor('home'));
+
+*/
+      $me = $this->auth->user();
+      $name = $request->getParam('name');
+      $user = User::where('username',$name)->first();
+      if($me->contact->isFriend($user)){
+        if($me->contact->confirm($user)){
+          $this->flash->addMessage('info','Go prifati '.$user->username);
+          return $response->withRedirect($this->router->pathFor('home'));
+        }
+      }else{
+        $this->flash->addMessage('info','Veke ste prijateli');
+        return $response->withRedirect($this->router->pathFor('home'));
+      }
+      $this->flash->addMessage('info','Neyspesno prifakanje');
+      return $response->withRedirect($this->router->pathFor('home'));
+
   }
 
 }

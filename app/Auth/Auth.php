@@ -45,7 +45,7 @@ class Auth
 	}
 	public function logout()
 	{
-    $this->user()->energy->update(['status' => 0 ]);
+  //  $this->user()->energy->update(['status' => 0 ]);
 		if(isset($_COOKIE[$this->config['auth.remember']])){
       $this->user()->removeRememberCredentials();
 			setcookie($this->config['auth.remember'], null, 1, "/", null);
