@@ -33,7 +33,7 @@ class Rabota Extends Model
 	{
 		$user->energy->update([ 'energija' => $user->energy->energija - $this->energija ]);
 		$prices = json_decode($this->price,true);
-		$crime_chances = explode('_', $user->mainProm->crime_chance);
+		$crime_chances = explode('_', $user->inventory->crime_chance);
 		//treba ubavo da se stavat idta za criminal za bava spredba
     switch (true) {
     	case $chance <= $crime_chances[$this->id-2]:
@@ -55,7 +55,7 @@ class Rabota Extends Model
 					if($crime_chances[$this->id-2] + $values[$num] <100){
 					$crime_chances[$this->id-2] += $values[$num];
 					$val = (string) implode("_", $crime_chances);
-					$user->mainProm->update([ $key => $val ]);
+					$user->inventory->update([ $key => $val ]);
 				}
 				}else{
 					$values = explode('_', $value);

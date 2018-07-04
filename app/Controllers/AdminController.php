@@ -23,7 +23,7 @@ class AdminController extends Controller
        $this->flash->addMessage('info','Uspesno nadopolni kokanin');
        return $response->withRedirect($this->router->pathFor('admin'));
      }
-     $this->flash->addMessage('info','Neuspeso');
+     $this->flash->addMessage('info','Neuspeso nemate dovolno pari ili go postignavte limitot');
      return $response->withRedirect($this->router->pathFor('admin'));
   }
 

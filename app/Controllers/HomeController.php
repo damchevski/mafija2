@@ -14,7 +14,7 @@ class HomeController extends Controller
     //missii check
      $user = $this->auth->user();
      if($user){
-       Missions::checkMissions($user , $user->mainProm);
+       Missions::checkMissions($user);
      }
     return $this->view->render($response, 'home.twig',[
       'user'  => $user,
@@ -22,10 +22,10 @@ class HomeController extends Controller
   }
   public function postPeople($request, $response)
   {
-    /*rabota is done osven tajmerot za kolky da ceka final
+    //rabota is done osven tajmerot za kolky da ceka final
     $job = $request->getParam('rabota');
-     if($job == 'oks'){
-       $rabota = Rabota::find(2);
+     if($job == 'ok'){
+       $rabota = Rabota::find(3);
         $user = $this->auth->user();
      if($rabota->type == 'rabota'){
           if($user->energy->check($rabota->energija)){
@@ -59,11 +59,12 @@ class HomeController extends Controller
              return $response->withRedirect($this->router->pathFor('home'));
              break;
          }
+       }else{
+         $this->flash->addMessage('info','Nemas dovolno energija');
+         return $response->withRedirect($this->router->pathFor('home'));
        }
-     $this->flash->addMessage('info','Nemas dovolno energija');
-     return $response->withRedirect($this->router->pathFor('home'));
      }
-   }
+   }/*
    //premestuvanje gradovi gotovo
     $grad = $request->getParam('grad');
       $user = $this->auth->user();
@@ -87,7 +88,7 @@ class HomeController extends Controller
      ]);
 
      $this->flash->addMessage('info','Uspesno go napravi clanot '.$user->name);
-     return $response->withRedirect($this->router->pathFor('home'));  */
+     return $response->withRedirect($this->router->pathFor('home'));
      //isto ke bide i za dodavanje na clan
      //akcept ke bide opp sega treba da se pravi
      $me = $this->auth->user();
@@ -95,7 +96,7 @@ class HomeController extends Controller
      $user = User::where('username',$name)->first();
      $user->mainProm->update(['pending' => $me->id.'_']);
      $this->flash->addMessage('info','Isprati poraka za prijatelstvo na '.$user->username);
-     return $response->withRedirect($this->router->pathFor('home'));
+     return $response->withRedirect($this->router->pathFor('home'));*/
   }
 
 }

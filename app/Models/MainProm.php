@@ -14,12 +14,8 @@ class MainProm Extends Model
 		'pari',
 		'iskustvo',
 		'ubistva',
-		'finished_missions',
-		'drinks_zaliha',
-		'drugs_zaliha',
 		'friends',
 		'pending',
-		'crime_chance',
 		'atack_points',
 		'atack_wins',
     'atack_loses'
@@ -29,7 +25,6 @@ class MainProm Extends Model
 		'pocit' => 0,
 		'pari' => 0,
 		'ubistva' => 0,
-		'finished_missions' => 0,
 		'atack_points' => 0,
 		'atack_wins' => 0,
 		'atack_loses' => 0

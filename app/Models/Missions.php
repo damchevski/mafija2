@@ -17,11 +17,11 @@ class Missions Extends Model
 		'requirements'
 	];
 	//terba da se napravi opp za poveke opcii
-	public function checkMissions($user , $prom)
-	{   
+	public function checkMissions($user)
+	{
 			//user => glavniot
 			//prom => negovi promenlivi
-			$missions_ids = explode('_', $prom->finished_missions);
+			$missions_ids = explode('_', $user->inventory->finished_missions);
 
 			for ($id=1; $id <= Missions::count() ; $id++) {
 				if(!in_array((string)$id, $missions_ids)){
@@ -32,15 +32,15 @@ class Missions Extends Model
 				$i = 0;
 				foreach ($requirements as $key=>$value) {
 					//tuka
-				if($value <= $prom->{$key}){
+				if($value <= $user->mainProm->{$key}){
 					$i++;
 				}
 				}
 				if($i == sizeof($requirements)){
 					foreach ($prices as $key => $value) {
-						$prom->update([ $key => $prom->{$key} + $value ]);
+						$user->mainProm->update([ $key => 	$user->mainProm->{$key} + $value ]);
 					}
-					$prom->update(['finished_missions' => $prom->finished_missions.$missions->id.'_']);
+					$user->inventory->update(['finished_missions' => $user->inventory->finished_missions.$missions->id.'_']);
 				}
 			}
 			}

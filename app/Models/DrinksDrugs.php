@@ -18,11 +18,11 @@ class DrinksDrugs Extends Model
 	];
 	public function add($user,$kolicina)
 	{
-		$user_zaliha = json_decode($user->mainProm->{$this->type.'_zaliha'},true);
+		$user_zaliha = json_decode($user->inventory->{$this->type},true);
 		if($user_zaliha[$this->title] + $kolicina <= $this->zaliha && $user->mainProm->hasMoney($this->price * $kolicina)){
 			$user_zaliha[$this->title] += $kolicina;
 			$user->mainProm->update(['pari' => $user->mainProm->pari - ($this->price * $kolicina)]);
-			$user->mainProm->update([$this->type.'_zaliha' => json_encode($user_zaliha) ]);
+			$user->inventory->update([$this->type => json_encode($user_zaliha) ]);
 			return true;
 		}
 		return false;
