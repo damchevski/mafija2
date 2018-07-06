@@ -19,13 +19,10 @@ class Missions Extends Model
 	//terba da se napravi opp za poveke opcii
 	public function checkMissions($user)
 	{
-			//user => glavniot
-			//prom => negovi promenlivi
 			$missions_ids = explode('_', $user->inventory->finished_missions);
 
 			for ($id=1; $id <= Missions::count() ; $id++) {
 				if(!in_array((string)$id, $missions_ids)){
-
 				$missions = Missions::where('id',$id)->first();
 				$requirements = json_decode($missions->requirements,true);
 				$prices = json_decode($missions->price,true);
@@ -33,7 +30,7 @@ class Missions Extends Model
 				foreach ($requirements as $key=>$value) {
 					//tuka
 				if($value <= $user->mainProm->{$key}){
-					$i++;
+					$i++;	
 				}
 				}
 				if($i == sizeof($requirements)){

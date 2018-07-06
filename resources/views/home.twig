@@ -5,7 +5,7 @@
 {% block content %}
  {% if auth.check %}
  <div id="rabota">
-   <label for="kurir">Klikni tuka da rabotis</label>
+   <label for="kurir">Ukradi kola</label>
    <form action="{{path_for('home')}}" method="post" autocomplete="off">
        <input type="submit" name="rabota" value="ok">
          {{ csrf_field() | raw }}
@@ -53,6 +53,16 @@
          {{ csrf_field() | raw }}
    </form>
  </div>
+ <div id="bank">
+   <label for="clan">Drzavna banka:</label>
+   <form action="{{path_for('home')}}" method="post" autocomplete="off">
+       <input type="text" name="pari">
+       <input type="submit" name="oke" value="add">
+       <input type="submit" name="oke" value="odzemi">
+         {{ csrf_field() | raw }}
+   </form>
+ </div>
+
 
 
  {% else %}

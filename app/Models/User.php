@@ -32,6 +32,10 @@ class User Extends Model
 	{
 		return $this->hasOne('App\Models\Contact');
 	}
+	public function bank()
+	{
+		return $this->hasOne('App\Models\Bank');
+	}
 	public function mainProm()
 	{
 		return $this->hasOne('App\Models\MainProm');

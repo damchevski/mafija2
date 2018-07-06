@@ -7,6 +7,8 @@ use App\Models\Rabota;
 use App\Models\Drzava;
 use App\Models\Clan;
 use App\Models\Shop;
+use App\Models\Car;
+
 
 class HomeController extends Controller
 {
@@ -93,7 +95,7 @@ class HomeController extends Controller
 
      $kolicina = $request->getParam('kolicina');
      $user = $this->auth->user();
-     $gun = Shop::find(2);
+     $gun = Shop::find(1);
      if($gun->add_wepons($user,$kolicina)){
        $this->flash->addMessage('info','Uspesno nadopolni gunovi');
        return $response->withRedirect($this->router->pathFor('home'));
@@ -117,7 +119,7 @@ class HomeController extends Controller
     $this->flash->addMessage('info','Neyspesno prakanje na poraka');
     return $response->withRedirect($this->router->pathFor('home'));
 
-*/
+
       $me = $this->auth->user();
       $name = $request->getParam('name');
       $user = User::where('username',$name)->first();
@@ -132,6 +134,77 @@ class HomeController extends Controller
       }
       $this->flash->addMessage('info','Neyspesno prifakanje');
       return $response->withRedirect($this->router->pathFor('home'));
+
+
+        $car = Car::find(1);
+        $user = $this->auth->user();
+        if($user->energy->check($car->energija)){
+        $num = $car->steal($user,$this->randomlib->generateInt(0, 100),$this->randomlib->generateInt(0, 5));
+        switch ($num) {
+         case 0:
+           $this->flash->addMessage('info','Uspesno ja ukradovte kolata '.$car->title);
+           return $response->withRedirect($this->router->pathFor('home'));
+           break;
+         case 1:
+           $this->flash->addMessage('info','Kriminalot e neuspesen i ne te fati policija');
+           return $response->withRedirect($this->router->pathFor('home'));
+           break;
+         case 2:
+           $this->flash->addMessage('info','Kriminalot e neuspesen i  te fati policija');
+           return $response->withRedirect($this->router->pathFor('home'));
+           break;
+        }
+        }else{
+        $this->flash->addMessage('info','Nemas dovolno energija');
+        return $response->withRedirect($this->router->pathFor('home'));
+        }
+
+        //trkanje gotovo oop se
+        $user = $this->auth->user();
+        $car = Car::find(1);
+        $num = $car->race(1,$user,$this->randomlib->generateInt(0, 100),$this->randomlib->generateInt(0, 5));
+        switch ($num) {
+         case 0:
+           $this->flash->addMessage('info','Uspea so kolata '.$car->title);
+           return $response->withRedirect($this->router->pathFor('home'));
+           break;
+         case 1:
+           $this->flash->addMessage('info','Neuspea i ne te fana policija');
+           return $response->withRedirect($this->router->pathFor('home'));
+           break;
+         case 2:
+           $this->flash->addMessage('info','Neuspea i te fati policija i kolata otide');
+           return $response->withRedirect($this->router->pathFor('home'));
+           break;
+         default:
+           $this->flash->addMessage('info','Ima greska obidete se povtorno');
+           return $response->withRedirect($this->router->pathFor('home'));
+           break;
+        }
+
+     //banka e gotova so transakcii se
+     $btn = $request->getParam('oke');
+     $money = $request->getParam('pari');
+     $user = $this->auth->user();
+     $num = $user->bank->transfer($user,$money,'big',$btn);
+    switch ($num) {
+        case 1:
+          $this->flash->addMessage('info','Nemas dovolno pari ili nemas pravo');
+          return $response->withRedirect($this->router->pathFor('home'));
+          break;
+        case 2:
+          $this->flash->addMessage('info','Limitot e dostignat');
+          return $response->withRedirect($this->router->pathFor('home'));
+          break;
+        case 3:
+          $this->flash->addMessage('info','Yspesno gi prenesovte parite');
+          return $response->withRedirect($this->router->pathFor('home'));
+          break;
+        case 0:
+          $this->flash->addMessage('info','Ima greska obidete se povtorno');
+          return $response->withRedirect($this->router->pathFor('home'));
+          break;
+    }*/
 
   }
 
