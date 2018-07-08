@@ -3,7 +3,7 @@
 namespace App\Validation;
 
 use Violin\Violin;
-use App\Models\User;
+use App\Models\User\User;
 
 class Validator extends Violin
 {

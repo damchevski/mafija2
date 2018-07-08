@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\User;
+use App\Models\User\User;
 use App\Models\DrinksDrugs;
 
 class AdminController extends Controller
@@ -17,7 +17,7 @@ class AdminController extends Controller
   {
     $kolicina = $request->getParam('kolicina');
     $user = $this->auth->user();
-    $drink = DrinksDrugs::find(2);
+    $drink = DrinksDrugs::find(1);
      //opp done zivis iod id so ke se odbere
      if($drink->add($user,$kolicina)){
        $this->flash->addMessage('info','Uspesno nadopolni kokanin');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class MainProm Extends Model
@@ -16,7 +16,7 @@ class MainProm Extends Model
 		'ubistva',
 		'friends',
 		'pending',
-		'atack_points',
+		'points',
 		'atack_wins',
     'atack_loses'
 	];
@@ -25,7 +25,7 @@ class MainProm Extends Model
 		'pocit' => 0,
 		'pari' => 0,
 		'ubistva' => 0,
-		'atack_points' => 0,
+		'points' => 0,
 		'atack_wins' => 0,
 		'atack_loses' => 0
   ];

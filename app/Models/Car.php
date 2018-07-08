@@ -84,7 +84,7 @@ class Car Extends Model
 						break;
 					default:
 					  $user->inventory->removeCar($this->id,$id);
-				    $num = 2;
+						return 2;
 						break;
 				}
 				$cars[$this->id]= (string)implode('_', $cars_dmg);

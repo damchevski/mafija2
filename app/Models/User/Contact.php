@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -13,6 +13,7 @@ class Contact Extends Model
 		'friends_ids',
 		'friends_pending',
 		'clan',
+		'crime_pending',
 		'blacklist'
 	];
   public static $defaults=[

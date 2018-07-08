@@ -2,12 +2,12 @@
 
 namespace App\Controllers\Auth;
 
-use App\Models\User;
-use App\Models\UserPermission;
-use App\Models\MainProm;
-use App\Models\Inventory;
-use App\Models\Energy;
-use App\Models\Contact;
+use App\Models\User\User;
+use App\Models\User\UserPermission;
+use App\Models\User\MainProm;
+use App\Models\User\Inventory;
+use App\Models\User\Energy;
+use App\Models\User\Contact;
 use App\Controllers\Controller;
 use Carbon\Carbon;
 

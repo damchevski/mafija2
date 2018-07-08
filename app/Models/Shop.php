@@ -20,7 +20,7 @@ class Shop Extends Model
 	{
 		$user_zaliha = json_decode($user->inventory->{$this->type},true);
 		if($user->mainProm->hasMoney($this->price * $kolicina)){
-			$user_zaliha[$this->title] += $kolicina;
+			$user_zaliha[$this->id] += $kolicina;
 			$user->mainProm->update(['pari' => $user->mainProm->pari - ($this->price * $kolicina)]);
 			$rewards = json_decode($this->reward,true);
 			foreach ($rewards as $key => $value) {

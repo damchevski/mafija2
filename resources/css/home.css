@@ -40,6 +40,13 @@
  border: 1px solid red;
  color: white;
 }
+#crime{
+ position: absolute;
+ top: 400px;
+ left: 100px;
+ border: 1px solid red;
+ color: white;
+}
 #toolbox{
   margin-top: 40px;
 }

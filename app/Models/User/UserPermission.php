@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class UserPermission Extends Model

@@ -1,6 +1,6 @@
 <?php
 namespace App\Auth;
-use App\Models\User;
+use App\Models\User\User;
 use Carbon\Carbon;
 
 class Auth

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class User Extends Model
@@ -22,28 +22,32 @@ class User Extends Model
 	];
 	public function energy()
 	{
-		return $this->hasOne('App\Models\Energy');
+		return $this->hasOne('App\Models\User\Energy');
 	}
 	public function inventory()
 	{
-		return $this->hasOne('App\Models\Inventory');
+		return $this->hasOne('App\Models\User\Inventory');
 	}
 	public function contact()
 	{
-		return $this->hasOne('App\Models\Contact');
+		return $this->hasOne('App\Models\User\Contact');
+	}
+	public function crime()
+	{
+		return $this->hasOne('App\Models\User\Crime');
 	}
 	public function bank()
 	{
-		return $this->hasOne('App\Models\Bank');
+		return $this->hasOne('App\Models\User\Bank');
 	}
 	public function mainProm()
 	{
-		return $this->hasOne('App\Models\MainProm');
+		return $this->hasOne('App\Models\User\MainProm');
 	}
 
 	public function permissions()
 	{
-		return $this->hasOne('App\Models\UserPermission');
+		return $this->hasOne('App\Models\User\UserPermission');
 	}
 
 	public function updateRememberCredentials($identifier, $token)
