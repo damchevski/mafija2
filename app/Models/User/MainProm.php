@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MainProm Extends Model
 {
-	protected $table = "main_prom";
+	protected $table = "users_prom";
 
 	protected $fillable = [
 		'mok',

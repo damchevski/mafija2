@@ -23,7 +23,7 @@ class Bank Extends Model
 	}
   public function transfer($user,$money,$type,$operation)
   {
-    if($user->bank->hasPermission($type) && $user->mainProm->hasMoney($money)){
+    if($user->bank->hasPermission($type) && $user->prom->hasMoney($money)){
         $bank =  json_decode($user->bank->{$type},true);
 				if($type == "big" || $type == "small"){
           if($bank['limit'] <= $bank['pari'] + $money && $operation =="add"){ return 2;}
@@ -31,16 +31,16 @@ class Bank Extends Model
            $bank['transakcii']--;
         }
         if($operation == "add"){
-          $user->mainProm->pari -= $money;
+          $user->prom->pari -= $money;
           $bank['pari']+=$money;
         }else{
 					 if($this->isLeft($type,$money)){
-          $user->mainProm->pari += $money;
+          $user->prom->pari += $money;
           $bank['pari']-=$money;
 					 }else{return 4;}
         }
         $user->bank->update([$type=> json_encode($bank,true)]);
-        $user->mainProm->save();//za poubav kod
+        $user->prom->save();//za poubav kod
 				 return 3;
     }else{
       return 1;

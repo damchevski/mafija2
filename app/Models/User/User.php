@@ -40,7 +40,7 @@ class User Extends Model
 	{
 		return $this->hasOne('App\Models\User\Bank');
 	}
-	public function mainProm()
+	public function prom()
 	{
 		return $this->hasOne('App\Models\User\MainProm');
 	}

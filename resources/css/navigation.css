@@ -1,0 +1,229 @@
+nav.navbar #logo {
+  margin-right: 10px; }
+
+nav.navbar .navbar-brand {
+  margin-left: 2em; }
+
+nav.navbar #navbar {
+  margin-top: 10px;
+  margin-left: 20px; }
+  nav.navbar #navbar ul li {
+    text-align: center; }
+    nav.navbar #navbar ul li:hover span {
+      border-bottom: 1px solid white; }
+
+nav.navbar .navbar-toggler {
+  outline: none;
+  border: none;
+  padding-right: 0; }
+
+nav.navbar .hamburger {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  vertical-align: middle;
+  content: "";
+  background: center center / 100% 100% no-repeat;
+  -webkit-transform: rotateY(0);
+  transform: rotateY(0);
+  -webkit-transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  -o-transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+  nav.navbar .hamburger__patty {
+    width: 100%;
+    height: 2px;
+    margin: 0 0 4px 0;
+    background: rgba(0, 0, 0, 0.7);
+    -webkit-transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    -o-transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+    nav.navbar .hamburger__patty:last-child {
+      margin-bottom: 0;
+      width: 80%;
+      margin-left: 20%; }
+  nav.navbar .hamburger--close {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg); }
+    nav.navbar .hamburger--close .hamburger__patty:nth-child(1) {
+      -webkit-transform: rotate(45deg) translate(4px, 4px);
+      -ms-transform: rotate(45deg) translate(4px, 4px);
+      transform: rotate(45deg) translate(4px, 4px); }
+    nav.navbar .hamburger--close .hamburger__patty:nth-child(2) {
+      opacity: 0; }
+    nav.navbar .hamburger--close .hamburger__patty:nth-child(3) {
+      -webkit-transform: rotate(-45deg) translate(5px, -5px);
+      -ms-transform: rotate(-45deg) translate(5px, -5px);
+      transform: rotate(-45deg) translate(5px, -5px);
+      width: 100%;
+      margin-left: 0; }
+
+      .sidebar-swipe {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        width: 50px;
+        height: 100%;
+        z-index: 2; }
+
+      nav.sidebar {
+        background-color: #301011;
+        z-index: 2;
+        position: fixed;
+        min-width: 250px;
+        height: 100vh;
+        color: white; }
+        nav.sidebar .profile {
+          padding: 0 0 5px 0;
+          background-image: url("/mafija2/resources/img/back3.jpg");
+          background-size: cover;
+          background-position: center; }
+          nav.sidebar .profile .img {
+            padding: 5px;
+            display: inline-block; }
+            nav.sidebar .profile .img img {
+              position: absolute;
+              top: 4px;
+              left: 4px; }
+            nav.sidebar .profile .img .name {
+              margin-top: 8px;
+              text-align: center;
+            }
+          nav.sidebar .profile .nav {
+            position: absolute;
+            top: 10px;
+            left: 117px;
+            width: 120px;
+            font-size: 16px; }
+            nav.sidebar .profile .nav .progress {
+              margin-top: 8px;
+              margin-bottom: 5px; }
+              nav.sidebar .profile .nav .progress svg {
+                position: absolute;
+                width: 26px;
+                height: 26px;
+                stroke-width: 1.5px; }
+              nav.sidebar .profile .nav .progress #Capa_1 {
+                width: 24px;
+                height: 24px;
+                stroke-width: 4px;
+                }
+        nav.sidebar .navigation ul li {
+          font-size: 1.5em;
+          cursor: pointer; }
+          nav.sidebar .navigation ul li:hover {
+            color: #ec1a23; }
+            nav.sidebar .navigation ul li:hover svg {
+              fill: #ec1a23; }
+          nav.sidebar .navigation ul li svg {
+            fill: white;
+            display: inline-block;
+            float: right;
+            margin-top: 15px; }
+            nav.sidebar .navigation ul li svg:first-child {
+              width: 35px;
+              height: 35px;
+              margin: 10px 15px  0 10px;
+              float: left; }
+          nav.sidebar .navigation ul li span {
+            display: inline-block;
+            float: left;
+            margin-top: 10px; }
+        nav.sidebar .navigation ul .sub-menu {
+          background-color: #200d11;
+          padding-left: 0; }
+          nav.sidebar .navigation ul .sub-menu li {
+            list-style: none;
+            border: none; }
+            nav.sidebar .navigation ul .sub-menu li svg {
+              width: 24px;
+              height: 24px;
+              display: -webkit-inline-box;
+              display: -ms-inline-flexbox;
+              display: inline-flex; }
+            nav.sidebar .navigation ul .sub-menu li span {
+              display: -webkit-inline-box;
+              display: -ms-inline-flexbox;
+              display: inline-flex; }
+
+      div.container-fluid {
+        padding-top: 20px; }
+        div.container-fluid .card {
+          background-color: #adff2f; }
+
+      @media only screen and (max-width: 600px) {
+        nav.sidebar {
+          left: -260px;
+          top: 0px !important; }
+        #navbar {
+          margin: none; } }
+
+      .card {
+        -webkit-box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.7);
+        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.7); }
+
+      .profile .img .progress {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        background: none;
+        margin: 0 auto;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        position: relative; }
+        .profile .img .progress:after {
+          content: "";
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          border: 6px solid #fff;
+          position: absolute;
+          top: 0;
+          left: 0; }
+        .profile .img .progress span {
+          width: 50%;
+          height: 100%;
+          overflow: hidden;
+          position: absolute;
+          top: 0;
+          z-index: 1; }
+        .profile .img .progress .progress-left {
+          left: 0; }
+        .profile .img .progress .progress-bar {
+          width: 100%;
+          height: 100%;
+          background: none;
+          border-width: 6px;
+          border-style: solid;
+          position: absolute;
+          top: 0; }
+        .profile .img .progress .progress-left .progress-bar {
+          left: 100%;
+          border-top-right-radius: 80px;
+          border-bottom-right-radius: 80px;
+          border-left: 0;
+          -webkit-transform-origin: center left;
+          -ms-transform-origin: center left;
+          transform-origin: center left; }
+        .profile .img .progress .progress-right {
+          right: 0; }
+        .profile .img .progress .progress-right .progress-bar {
+          left: -100%;
+          border-top-left-radius: 80px;
+          border-bottom-left-radius: 80px;
+          border-right: 0;
+          -webkit-transform-origin: center right;
+          -ms-transform-origin: center right;
+          transform-origin: center right;}
+
+      .profile .img .progress-value span {
+        font-size: 24px;
+        line-height: 80px;
+        position: absolute;
+        top: 35%;
+        left: 30%; }
+
+      .profile .img .progress.blue .progress-bar {
+        border-color: #28a745; }

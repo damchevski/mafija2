@@ -6,7 +6,7 @@ use Carbon\Carbon;
 
 class Energy Extends Model
 {
-	protected $table = "energy_status";
+	protected $table = "users_energy";
 
 	protected $fillable = [
 		'energija',

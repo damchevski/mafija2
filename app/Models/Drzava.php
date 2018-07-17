@@ -18,9 +18,9 @@ class Drzava Extends Model
       $relacii = json_decode($this->relacii,true);
       foreach ($relacii as $key => $value) {
         if(strpos($key, $destination->name)){
-          if($user->mainProm->hasMoney($value * 5)){
-            $user->mainProm->update([ 'pari' => $user->mainProm->pari - $value * 5]);
-            $user->mainProm->update([ 'place' => $destination->name]);
+          if($user->prom->hasMoney($value * 5)){
+            $user->prom->update([ 'pari' => $user->prom->pari - $value * 5]);
+            $user->prom->update([ 'place' => $destination->name]);
             return true;
           }
         }
@@ -29,9 +29,9 @@ class Drzava Extends Model
       $relacii = json_decode($destination->relacii,true);
       foreach ($relacii as $key => $value) {
         if(strpos($key, $this->name)){
-          if($user->mainProm->hasMoney($value * 5)){
-            $user->mainProm->update([ 'pari' => $user->mainProm->pari - $value * 5]);
-            $user->mainProm->update([ 'place' => $destination->name]);
+          if($user->prom->hasMoney($value * 5)){
+            $user->prom->update([ 'pari' => $user->prom->pari - $value * 5]);
+            $user->prom->update([ 'place' => $destination->name]);
             return true;
           }
         }

@@ -23,7 +23,7 @@ class Rabota Extends Model
 		if($chance <= $this->chance){
        $prices = json_decode($this->price,true);
 			 foreach ($prices as $key => $value) {
-			 	$user->mainProm->update([ $key => $user->mainProm->{$key} + $value ]);
+			 	$user->prom->update([ $key => $user->prom->{$key} + $value ]);
 			 }
        return true;
 		}
@@ -37,7 +37,7 @@ class Rabota Extends Model
 		//treba ubavo da se stavat idta za criminal za bava spredba
     switch (true) {
     	case $chance <= $crime_chances[$this->id-2]:
-		  	$user->mainProm->update([ 'pari' => $user->mainProm->pari + $prices['pari'] ]);
+		  	$user->prom->update([ 'pari' => $user->prom->pari + $prices['pari'] ]);
     		$num = 0;
     		break;
 			case $chance > $crime_chances[$this->id-2] && $chance <= $crime_chances[$this->id-2] + 20 :
@@ -59,7 +59,7 @@ class Rabota Extends Model
 				}
 				}else{
 					$values = explode('_', $value);
-					$user->mainProm->update([ $key => $user->mainProm->{$key} + $values[$num]]);
+					$user->prom->update([ $key => $user->prom->{$key} + $values[$num]]);
 				}
 			}
 		}

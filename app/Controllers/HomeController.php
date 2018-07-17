@@ -71,7 +71,7 @@ class HomeController extends Controller
    //premestuvanje gradovi gotovo
     $grad = $request->getParam('grad');
       $user = $this->auth->user();
-      $from = Drzava::where('name',$user->mainProm->place)->first();
+      $from = Drzava::where('name',$user->prom->place)->first();
       $next = Drzava::where('name',$grad)->first();
       if($from->travel($user,$next)){
         $this->flash->addMessage('info','Ke letate pocekajte 3 minuti');
@@ -282,21 +282,21 @@ class HomeController extends Controller
       }
       $user->contact->update(['crime_pending'=>json_encode($crimes,true)]);
       return $response->withRedirect($this->router->pathFor('home'));*/
-       //ima nedostatoci ama okej e 
+       //ima nedostatoci ama okej e
       $user = $this->auth->user();
       if($user->crime->accepted('sofer')&&$user->crime->accepted('hitmen')){
         $sofer = User::find($user->crime->prom('sofer','id'));
         $hitmen = User::find($user->crime->prom('hitmen','id'));
-        if($user->mainProm->points >=10 && $sofer->mainProm->points >=10 && $hitmen->mainProm->points >=10){
+        if($user->prom->points >=10 && $sofer->prom->points >=10 && $hitmen->prom->points >=10){
           $chance =$this->randomlib->generateInt(0, 100);
           $car = explode("_",$user->crime->prom('sofer','car'));
           $first =(($car[0]-1) * 2) + 20 + $user->crime->prom('hitmen','guns');
             switch (true) {
               case $chance <= $first:
-                  $user->mainProm->update(['pari'=> $user->mainProm->pari + $user->crime->invest * 2 ]);
-                  $sofer->mainProm->update(['pari'=>$sofer->mainProm->pari  +$user->crime->invest / 2 ]);
+                  $user->prom->update(['pari'=> $user->prom->pari + $user->crime->invest * 2 ]);
+                  $sofer->prom->update(['pari'=>$sofer->prom->pari  +$user->crime->invest / 2 ]);
                   $sofer->inventory->addCar($car[0],$car[1]);
-                  $hitmen->mainProm->update(['pari'=> $hitmen->mainProm->pari +$user->crime->invest / 2 ]);
+                  $hitmen->prom->update(['pari'=> $hitmen->prom->pari +$user->crime->invest / 2 ]);
                   //za hitmen treba rabota dopolnitelna
                   $user->crime->delete();
                   $this->flash->addMessage('info','Uspeavte');

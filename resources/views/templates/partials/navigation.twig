@@ -1,37 +1,230 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top" style="opacity:0;">
-  <a class="navbar-brand " id="home_link" href="{{path_for('home')}}">Благајник</a>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-expand-md navbar-dark ">
+  <img id="logo"src="{{baseUrl}}/resources/img/logo4.png" width="40" height="40" class="d-inline-block align-top" alt="">
+  <img id="name"src="{{baseUrl}}/resources/img/logo1.png" min-width="400px" height="40px" class="d-inline-block align-top" alt="Underworld">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+   <div class="hamburger d-flex flex-column justify-content-around text-center">
+     <div class="hamburger__patty"></div>
+     <div class="hamburger__patty"></div>
+     <div class="hamburger__patty"></div>
+   </div>
+ </button>
   <div id="navbar"class="collapse navbar-collapse">
-    <ul class="nav navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" id="payments_link" href="{{path_for('admin')}}">Admin</a>
-      </li>
+    <ul class="nav navbar-nav ">
       {% if auth.check %}
         <li class="nav-item active">
-          <a class="nav-link" id="update_link" href="{{path_for('update')}}">
-            <svg id="profile_svg"fill="#ffffff" height="36" viewBox="0 0 24 24" width="36" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-                <path d="M0 0h24v24H0z" fill="none"/>
-            </svg>
-            <span id="profile_text">
-              Профил
-            </span>
-          </a>
+          <a class="nav-link" href="{{path_for('home') }}"> <span>ПРОФИЛ</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link " id="signout_link" href="{{path_for('auth.signout')}}">Одјави Се</a>
+          <a class="nav-link" href="{{path_for('admin') }}"> <span>АДМИН</span></a>
+        </li>
+        <li class="nav-item active ">
+          <a class="nav-link " href="{{path_for('auth.signout') }}"> <span>ОДЈАВИ</span></a>
         </li>
       {% else %}
-        <li class="nav-item active">
-          <a class="nav-link" id="signup_link" href="{{path_for('auth.signup')}}">Регистрирај Се </a>
+        <li class="nav-item active ">
+          <a class="nav-link " href="{{path_for('auth.signup') }}"> <span>РЕГИСТРИРАЈ</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" id="signin_link" href="{{path_for('auth.signin')}}">Логирај Се</a>
+          <a class="nav-link" href="{{path_for('auth.signin') }}"> <span>ЛОГИРАЈ</span></a>
         </li>
       {% endif %}
     </ul>
   </div>
 </nav>
+{% if auth.check %}
+<div class="sidebar-swipe"></div>
+<nav class="sidebar">
+  <div class="profile">
+    <div class="img">
+      <div class="progress blue">
+        <span class="progress-left">
+          <span class="progress-bar"></span>
+        </span>
+        <span class="progress-right">
+          <span class="progress-bar"></span>
+        </span>
+        <div class="progress-value">
+         <span class="num">...</span>
+         <img src="/mafija2/resources/img/profile2.png"  width="92" height="92">
+        </div>
+      </div>
+      <div class="name">
+        <span>{{auth.user.username}}</span><br>
+        <span>{{auth.user.contact.clan}}</span>
+      </div>
+    </div>
+    <ul class="nav navbar-nav">
+      <li>Мок: {{auth.user.prom.mok}}</li>
+      <li>Почит: {{auth.user.prom.pocit}}</li>
+      <li>Пари: {{auth.user.prom.pari}}</li>
+      <li>Држава: {{auth.user.prom.place}}</li>
+      <li>
+        <div class="progress">
+          <div class="progress-bar  bg-warning" role="progressbar" style="width:{{auth.user.energy.energija}}%">{{auth.user.energy.energija}}%
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill=" #ffc107"style="left:{{auth.user.energy.energija - 10}}%">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M7 2v11h3v9l7-12h-4l4-8z" stroke="#e9ecef"/>
+            </svg>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="progress">
+          <div class="progress-bar bg-danger" role="progressbar" style="width:{{auth.user.energy.energija}}%">{{auth.user.energy.energija}}%
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+               viewBox="0 0 51.997 51.997" xml:space="preserve" fill="#dc3545" style="left:{{auth.user.energy.energija - 10}}%">
+            <path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
+              c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
+              c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
+              C52.216,18.553,51.97,16.611,51.911,16.242z" stroke="#e9ecef"/>
+            </svg>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="navigation">
+    <ul class="nav navbar-nav">
+        <li data-toggle="collapse" data-target="#crime" class="collapsed">
+          <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+          </svg>
+          <span>КРИМИНАЛ</span>
+          <svg class="svg"xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+        </li>
+        </li>
+        <ul class="sub-menu collapse" id="crime">
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
+                  <path d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"/>
+              </svg>
+              Злосорства
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                  <defs>
+                      <path id="a" d="M0 0h24v24H0V0z"/>
+                  </defs>
+                  <clipPath id="b">
+                      <use xlink:href="#a" overflow="visible"/>
+                  </clipPath>
+                  <path clip-path="url(#b)" d="M19.5 9.5c-1.03 0-1.9.62-2.29 1.5h-2.92c-.39-.88-1.26-1.5-2.29-1.5s-1.9.62-2.29 1.5H6.79c-.39-.88-1.26-1.5-2.29-1.5C3.12 9.5 2 10.62 2 12s1.12 2.5 2.5 2.5c1.03 0 1.9-.62 2.29-1.5h2.92c.39.88 1.26 1.5 2.29 1.5s1.9-.62 2.29-1.5h2.92c.39.88 1.26 1.5 2.29 1.5 1.38 0 2.5-1.12 2.5-2.5s-1.12-2.5-2.5-2.5z"/>
+              </svg>
+              Planiran Kriminal
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
+                  <path d="M2 16h15v3H2zm18.5 0H22v3h-1.5zM18 16h1.5v3H18zm.85-8.27c.62-.61 1-1.45 1-2.38C19.85 3.5 18.35 2 16.5 2v1.5c1.02 0 1.85.83 1.85 1.85S17.52 7.2 16.5 7.2v1.5c2.24 0 4 1.83 4 4.07V15H22v-2.24c0-2.22-1.28-4.14-3.15-5.03zm-2.82 2.47H14.5c-1.02 0-1.85-.98-1.85-2s.83-1.75 1.85-1.75v-1.5c-1.85 0-3.35 1.5-3.35 3.35s1.5 3.35 3.35 3.35h1.53c1.05 0 1.97.74 1.97 2.05V15h1.5v-1.64c0-1.81-1.6-3.16-3.47-3.16z"/>
+                  <path fill="none" d="M0 0h24v24H0z"/>
+              </svg>
+              Droga
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
+                  <path d="M21 5V3H3v2l8 9v5H6v2h12v-2h-5v-5l8-9zM7.43 7L5.66 5h12.69l-1.78 2H7.43z"/>
+                  <path fill="none" d="M0 0h24v24H0z"/>
+              </svg>
+              Alxoxol
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
+                  <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                  <path d="M0 0h24v24H0z" fill="none"/>
+              </svg>
+              Avtomobili
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
+                  <path d="M18.92 5.01C18.72 4.42 18.16 4 17.5 4h-11c-.66 0-1.21.42-1.42 1.01L3 11v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 15c-.83 0-1.5-.67-1.5-1.5S5.67 12 6.5 12s1.5.67 1.5 1.5S7.33 15 6.5 15zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 10l1.5-4.5h11L19 10H5z"/>
+                  <path d="M0 0h24v24H0z" fill="none"/>
+              </svg>
+              Trki
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                  <defs>
+                      <path id="a" d="M24 24H0V0h24v24z"/>
+                  </defs>
+                  <clipPath id="b">
+                      <use xlink:href="#a" overflow="visible"/>
+                  </clipPath>
+                  <path clip-path="url(#b)" d="M8.5 14.5L4 19l1.5 1.5L9 17h2l-2.5-2.5zM15 1c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 20.01L18 24l-2.99-3.01V19.5l-7.1-7.09c-.31.05-.61.07-.91.07v-2.16c1.66.03 3.61-.87 4.67-2.04l1.4-1.55c.19-.21.43-.38.69-.5.29-.14.62-.23.96-.23h.03C15.99 6.01 17 7.02 17 8.26v5.75c0 .84-.35 1.61-.92 2.16l-3.58-3.58v-2.27c-.63.52-1.43 1.02-2.29 1.39L16.5 18H18l3 3.01z"/>
+              </svg>
+              Rabota
+            </li>
+        </ul>
+        <li  data-toggle="collapse" data-target="#lokacii" class="collapsed ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+          <span>ЛОКАЦИИ</span>
+          <svg class="svg"xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+        </li>
+        <ul class="sub-menu collapse" id="lokacii">
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path fill="none" d="M0 0h24v24H0z"/>
+                  <path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10S2 17.52 2 12zm10 6c3.31 0 6-2.69 6-6s-2.69-6-6-6-6 2.69-6 6 2.69 6 6 6z"/>
+                  <path fill="none" d="M0 0h24v24H0z"/>
+              </svg>
+              Ztvor
+          </li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/>
+              </svg>
+              Bolnica
+          </li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/>
+          </svg>
+          Finansii</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M19 7V4H5v3H2v13h8v-4h4v4h8V7h-3zm-8 3H9v1h2v1H8V9h2V8H8V7h3v3zm5 2h-1v-2h-2V7h1v2h1V7h1v5z"/>
+          </svg>
+          Prodavnica</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+          Patuvaj</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M0 0h48v48H0z" fill="none"/>
+              <path d="M24 14V6H4v36h40V14H24zM12 38H8v-4h4v4zm0-8H8v-4h4v4zm0-8H8v-4h4v4zm0-8H8v-4h4v4zm8 24h-4v-4h4v4zm0-8h-4v-4h4v4zm0-8h-4v-4h4v4zm0-8h-4v-4h4v4zm20 24H24v-4h4v-4h-4v-4h4v-4h-4v-4h16v20zm-4-16h-4v4h4v-4zm0 8h-4v4h4v-4z"/>
+          </svg>
+          Garaza</li>
+        </ul>
+        <li  data-toggle="collapse" data-target="#profil" class="collapsed ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/>
+          </svg>
+          <span>КАЗИНО</span>
+          <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+        </li>
+        <ul class="sub-menu collapse" id="profil">
+          <li>Zlostorstva</li>
+          <li>Organiziran Kriminal</li>
+          <li>Droga</li>
+          <li>Alxoxol</li>
+          <li>Avtomobili</li>
+          <li>Trki</li>
+          <li>Rabota</li>
+        </ul>
+    </ul>
+  </div>
+</nav>
+{% endif %}

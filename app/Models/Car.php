@@ -61,7 +61,7 @@ class Car Extends Model
           $user->inventory->update([ $key => $val ]);
         }
         }else{
-          $user->mainProm->update([ $key => $user->mainProm->{$key} + $value]);
+          $user->prom->update([ $key => $user->prom->{$key} + $value]);
         }
 
     }
@@ -75,7 +75,7 @@ class Car Extends Model
 				switch (true) {
 					case $chance <= (25 + 3 * ($this->id - 1)):
 				  	$cars_dmg[$id]-=$dmg+10;
-            $user->mainProm->update(['pari'=> $user->mainProm->pari + $cars_dmg[$id]*$this->price ]);
+            $user->prom->update(['pari'=> $user->prom->pari + $cars_dmg[$id]*$this->price ]);
             $num = 0;
 						break;
 					case $chance > (25 + 3 * ($this->id - 1)) && $chance <= (60 - 2 * ($this->id - 1)) :

@@ -19,12 +19,12 @@ class Shop Extends Model
 	public function add_wepons($user,$kolicina)
 	{
 		$user_zaliha = json_decode($user->inventory->{$this->type},true);
-		if($user->mainProm->hasMoney($this->price * $kolicina)){
+		if($user->prom->hasMoney($this->price * $kolicina)){
 			$user_zaliha[$this->id] += $kolicina;
-			$user->mainProm->update(['pari' => $user->mainProm->pari - ($this->price * $kolicina)]);
+			$user->prom->update(['pari' => $user->prom->pari - ($this->price * $kolicina)]);
 			$rewards = json_decode($this->reward,true);
 			foreach ($rewards as $key => $value) {
-			 $user->mainProm->update([ $key => $user->mainProm->{$key} + $value ]);
+			 $user->prom->update([ $key => $user->prom->{$key} + $value ]);
 			}
 			$user->inventory->update([$this->type => json_encode($user_zaliha) ]);
 			return true;

@@ -30,12 +30,12 @@ class Missions Extends Model
 				foreach ($requirements as $key=>$value) {
 					//tuka
 				if($value <= $user->mainProm->{$key}){
-					$i++;	
+					$i++;
 				}
 				}
 				if($i == sizeof($requirements)){
 					foreach ($prices as $key => $value) {
-						$user->mainProm->update([ $key => 	$user->mainProm->{$key} + $value ]);
+						$user->prom->update([ $key => 	$user->prom->{$key} + $value ]);
 					}
 					$user->inventory->update(['finished_missions' => $user->inventory->finished_missions.$missions->id.'_']);
 				}
