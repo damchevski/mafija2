@@ -6,3 +6,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;}
+.container-fluid{
+  padding-left: 300px;
+  color: white;
+}

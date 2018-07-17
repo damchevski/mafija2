@@ -12,14 +12,7 @@ $(document).ready(function () {
       $(this).children('.svg').rotate(0);
     }
   });
-
 });
-function isMobile() {
-    if(/Android|webOS|iPhone|iPad|iPod|pocket|psp|kindle|avantgo|blazer|midori|Tablet|Palm|maemo|plucker|phone|BlackBerry|symbian|IEMobile|mobile|ZuneWP7|Windows Phone|Opera Mini/i.test(navigator.userAgent)) {
-     return true;
-    }
-    return false;
-}
 function loadingCricle() {
   var input = 70;
   var output = (360 * input) / 100;

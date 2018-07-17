@@ -7,29 +7,31 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
     <title>Mafija</title>
-    <link rel="stylesheet" href="{{baseUrl}}/resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{baseUrl}}/resources/css/main.css">
+    <link rel="stylesheet" href="{{baseUrl}}/resources/css/templates/bootstrap.min.css">
+    <link rel="stylesheet" href="{{baseUrl}}/resources/css/templates/main.css">
     <link rel="stylesheet" href="{{baseUrl}}/resources/css/chat.css">
     {% block head %} {% endblock %}
   </head>
   <body>
-    <script type="text/javascript" src="{{baseUrl}}/resources/js/jquery-3.2.1.js"></script>
-    <!-- Cahat proms -->
-    <script type="text/javascript" src="{{baseUrl}}/resources/js/rotate.js"></script>
+    <script type="text/javascript" src="{{baseUrl}}/resources/js/templates/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="{{baseUrl}}/resources/js/templates/rotate.js"></script>
+    <!-- Simplebar -->
     <link rel="stylesheet" href="{{baseUrl}}/resources/node_modules/simplebar/dist/simplebar.css" />
     <script src="{{baseUrl}}/resources/node_modules/simplebar/dist/simplebar.js"></script>
-    <!-- Cahat proms -->
-    <link rel="stylesheet" href="{{baseUrl}}/resources/css/navigation.css">
+    <!-- Simplebar -->
+    <!-- Navigation -->
+    <link rel="stylesheet" href="{{baseUrl}}/resources/css/templates/navigation.css">
     {%include 'templates/partials/navigation.twig' %}
-    <script type="text/javascript" src="{{baseUrl}}/resources/js/navigation.js"> </script>
-    <div id="main" class="container-fluid">
+    <script type="text/javascript" src="{{baseUrl}}/resources/js/templates/navigation.js"> </script>
+    <!-- Navigation -->
+
+    <div class="container-fluid">
     {%include 'templates/partials/flash.twig' %}
     {% block content %} {% endblock %}
     </div>
     <div id="chat-container"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="{{baseUrl}}/resources/js/swipe.js"></script>
-    <script src="{{baseUrl}}/resources/js/bootstrap.min.js"></script>
-    <script src="{{baseUrl}}/resources/js/main.js"></script>
+    <script src="{{baseUrl}}/resources/js/templates/swipe.js"></script>
+    <script src="{{baseUrl}}/resources/js/templates/bootstrap.min.js"></script>
+    <script src="{{baseUrl}}/resources/js/templates/main.js"></script>
   </body>
 </html>

@@ -72,7 +72,7 @@ nav.navbar .hamburger {
         background-color: #301011;
         z-index: 2;
         position: fixed;
-        min-width: 250px;
+        min-width: 260px;
         height: 100vh;
         color: white; }
         nav.sidebar .profile {
@@ -94,7 +94,7 @@ nav.navbar .hamburger {
           nav.sidebar .profile .nav {
             position: absolute;
             top: 10px;
-            left: 117px;
+            left: 120px;
             width: 120px;
             font-size: 16px; }
             nav.sidebar .profile .nav .progress {
@@ -158,7 +158,12 @@ nav.navbar .hamburger {
           left: -260px;
           top: 0px !important; }
         #navbar {
-          margin: none; } }
+          margin: none; }
+        .container-fluid{
+          padding-left: 15px;
+        }
+      }
+
 
       .card {
         -webkit-box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.7);
