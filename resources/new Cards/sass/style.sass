@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css?family=Underdog')
+@import url('https://fonts.googleapis.com/css?family=Roboto&subset=cyrillic,cyrillic-ext')
+body
+  font-family: 'Roboto', sans-serif!important
+  background-image: url('http://ce9cc619.ngrok.io/mafijaDizajn/img/background1.jpg')
+  background-repeat: no-repeat
+  background-size: cover
+.ui-loader
+  display: none
+nav.navbar
+  //background-color: #020b17!important
+  #logo
+    margin-right: 10px
+  .navbar-brand
+    margin-left: 2em
+  #navbar ul li
+    text-align: center
+  .navbar-toggler
+    outline: none
+    border: none
+    padding-right: 0
+  .hamburger
+    display: inline-block
+    width: 1.5em
+    height: 1.5em
+    padding-top: 0.3em
+    padding-bottom: 0.3em
+    vertical-align: middle
+    content: ""
+    background: center center / 100% 100% no-repeat
+    transform: rotateY(0)
+    transition: all .4s cubic-bezier(0.23, 1, 0.32, 1)
+
+    &__patty
+      width: 100%
+      height: 2px
+      margin: 0 0 4px 0
+      background: rgba(0,0,0,0.7)
+      transition: all .4s cubic-bezier(0.23, 1, 0.32, 1)
+
+      &:last-child
+        margin-bottom: 0
+        width: 80%
+        margin-left: 20%
+
+
+    // transform burger into 'x'
+    &--close
+      transform: rotate(180deg)
+
+      .hamburger__patty
+        &:nth-child(1)
+          transform: rotate(45deg) translate(4px, 4px)
+
+        &:nth-child(2)
+          opacity: 0
+
+        &:nth-child(3)
+          transform: rotate(-45deg) translate(5px, -5px)
+          width: 100%
+          margin-left: 0
+.sidebar-swipe
+  touch-action: none
+  position: fixed
+  top: 0
+  left: 0
+  width: 50px
+  height: 100%
+  z-index: 2
+nav.sidebar
+  z-index: 2
+  touch-action: none
+  position: fixed
+  min-width: 250px
+  height: 100vh
+  background-color: #020b17
+  color: white
+  .profile
+    padding: 0 0 10px 0
+    border-bottom: 1px solid #23282e
+    .img
+      padding: 5px
+      display: inline-block
+      .username
+        text-align: center
+    .nav
+      position: absolute
+      top: 10px
+      left: 120px
+      width: 120px
+      font-size: 16px
+      .progress
+        margin-top: 5px
+        margin-bottom: 2.5px
+        .progress-bar
+          text-align: left
+          padding-left: 5px
+
+  .navigation
+    ul li
+      font-size: 1.5em
+      cursor: pointer
+      //border-bottom: 1px solid #23282e
+      &:hover
+        background-color: lighten(#020203, 30%)
+      svg
+        fill: white
+        display: inline-block
+        float: right
+        margin-top: 7px
+        &:first-child
+          margin-right: 5px
+          float: left
+      span
+        display: inline-block
+        float: left
+    ul .sub-menu
+      background-color: #181c20
+      padding-left: 0
+      li
+        list-style: none
+        border: none
+        border-bottom: 1px solid #23282e
+        svg
+          display: inline-flex
+        span
+          display: inline-flex
+div.container-fluid
+  padding-top: 20px
+  .card
+    background-color: #adff2f
+
+@media only screen and (max-width: 600px)
+  nav.sidebar
+    left: -260px
+    top: 0px!important

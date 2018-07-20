@@ -1,0 +1,172 @@
+body {
+    background-color : #1c1c1c;
+    margin: 0;
+}
+#logo-bar{
+    background-color:#7b0e13;
+    width: 100%;
+    height: auto ;
+}
+#logo-image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width:50%;
+    max-height:75%;
+}
+#login-img1{
+    display: block;
+    max-width: 75%;
+    height: auto;
+}
+#SignUp{
+    display: none;
+}
+
+
+form{
+    color: white;
+
+}
+
+.slika{
+    position: relative;
+    background: url(../img/login-img1.png);
+    background-repeat: no-repeat, repeat;
+    background-position: left;
+    padding: 15px;
+    background-size: 40%;
+
+}
+.slika2{
+    position: relative;
+    background: url(../img/login-img1.png);
+    background-repeat: no-repeat, repeat;
+    background-position: right;
+    padding: 15px;
+    background-size: 40%;
+
+}
+
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 1;
+}
+
+button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+    max-width: 500px;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.ChangeLoginButton{
+    float: center;
+    width: 100%;
+    background-color: #7b0e13;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+}
+
+@media all and (min-width:960px) and (max-width: 1024px) {
+    /* put your css styles in here */
+    .slika2{
+        background-size: 100%;
+    }
+  }
+  
+  @media all and (min-width:801px) and (max-width: 959px) {
+    /* put your css styles in here */
+    .slika2{
+        background-size: 100%;
+    }
+
+  }
+  
+  @media all and (min-width:769px) and (max-width: 800px) {
+    /* put your css styles in here */
+    .slika2{
+        background-size: 100%;
+    }
+  }
+  
+  @media all and (min-width:569px) and (max-width: 768px) {
+    /* put your css styles in here */
+    .slika2{
+        background-size: 100%;
+    }
+  }
+  
+  @media all and (min-width:481px) and (max-width: 568px) {
+    /* put your css styles in here */
+    .slika2{
+        background-size: 100%;
+    }
+  }
+  
+  @media all and (min-width:321px) and (max-width: 480px) {
+    /* put your css styles in here */
+    .slika2{
+        background-size: 100%;
+    }
+  }
+  
+  @media all and (min-width:0px) and (max-width: 320px) {
+    /* put your css styles in here */
+    .slika2{
+        background-size: 100%;
+    }
+  }
