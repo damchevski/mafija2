@@ -4,12 +4,13 @@
 {% endblock %}
 {% block content %}
  {% if auth.check %}
+ <div class="card-columns">
  <div id="rabota">
    <label for="kurir">Ukradi kola</label>
-   <form action="{{path_for('home')}}" method="post" autocomplete="off">
-       <input type="submit" name="rabota" value="ok">
+
+       <input type="button" name="rabota" value="ok" onclick="status();">
          {{ csrf_field() | raw }}
-   </form>
+
  </div>
  <div id="place">
    <label for="grad">Smeni mesto na ziveenje:</label>
@@ -72,8 +73,49 @@
          {{ csrf_field() | raw }}
    </form>
  </div>
-
-
+ </div>
+<script type="text/javascript">
+$(document).ready(function(){
+  //opp moze dase napravi
+  $('#container').on('click','.rabota',function(){
+      var id = $(this).parents('.card-body').children('input').val();
+       $.get("{{path_for('rabota')}}",{id:id},function(data){
+          $('#container').children('.container').html(data);
+       });
+      });
+  $('#container').on('click','.crime',function(){
+      var id = $(this).parents('.card-body').children('input').val();
+       $.get("{{path_for('crime')}}",{id:id},function(data){
+          $('#container').children('.container').html(data);
+       });
+      });
+  $('#container').on('click','.add',function(){
+      var id = $(this).parents('.card-body').children('input').last().val();
+      var kolicina = $(this).parents('.card-body').children('input').first().val();
+       $.get("{{path_for('drinks-drugs')}}",{id:id,kolicina:kolicina},function(data){
+          $('#container').children('.container').html(data);
+       });
+      });
+  $('#container').on('click','.car',function(){
+      var id = $(this).parents('.card-body').children('input').val();
+       $.get("{{path_for('car')}}",{id:id},function(data){
+          $('#container').children('.container').html(data);
+       });
+      });
+  $('#container').on('click','.race',function(){
+      var id = $(this).parents('.card-body').children('input').val();
+       $.get("{{path_for('race')}}",{id:id},function(data){
+          $('#container').children('.container').html(data);
+       });
+      });
+  $('#container').on('click','.travel',function(){
+      var place = $(this).parents('.card-body').children('select').val();
+       $.get("{{path_for('travel')}}",{place:place},function(data){
+          $('#container').children('.container').html(data);
+       });
+      });
+});
+</script>
  {% else %}
    heloo
 {% endif %}

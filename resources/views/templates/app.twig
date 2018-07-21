@@ -4,28 +4,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" href="{{baseUrl}}/resources/img/logo4.png">
     <title>Mafija</title>
     <link rel="stylesheet" href="{{baseUrl}}/resources/css/templates/bootstrap.min.css">
     <link rel="stylesheet" href="{{baseUrl}}/resources/css/templates/main.css">
     <link rel="stylesheet" href="{{baseUrl}}/resources/css/chat.css">
     {% block head %} {% endblock %}
   </head>
-  <body>
+  <body onunload="status(3);" onbeforeunload="status(3);">
     <script type="text/javascript" src="{{baseUrl}}/resources/js/templates/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="{{baseUrl}}/resources/js/templates/rotate.js"></script>
     <!-- Simplebar -->
     <link rel="stylesheet" href="{{baseUrl}}/resources/node_modules/simplebar/dist/simplebar.css" />
     <script src="{{baseUrl}}/resources/node_modules/simplebar/dist/simplebar.js"></script>
     <!-- Simplebar -->
+    <div class="wrap">
+      <div class="spinner spinner-1">
+        <div class="spiner spiner-2"><span>UNDERWORLD</span></div>
+      </div>
+    </div>
     <!-- Navigation -->
     <link rel="stylesheet" href="{{baseUrl}}/resources/css/templates/navigation.css">
     {%include 'templates/partials/navigation.twig' %}
     <script type="text/javascript" src="{{baseUrl}}/resources/js/templates/navigation.js"> </script>
     <!-- Navigation -->
-
-    <div class="container-fluid">
+    <div class="container-fluid" id="container">
     {%include 'templates/partials/flash.twig' %}
     {% block content %} {% endblock %}
     </div>

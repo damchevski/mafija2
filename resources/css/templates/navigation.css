@@ -1,12 +1,18 @@
 nav.navbar #logo {
-  margin-right: 10px; }
+  margin-right: 5px; }
+nav.navbar{
+  background-color: #000000;
+  -webkit-box-shadow: 2px 8px 20px 6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 8px 20px 6px rgba(0,0,0,0.75);
+  box-shadow: 2px 8px 20px 6px rgba(0,0,0,0.75);
+}
 
-nav.navbar .navbar-brand {
-  margin-left: 2em; }
-
-nav.navbar #navbar {
-  margin-top: 10px;
-  margin-left: 20px; }
+.fixed-top{
+  z-index: 2!important;
+}
+nav.navbar #navbar ul{
+  margin-left: 5%;
+}
   nav.navbar #navbar ul li {
     text-align: center; }
     nav.navbar #navbar ul li:hover span {
@@ -35,7 +41,7 @@ nav.navbar .hamburger {
     width: 100%;
     height: 2px;
     margin: 0 0 4px 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: white;
     -webkit-transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     -o-transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
@@ -66,13 +72,13 @@ nav.navbar .hamburger {
         left: 0;
         width: 50px;
         height: 100%;
-        z-index: 2; }
-
+        z-index: 3; }
       nav.sidebar {
         background-color: #301011;
-        z-index: 2;
+        z-index: 3;
         position: fixed;
-        min-width: 260px;
+        top: 56px;
+        min-width: 265px;
         height: 100vh;
         color: white; }
         nav.sidebar .profile {
@@ -148,19 +154,25 @@ nav.navbar .hamburger {
               display: -ms-inline-flexbox;
               display: inline-flex; }
 
-      div.container-fluid {
-        padding-top: 20px; }
-        div.container-fluid .card {
-          background-color: #adff2f; }
-
       @media only screen and (max-width: 600px) {
         nav.sidebar {
-          left: -260px;
-          top: 0px !important; }
+          top: 0;
+          left: -265px;
+         }
+         nav.sidebar .desktop {
+           display: none;
+         }
         #navbar {
-          margin: none; }
+          margin: 0; }
         .container-fluid{
           padding-left: 15px;
+          margin-bottom: 100%
+        }
+        .spinner{
+          margin-top:50%!important;
+        }
+        nav.navbar #navbar ul{
+          margin-left: 0;
         }
       }
 

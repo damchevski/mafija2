@@ -36,11 +36,11 @@ class Rabota Extends Model
 		$crime_chances = explode('_', $user->inventory->crime_chance);
 		//treba ubavo da se stavat idta za criminal za bava spredba
     switch (true) {
-    	case $chance <= $crime_chances[$this->id-2]:
+    	case $chance <= $crime_chances[$this->id-1]:
 		  	$user->prom->update([ 'pari' => $user->prom->pari + $prices['pari'] ]);
     		$num = 0;
     		break;
-			case $chance > $crime_chances[$this->id-2] && $chance <= $crime_chances[$this->id-2] + 20 :
+			case $chance > $crime_chances[$this->id-1] && $chance <= $crime_chances[$this->id-1] + 20 :
 				$num = 1;
 				break;
     	default:
@@ -52,8 +52,8 @@ class Rabota Extends Model
 				if($key == "crime_chance"){
 						$values = explode('_', $value);
 						//dodava na sansata dobivkata
-					if($crime_chances[$this->id-2] + $values[$num] <100){
-					$crime_chances[$this->id-2] += $values[$num];
+					if($crime_chances[$this->id-1] + $values[$num] <100){
+					$crime_chances[$this->id-1] += $values[$num];
 					$val = (string) implode("_", $crime_chances);
 					$user->inventory->update([ $key => $val ]);
 				}

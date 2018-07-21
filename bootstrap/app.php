@@ -38,6 +38,9 @@ $container['auth'] = function ($container){
 $container['flash'] = function ($container){
     return new \Slim\Flash\Messages;
 };
+$container['flashres'] = function ($container){
+    return new \Slim\Flash\Messages;
+};
 $container['randomlib'] = function ($container){
     $randomlib = new RandomLib\Factory;
     return $randomlib->getMediumStrengthGenerator();
@@ -60,6 +63,7 @@ $container['view'] = function ($container){
             'user' =>$container->auth->user(),
         ]);
     $view->getEnvironment()->addGlobal('flash', $container->flash);
+    $view->getEnvironment()->addGlobal('flashres', $container->flashres);
     $view->getEnvironment()->addGlobal('baseUrl', $container->config['app.baseUrl']);
     return $view;
 };
@@ -85,6 +89,7 @@ $container['AdminController'] = function($container){
 $container['Mail'] = function($container){
   $mailer = new PHPMailer;
   $mailer->SMTPDebug =  $container->config['mail.smtp_debug'];
+  //voa bilo problemot $mail->isSMTP();na stranata
   $mailer->isSMTP();
   $mailer->Host =       $container->config['mail.host'];
   $mailer->SMTPAuth =   $container->config['mail.smtp_auth'];

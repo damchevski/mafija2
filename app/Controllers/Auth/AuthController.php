@@ -70,7 +70,7 @@ class AuthController extends Controller
 
       $user->permissions()->create(UserPermission::$defaults);
       $user->energy()->create(Energy::$defaults);
-      $user->mainProm()->create(MainProm::$defaults);
+      $user->prom()->create(MainProm::$defaults);
       $user->inventory()->create(Inventory::$defaults);
       $user->contact()->create(Contact::$defaults);
 
