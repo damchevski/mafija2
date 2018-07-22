@@ -148,6 +148,10 @@ div.container-fluid {
   position: relative;
 }
 
+.back-ground{
+  background-image: url("../img/mafioso.png");
+}
+
 #footer{
   width: 100%;
   background-color: #1c1c1c;
@@ -166,7 +170,12 @@ a {
 }
 
 .card-title{
-  text-align: center;
+  text-align: left;
+  background: #f8f9fa;
+  align-self: flex-end;
+  padding: 4px;
+  font-size: 20px;
+  font-weight: bold;
 }
 .card-name{
   text-align: left;
@@ -177,6 +186,10 @@ a {
     margin-left: auto;
     margin-right: auto;
     width: 80%;
+}
+.hr-Top5List {
+  margin-top: 1rem;
+  background-color: #ffffff26;
 }
 
 @media only screen and (max-width: 600px) {
