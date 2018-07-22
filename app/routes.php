@@ -3,9 +3,9 @@
 use App\Middleware\AuthMiddleware;
 use App\Middleware\GuestMiddleware;
 use App\Middleware\AdminMiddleware;
+use App\Middleware\TaskMiddleware;
 
 $app->get('/', 'HomeController:getPeople')->setName('home');
-$app->post('/', 'HomeController:postPeople');
 
 $app->group('',function() use ($app){
 
@@ -41,18 +41,11 @@ $app->group('',function() use ($app){
   //get lokacii
   $app->get('/ajax/travel', 'AjaxController:getTravel')->setName('traveling');
   $app->get('/ajax/garaza', 'AjaxController:getGaraza')->setName('garaza');
-
-  //post kriminal
-  $app->get('/calculate/rabota', 'HomeController:getRabota')->setName('rabota');
-  $app->get('/calculate/crime', 'HomeController:getCrime')->setName('crime');
-  $app->get('/add/drinks-drugs', 'HomeController:getDrinksDrugs')->setName('drinks-drugs');
-  $app->get('/capture/car', 'HomeController:getCar')->setName('car');
-  $app->get('/race/car', 'HomeController:getRace')->setName('race');
-  //post lokacii
-  $app->get('/travel', 'HomeController:getTravel')->setName('travel');
+  $app->get('/ajax/shop', 'AjaxController:getShop')->setName('shops');
+  $app->get('/ajax/bank', 'AjaxController:getBank')->setName('banks');
 
 
-    $app->get('/status', 'AjaxController:getStatus')->setName('status');
+  $app->get('/status', 'AjaxController:getStatus')->setName('status');
 
 })->add(new AuthMiddleware($container));
 
@@ -62,3 +55,17 @@ $app->group('',function() use ($app){
   $app->post('/admin', 'AdminController:postAdmin');
 
 })->add(new AdminMiddleware($container));
+
+$app->group('',function() use ($app){
+
+  //post kriminal
+  $app->get('/calculate/rabota', 'HomeController:getRabota')->setName('rabota');
+  $app->get('/calculate/crime', 'HomeController:getCrime')->setName('crime');
+  $app->get('/add/drinks-drugs', 'HomeController:getDrinksDrugs')->setName('drinks-drugs');
+  $app->get('/capture/car', 'HomeController:getCar')->setName('car');
+  $app->get('/race/car', 'HomeController:getRace')->setName('race');
+  //post lokacii
+  $app->get('/travel', 'HomeController:getTravel')->setName('travel');
+  $app->get('/bank', 'HomeController:getBank')->setName('bank');
+
+})->add(new TaskMiddleware($container));

@@ -45,7 +45,7 @@
         </span>
         <div class="progress-value">
          <span class="num">...</span>
-         <img src="/mafija2/resources/img/profile2.png"  width="92" height="92">
+         <img src="{{baseUrl}}/resources/img/profile2.png"  width="92" height="92">
         </div>
       </div>
       <div class="name">
@@ -193,12 +193,16 @@
               <path d="M0 0h24v24H0z" fill="none"/>
               <path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/>
           </svg>
-          Finansii</li>
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          Finansii
+          <input type="hidden" value="bank">
+          </li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M0 0h24v24H0z" fill="none"/>
               <path d="M19 7V4H5v3H2v13h8v-4h4v4h8V7h-3zm-8 3H9v1h2v1H8V9h2V8H8V7h3v3zm5 2h-1v-2h-2V7h1v2h1V7h1v5z"/>
           </svg>
-          Prodavnica</li>
+          Prodavnica
+          <input type="hidden" value="shop">
+          </li>
           <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
               <path d="M0 0h24v24H0z" fill="none"/>

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{baseUrl}}/resources/css/chat.css">
     {% block head %} {% endblock %}
   </head>
-  <body onunload="status(3);" onbeforeunload="status(3);">
+  <body onunload="status(2);" onbeforeunload="status(2);">
     <script type="text/javascript" src="{{baseUrl}}/resources/js/templates/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="{{baseUrl}}/resources/js/templates/rotate.js"></script>
     <!-- Simplebar -->
@@ -26,6 +26,7 @@
         <div class="spiner spiner-2"><span>UNDERWORLD</span></div>
       </div>
     </div>
+    <div id="loading" style="display:none"></div>
     <!-- Navigation -->
     <link rel="stylesheet" href="{{baseUrl}}/resources/css/templates/navigation.css">
     {%include 'templates/partials/navigation.twig' %}

@@ -4,7 +4,7 @@ namespace App\Controllers\Auth;
 
 use App\Models\User\User;
 use App\Models\User\UserPermission;
-use App\Models\User\MainProm;
+use App\Models\User\Prom;
 use App\Models\User\Inventory;
 use App\Models\User\Energy;
 use App\Models\User\Contact;
@@ -70,9 +70,10 @@ class AuthController extends Controller
 
       $user->permissions()->create(UserPermission::$defaults);
       $user->energy()->create(Energy::$defaults);
-      $user->prom()->create(MainProm::$defaults);
+      $user->prom()->create(Prom::$defaults);
       $user->inventory()->create(Inventory::$defaults);
       $user->contact()->create(Contact::$defaults);
+      $user->task()->create(['task' => 0]);
 
       $this->Mail->send('email/auth/activate.twig',['user' => $user, 'activate' => $activate],function($message) use ($user){
         $message->to($user->email);

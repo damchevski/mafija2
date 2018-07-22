@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\Missions;
 use App\Models\Rabota;
-use App\Models\DrinksDrugs;
+use App\Models\Drzava;
+use App\Models\Clan;
+use App\Models\Shop;
 use App\Models\Car;
+use App\Models\DrinksDrugs;
 
 class AjaxController extends Controller
 {
@@ -11,6 +15,7 @@ class AjaxController extends Controller
   {
       $val = $request->getParam('val');
       $user = $this->auth->user();
+      $user->prom->updateRank();
       $user->energy->update(['status' => $val ]);
   }
   public function getValidation($request, $response)
@@ -208,6 +213,24 @@ class AjaxController extends Controller
       }
     }
   }
+  public function getBank($request, $response)
+  {
+    $user = $this->auth->user();
+    $title = array('drzavna','svetska','small','big');
 
+        for ($i=0; $i <4 ; $i++) {
+          $html = "<div class='card bg-light''>
+          <div class='card-body'>
+          <h4 class='card-title'> ".$title[$i]."</h4> ";
+              $html.= "
+             <span >Finansii: ".$user->bank->money($title[$i])." </span>
+                  <input type='text' name='pari'>
+                  <input type='submit' class='bank' value='add'>
+                  <input type='submit' class='bank' value='odzemi'>
+              ";
+              $html .="</div> </div>";
+         echo $html;
+      }
+  }
 
 }

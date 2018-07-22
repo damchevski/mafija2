@@ -17,7 +17,8 @@ class Car Extends Model
 		'speed',
     "power",
     "seats",
-    "reward"
+    "reward",
+		"time"
 	];
   public function steal($user,$chance,$dmg)
   {

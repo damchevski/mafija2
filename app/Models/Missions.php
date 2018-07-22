@@ -29,7 +29,7 @@ class Missions Extends Model
 				$i = 0;
 				foreach ($requirements as $key=>$value) {
 					//tuka
-				if($value <= $user->mainProm->{$key}){
+				if($value <= $user->prom->{$key}){
 					$i++;
 				}
 				}

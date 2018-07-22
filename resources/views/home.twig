@@ -78,15 +78,34 @@
 $(document).ready(function(){
   //opp moze dase napravi
   $('#container').on('click','.rabota',function(){
+     $('#loading').load("http://localhost/mafija2/resources/views/templates/loading/travel.html",function(){
+         $("#loading").fadeIn("slow");
+     });
       var id = $(this).parents('.card-body').children('input').val();
        $.get("{{path_for('rabota')}}",{id:id},function(data){
           $('#container').children('.container').html(data);
+          time = $('#container').children('.container').children('input').val();
+          if(time == 1){
+            $("#loading").fadeOut("slow");
+          }else{
+             countdown(new Date(new Date().getTime() + (time*1000)));
+          }
        });
+
       });
   $('#container').on('click','.crime',function(){
+      $('#loading').load("http://localhost/mafija2/resources/views/templates/loading/hand.html",function(){
+          $("#loading").fadeIn("slow");
+      });
       var id = $(this).parents('.card-body').children('input').val();
        $.get("{{path_for('crime')}}",{id:id},function(data){
           $('#container').children('.container').html(data);
+          time = $('#container').children('.container').children('input').val();
+          if(time == 1){
+            $("#loading").fadeOut("slow");
+          }else{
+             countdown(new Date(new Date().getTime() + (time*1000)));
+          }
        });
       });
   $('#container').on('click','.add',function(){
@@ -97,20 +116,55 @@ $(document).ready(function(){
        });
       });
   $('#container').on('click','.car',function(){
+    $('#loading').load("http://localhost/mafija2/resources/views/templates/loading/travel.html",function(){
+        $("#loading").fadeIn("slow");
+    });
       var id = $(this).parents('.card-body').children('input').val();
        $.get("{{path_for('car')}}",{id:id},function(data){
           $('#container').children('.container').html(data);
+          time = $('#container').children('.container').children('input').val();
+          if(time == 1){
+            $("#loading").fadeOut("slow");
+          }else{
+             countdown(new Date(new Date().getTime() + (time*1000)));
+          }
        });
       });
   $('#container').on('click','.race',function(){
+    $('#loading').load("http://localhost/mafija2/resources/views/templates/loading/hand.html",function(){
+        $("#loading").fadeIn("slow");
+    });
       var id = $(this).parents('.card-body').children('input').val();
        $.get("{{path_for('race')}}",{id:id},function(data){
           $('#container').children('.container').html(data);
+          time = $('#container').children('.container').children('input').val();
+          if(time == 1){
+            $("#loading").fadeOut("slow");
+          }else{
+             countdown(new Date(new Date().getTime() + (time*1000)));
+          }
        });
       });
   $('#container').on('click','.travel',function(){
+    $('#loading').load("http://localhost/mafija2/resources/views/templates/loading/travel.html",function(){
+        $("#loading").fadeIn("slow");
+    });
       var place = $(this).parents('.card-body').children('select').val();
        $.get("{{path_for('travel')}}",{place:place},function(data){
+          $('#container').children('.container').html(data);
+          time = $('#container').children('.container').children('input').val();
+          if(time == 1){
+            $("#loading").fadeOut("slow");
+          }else{
+             countdown(new Date(new Date().getTime() + (time*1000)));
+          }
+       });
+      });
+  $('#container').on('click','.bank',function(){
+      var title = $(this).parents('.card-body').children('.card-title').text();
+      var kolicina = $(this).parents('.card-body').children('input').first().val();
+      var operation = $(this).val();
+       $.get("{{path_for('bank')}}",{title:title,kolicina:kolicina,operation:operation},function(data){
           $('#container').children('.container').html(data);
        });
       });
