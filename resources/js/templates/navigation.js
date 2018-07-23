@@ -12,7 +12,23 @@ $(document).ready(function () {
       $(this).children('.svg').rotate(0);
     }
   });
+   if(!isMobile()){loadingCricle();}
 });
+function sidebarAnimateIn(){
+  $('.sidebar').css('box-shadow','-5px -3px 30px 18px rgba(0,0,0,0.9)');
+  $(".sidebar").animate({left: '0'},function(){
+  loadingCricle();
+  });
+}
+function sidebarAnimateOut(){
+  $(".sidebar").animate({left: '-'+$(".sidebar").outerWidth(true)},function(){
+   $('.progress').children('.progress-right').children('.progress-bar').css('-webkit-transform','rotate(0deg)');
+   $('.progress').children('.progress-left').children('.progress-bar').css('-webkit-transform','rotate(0deg)');
+   $('.progress').children('.progress-right').children('.progress-bar').css('text-indent','0px');
+   $('.progress').children('.progress-left').children('.progress-bar').css('text-indent','0px');
+   $('.sidebar').css('box-shadow','none');
+   });
+}
 function loadingCricle() {
   var input = 70;
   var output = (360 * input) / 100;

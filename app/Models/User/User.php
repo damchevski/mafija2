@@ -24,6 +24,10 @@ class User Extends Model
 	{
 		return $this->hasOne('App\Models\User\Energy');
 	}
+	public function task()
+	{
+		return $this->hasOne('App\Models\User\Task');
+	}
 	public function inventory()
 	{
 		return $this->hasOne('App\Models\User\Inventory');
@@ -42,7 +46,7 @@ class User Extends Model
 	}
 	public function prom()
 	{
-		return $this->hasOne('App\Models\User\MainProm');
+		return $this->hasOne('App\Models\User\Prom');
 	}
 
 	public function permissions()

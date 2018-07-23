@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark ">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top">
   <img id="logo"src="{{baseUrl}}/resources/img/logo4.png" width="40" height="40" class="d-inline-block align-top" alt="">
   <img id="name"src="{{baseUrl}}/resources/img/logo1.png" min-width="400px" height="40px" class="d-inline-block align-top" alt="Underworld">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +12,7 @@
     <ul class="nav navbar-nav ">
       {% if auth.check %}
         <li class="nav-item active">
-          <a class="nav-link" href="{{path_for('home') }}"> <span>ПРОФИЛ</span></a>
+          <a class="nav-link" href="{{path_for('home') }}"> <span>ПОЧЕТНА</span></a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="{{path_for('admin') }}"> <span>АДМИН</span></a>
@@ -45,7 +45,7 @@
         </span>
         <div class="progress-value">
          <span class="num">...</span>
-         <img src="/mafija2/resources/img/profile2.png"  width="92" height="92">
+         <img src="{{baseUrl}}/resources/img/profile2.png"  width="92" height="92">
         </div>
       </div>
       <div class="name">
@@ -104,6 +104,7 @@
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"/>
               </svg>
               Злосорства
+              <input type="hidden" value="crime">
             </li>
             <li>
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" fill="white">
@@ -123,6 +124,7 @@
                   <path fill="none" d="M0 0h24v24H0z"/>
               </svg>
               Droga
+              <input type="hidden" value="drugs">
             </li>
             <li>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
@@ -130,6 +132,7 @@
                   <path fill="none" d="M0 0h24v24H0z"/>
               </svg>
               Alxoxol
+              <input type="hidden" value="drinks">
             </li>
             <li>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
@@ -137,6 +140,7 @@
                   <path d="M0 0h24v24H0z" fill="none"/>
               </svg>
               Avtomobili
+              <input type="hidden" value="cars">
             </li>
             <li>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
@@ -144,6 +148,7 @@
                   <path d="M0 0h24v24H0z" fill="none"/>
               </svg>
               Trki
+              <input type="hidden" value="trki">
             </li>
             <li>
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24" fill="white">
@@ -156,6 +161,7 @@
                   <path clip-path="url(#b)" d="M8.5 14.5L4 19l1.5 1.5L9 17h2l-2.5-2.5zM15 1c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 20.01L18 24l-2.99-3.01V19.5l-7.1-7.09c-.31.05-.61.07-.91.07v-2.16c1.66.03 3.61-.87 4.67-2.04l1.4-1.55c.19-.21.43-.38.69-.5.29-.14.62-.23.96-.23h.03C15.99 6.01 17 7.02 17 8.26v5.75c0 .84-.35 1.61-.92 2.16l-3.58-3.58v-2.27c-.63.52-1.43 1.02-2.29 1.39L16.5 18H18l3 3.01z"/>
               </svg>
               Rabota
+              <input type="hidden" value="rabota">
             </li>
         </ul>
         <li  data-toggle="collapse" data-target="#lokacii" class="collapsed ">
@@ -187,22 +193,30 @@
               <path d="M0 0h24v24H0z" fill="none"/>
               <path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/>
           </svg>
-          Finansii</li>
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          Finansii
+          <input type="hidden" value="bank">
+          </li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M0 0h24v24H0z" fill="none"/>
               <path d="M19 7V4H5v3H2v13h8v-4h4v4h8V7h-3zm-8 3H9v1h2v1H8V9h2V8H8V7h3v3zm5 2h-1v-2h-2V7h1v2h1V7h1v5z"/>
           </svg>
-          Prodavnica</li>
-                        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          Prodavnica
+          <input type="hidden" value="shop">
+          </li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
           </svg>
-          Patuvaj</li>
+          Patuvaj
+          <input type="hidden" value="travel">
+          </li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M0 0h48v48H0z" fill="none"/>
               <path d="M24 14V6H4v36h40V14H24zM12 38H8v-4h4v4zm0-8H8v-4h4v4zm0-8H8v-4h4v4zm0-8H8v-4h4v4zm8 24h-4v-4h4v4zm0-8h-4v-4h4v4zm0-8h-4v-4h4v4zm0-8h-4v-4h4v4zm20 24H24v-4h4v-4h-4v-4h4v-4h-4v-4h16v20zm-4-16h-4v4h4v-4zm0 8h-4v4h4v-4z"/>
           </svg>
-          Garaza</li>
+          Garaza
+          <input type="hidden" value="garaza">
+        </li>
         </ul>
         <li  data-toggle="collapse" data-target="#profil" class="collapsed ">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

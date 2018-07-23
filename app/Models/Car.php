@@ -17,7 +17,8 @@ class Car Extends Model
 		'speed',
     "power",
     "seats",
-    "reward"
+    "reward",
+		"time"
 	];
   public function steal($user,$chance,$dmg)
   {
@@ -55,11 +56,11 @@ class Car Extends Model
         if($key == "car_chance"){
             $values = explode('_', $value);
             //dodava na sansata dobivkata
-          if($crime_chances[$this->id-1] + $values[$num] <100){
+          if($car_chances[$this->id-1] + $values[$num] <100){
           $car_chances[$this->id-1] += $values[$num];
           $val = (string) implode("_", $car_chances);
           $user->inventory->update([ $key => $val ]);
-        }
+          }
         }else{
           $user->prom->update([ $key => $user->prom->{$key} + $value]);
         }
