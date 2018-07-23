@@ -53,3 +53,28 @@
     }
 
 });
+
+  // Add slideDown animation to Bootstrap dropdown when expanding.
+  $('.dropdown').on('show.bs.dropdown', function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+  });
+
+  // Add slideUp animation to Bootstrap dropdown when collapsing.
+  $('.dropdown').on('hide.bs.dropdown', function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
+  });
+
+var Top5_div1 = document.getElementById("Top5_1");
+var Top5_div2 = document.getElementById("Top5_2");
+var Top5_div3 = document.getElementById("Top5_3");
+var Top5_div4 = document.getElementById("Top5_4");
+
+function Top5_click(item){
+  Top5_div1.style.display = "none";
+  Top5_div2.style.display = "none";
+  Top5_div3.style.display = "none";
+  Top5_div4.style.display = "none";
+
+  item.style.display = "block";
+}
+

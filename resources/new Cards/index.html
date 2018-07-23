@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 </head>
 
@@ -433,37 +436,29 @@
 
 
        <!-- Top 5 Card -->
-       <div class="card bg-light ">
-          <div class="card-body" style="padding: 0;">
-            <div class = "card-header">
-              <h3 class="" style="text-align: center;">Top 5 List:</h3>
+       <div class="card  " style="border: 0px; background-color: #2b2b2b!important;">
+          <div class="card-body" style="padding: 0; " id="wrapper">
+            <!--<div class = "card-header" style="background-color: white;">
+              <h3 class="" style="text-align: center;">Top 5 List:</h3> 
               
+            </div>-->
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle Top-5-bttn" type="button" data-toggle="dropdown">Top 5 List:</button>
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu" style="width: 100%; text-align: center;top: -4px; font-size: 20px; background-color: rgb(49, 47, 47);border:0;margin-top: -1px;">
+                <li><button class="btn btn-default Top5-drp-down-bttn" type="button" onclick="Top5_click(Top5_div1);">Моќ</button></li>
+                <li><button class="btn btn-default Top5-drp-down-bttn" type="button" onclick="Top5_click(Top5_div2);">Сила</button></li>
+                <li><button class="btn btn-default Top5-drp-down-bttn" type="button" onclick="Top5_click(Top5_div3);">Убиства</button></li>
+                <li><button class="btn btn-default Top5-drp-down-bttn" type="button" onclick="Top5_click(Top5_div4);">Пари</button></li>
+              </ul>
             </div>
   
-              <div class="text" style=" background-color: #2b2b2b;">
-                <h5 style="background-color: #bd1b23;text-align: center; padding: 5px;">Моќ</h5>
-                <!--
-                <a>Djole</a>
-                <hr>
-  
-                <a>Care</a>
+              <div class="text" id ="Top5_1" style=" background-color: #2b2b2b;">
+                <h4 style="background-color: #bd1b23;text-align: center; padding: 5px;">Моќ</h4> 
 
-                <hr>
-  
-                <a>Vesna</a>
-
-                <hr>
-  
-                <a>Putin</a>
-
-                <hr>
-  
-                <a>Obama</a>
-
-                <hr>
-                -->
                 <div style="color: #c5c5c5;">
-                  <ol style="margin: 0;">
+                  <ol style="margin: 0; text-align: left;">
+                      <hr class="hr-Top5List">
                       <li>
                         <a>MonaLisa:</a>
                         
@@ -497,8 +492,270 @@
                 </div>
 
               </div>
+              
+
+              <div class="text" id ="Top5_2" style=" background-color: #2b2b2b; display: none;">
+                <h4 style="background-color: #bd1b23;text-align: center; padding: 5px;">Сила</h4> 
+
+                <div style="color: #c5c5c5;">
+                  <ol style="margin: 0; text-align: left;">
+                      <hr class="hr-Top5List">
+                      <li>
+                        <a>MonaLisa:</a>
+                        
+                      </li>
+                      <hr class="hr-Top5List">
+
+                      <li>
+                        <a>Djole</a>
+                        
+                      </li>
+                      <hr class="hr-Top5List">
+
+                      <li>
+                        <a>Vujce</a>
+                        
+                      </li>
+                      <hr class="hr-Top5List">
+
+                      <li>
+                        <a>Sestrati</a>
+                        
+                      </li>
+                      <hr class="hr-Top5List">  
+                      <li>
+                        <a>Boby Tarantino</a>
+                        <hr class="hr-Top5List">  
+
+                        
+                      </li>
+                    </ol>
+                </div>
+
+              </div>
+
+              <div class="text" id ="Top5_3" style=" background-color: #2b2b2b; display: none;">
+                <h4 style="background-color: #bd1b23;text-align: center; padding: 5px;">Убиства</h4> 
+
+                <div style="color: #c5c5c5;">
+                  <ol style="margin: 0; text-align: left;">
+                      <hr class="hr-Top5List">
+                      <li>
+                        <a>MonaLisa:</a>
+                        
+                      </li>
+                      <hr class="hr-Top5List">
+
+                      <li>
+                        <a>Djole</a>
+                        
+                      </li>
+                      <hr class="hr-Top5List">
+
+                      <li>
+                        <a>Vujce</a>
+                        
+                      </li>
+                      <hr class="hr-Top5List">
+
+                      <li>
+                        <a>Sestrati</a>
+                        
+                      </li>
+                      <hr class="hr-Top5List">  
+                      <li>
+                        <a>Boby Tarantino</a>
+                        <hr class="hr-Top5List">  
+
+                        
+                      </li>
+                    </ol>
+                </div>
+
+              </div>
+
+              <div class="text" id ="Top5_4" style=" background-color: #2b2b2b; display: none;">
+                <h4 style="background-color: #bd1b23;text-align: center; padding: 5px;">Пари</h4> 
+
+                <div style="color: #c5c5c5;">
+                  <ol style="margin: 0; text-align: left;">
+                      <hr class="hr-Top5List">
+                      <li>
+                        <a>MonaLisa:</a>
+                        
+                      </li>
+                      <hr class="hr-Top5List">
+
+                      <li>
+                        <a>Djole</a>
+                        
+                      </li>
+                      <hr class="hr-Top5List">
+
+                      <li>
+                        <a>Vujce</a>
+                        
+                      </li>
+                      <hr class="hr-Top5List">
+
+                      <li>
+                        <a>Sestrati</a>
+                        
+                      </li>
+                      <hr class="hr-Top5List">  
+                      <li>
+                        <a>Boby Tarantino</a>
+                        <hr class="hr-Top5List">  
+
+                        
+                      </li>
+                    </ol>
+                </div>
+
+              </div>
+
+              </div>
+
+
             </div>
+
+            <!-- OLD STYLE CARD -->
+        <div class="card  " style="border: 0px; background-color: #2b2b2b!important;">
+            <div class="card-body" style="padding: 0; " id="wrapper">
+              <div class = "card-header" style="background-color: white;">
+                <h3 class="" style="text-align: center;">Top 5 List:</h3> 
+                
+              </div>
+    
+                <div class="text" style=" background-color: #2b2b2b;">
+                  <h4 style="background-color: #bd1b23;text-align: center; padding: 5px;">Моќ</h4> 
+                  <!--
+                  <a>Djole</a>
+                  <hr>
+    
+                  <a>Care</a>
+
+                  <hr>
+    
+                  <a>Vesna</a>
+
+                  <hr>
+    
+                  <a>Putin</a>
+
+                  <hr>
+    
+                  <a>Obama</a>
+
+                  <hr>
+                  -->
+                  <div style="color: #c5c5c5;">
+                    <ol style="margin: 0; text-align: left;">
+                        <hr class="hr-Top5List">
+                        <li>
+                          <a>MonaLisa:</a>
+                          
+                        </li>
+                        <hr class="hr-Top5List">
+
+                        <li>
+                          <a>Djole</a>
+                          
+                        </li>
+                        <hr class="hr-Top5List">
+
+                        <li>
+                          <a>Vujce</a>
+                          
+                        </li>
+                        <hr class="hr-Top5List">
+
+                        <li>
+                          <a>Sestrati</a>
+                          
+                        </li>
+                        <hr class="hr-Top5List">  
+                        <li>
+                          <a>Boby Tarantino</a>
+                          <hr class="hr-Top5List">  
+
+                          
+                        </li>
+                      </ol>
+                  </div>
+
+                  
+
+                </div>
+                <!--
+                <div class="text" style=" background-color: #2b2b2b;" id = "right">
+                  <h4 style="background-color: #bd1b23;text-align: center; padding: 5px;">Убиства</h4>
+                  <a>Djole</a>
+                  <hr>
+    
+                  <a>Care</a>
+
+                  <hr>
+    
+                  <a>Vesna</a>
+
+                  <hr>
+    
+                  <a>Putin</a>
+
+                  <hr>
+    
+                  <a>Obama</a>
+
+                  <hr>
+                  <div style="color: #c5c5c5;">
+                    <ol style="margin: 0; text-align: left;">
+                        <li>
+                          <a>MonaLisa:</a>
+                          
+                        </li>
+                        <hr class="hr-Top5List">
+
+                        <li>
+                          <a>Djole</a>
+                          
+                        </li>
+                        <hr class="hr-Top5List">
+
+                        <li>
+                          <a>Vujce</a>
+                          
+                        </li>
+                        <hr class="hr-Top5List">
+
+                        <li>
+                          <a>Sestrati</a>
+                          
+                        </li>
+                        <hr class="hr-Top5List">  
+                        <li>
+                          <a>Boby Tarantino</a>
+                          <hr class="hr-Top5List">  
+
+                          
+                        </li>
+                      </ol>
+                  </div>
+                -->
+
+                  
+
+                </div>
+
+
+              </div>
+
          </div>
+
+         
+
+
+         
 
 
 
