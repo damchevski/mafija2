@@ -1,0 +1,188 @@
+<style media="screen">
+.container-fluid .card-columns .card {
+  border: none; }
+.container-fluid .card-columns .title {
+  margin-top: -40px;
+  margin-left: 15px;
+  text-shadow: 3px 0px 0px black;
+  color: white; }
+.container-fluid .card-columns .card-body button {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0; }
+.container-fluid .card-columns .card-body .row {
+  margin-bottom: 10px; }
+  .container-fluid .card-columns .card-body .row .col {
+    margin-bottom: 22px; }
+    .container-fluid .card-columns .card-body .row .col svg {
+      margin-bottom: -9px;
+      margin-right: 3px; }
+.container-fluid .card-columns .card-body .row .col .slider {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    border-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.container-fluid .card-columns .card-body .row .col .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+    border-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+
+}
+.container-fluid .card-columns .card-body .row .col .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+    border-radius: 4px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.container-fluid .card-columns .card-body .row .col output {
+    float: right;
+    height: 25px;
+    color: white;
+    background-color: #4CAF50;
+    text-align: center;
+    border-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    width: 20%;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+@media only screen and (max-width: 600px) {
+  .container-fluid .card-columns .card-body .row .col .slider {
+    width: 85%;
+  }
+  .container-fluid .card-columns .card-body .row .col output {
+    width: 15%;
+  }
+}
+</style>
+<div class="card-navigation">
+  <ul class="nav nav-fill">
+    <li class="nav-item" id="1">
+      <a class="nav-link">KUPI</a>
+    </li>
+    <li class="nav-item" id="2">
+      <a class="nav-link">PRODAJ</a>
+    </li>
+    <li class="nav-item" id="3">
+      <a class="nav-link">SOSTOJBA</a>
+    </li>
+  </ul>
+</div>
+<div class='container'></div>
+<div class="card-columns" id="first">
+  {% for item in row1 %}
+    <div class="card" >
+    <img class="card-img-top" src="{{baseUrl}}/resources/img/{{item.type}}/{{item.id}}.jpg">
+    <h3 class="title">{{item.title}}</h3>
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          {%include 'templates/svg/money-bag.svg'%}
+          <span>{{item.price}}$</span>
+        </div>
+        <div class="col">
+          {%include 'templates/svg/zaliha.svg'%}
+          <span>{{item.zaliha}}</span>
+        </div>
+        <div class="w-100"></div>
+        <div class="col">
+          <input type="range" min="{{auth.user.inventory.zaliha(item.type,item.id)}}" max="{{item.zaliha}}" value="{{auth.user.inventory.zaliha(item.type,item.id)}}" class="slider">
+          <output name="result">{{auth.user.inventory.zaliha(item.type,item.id)}}</output>
+        </div>
+      </div>
+      <button class="btn btn-primary add">KUPI</button>
+      <input type="hidden" value="{{item.id}}">
+    </div>
+    </div>
+  {% endfor %}
+</div>
+<div class="card-columns" id="second"style="display:none">
+  {% for item in row2 %}
+  <div class="card" >
+  <img class="card-img-top" src="{{baseUrl}}/resources/img/{{item.type}}/{{item.id}}.{{x[4]}}">
+  <h3 class="title">{{item.title}}</h3>
+  <div class="card-body">
+    <div class="row">
+    <div class="col">
+      {%include 'templates/svg/money-bag.svg'%}
+      <span>{{item.getPrice()}}$</span>
+    </div>
+    <div class="col">
+      {%include 'templates/svg/timer.svg'%}
+      <span>{{item.time}}s</span>
+    </div>
+    <div class="w-100"></div>
+    <div class="col">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#ffc107">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+      </svg>
+      <span>{{item.energija}}%</span>
+    </div>
+    <div class="col">
+      {%include 'templates/svg/chance.svg'%}
+      <span>{{item.chance}}%</span>
+    </div>
+    </div>
+    <button class="btn btn-primary {{item.type}}">{{x[5]}}</button>
+    <input type="hidden" value="{{item.id}}">
+  </div>
+  </div>
+  {% else %}
+   <span style="color:white">Nema uste staveno</span>
+  {% endfor %}
+</div>
+<div class="card-columns" id="last" style="display:none">
+  {% for item in row3 %}
+  <div class="card" >
+  <img class="card-img-top" src="{{baseUrl}}/resources/img/{{item.type}}/{{item.id}}.{{x[4]}}">
+  <h3 class="title">{{item.title}}</h3>
+  <div class="card-body">
+    <div class="row">
+    <div class="col">
+      {%include 'templates/svg/money-bag.svg'%}
+      <span>{{item.getPrice()}}$</span>
+    </div>
+    <div class="col">
+      {%include 'templates/svg/timer.svg'%}
+      <span>{{item.time}}s</span>
+    </div>
+    <div class="w-100"></div>
+    <div class="col">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#ffc107">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+      </svg>
+      <span>{{item.energija}}%</span>
+    </div>
+    <div class="col">
+      {%include 'templates/svg/chance.svg'%}
+      <span>{{item.chance}}%</span>
+    </div>
+    </div>
+    <button class="btn btn-primary {{item.type}}">{{x[5]}}</button>
+    <input type="hidden" value="{{item.id}}">
+  </div>
+  </div>
+  {% else %}
+   <span style="color:white">Nema uste staveno</span>
+  {% endfor %}
+</div>

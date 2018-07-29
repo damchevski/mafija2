@@ -1,0 +1,21 @@
+.container-fluid{
+  padding: 120px 300px 0 300px;
+  margin-bottom: 0;
+}
+  .container-fluid .card-navigation {
+    position: fixed;
+    top: 60px;
+    left: 265px;
+    right: 265px;
+    height: 43px;
+    background-color: black;
+    z-index: 1;
+    -webkit-box-shadow: 0px 8px 20px 6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 8px 20px 6px rgba(0,0,0,0.75);
+    box-shadow: 0px 8px 20px 6px rgba(0,0,0,0.75);
+   }
+    .container-fluid .card-navigation ul li a {
+      color: white;
+      cursor: pointer; }
+      .container-fluid .card-navigation ul li a:hover {
+        color: #E61924; }

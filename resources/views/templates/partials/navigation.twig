@@ -32,6 +32,46 @@
   </div>
 </nav>
 {% if auth.check %}
+<div class="chat-swipe"></div>
+<div class="chat" data-simplebar>
+  <div class="expand btn-group" role="group">
+    <button type="button" class="btn btn-secondary add">ADD</button>
+    <button type="button" class="btn btn-secondary chatBtn">CHAT</button>
+    <button type="button" class="btn btn-secondary block">BLOCK</button>
+  </div>
+  <div class="content">
+    {% if auth.user.contact.friends_pending|length >= 2 %}
+    <label for="pending">FRIENDS PENDING</label>
+    <ul name="pending" class="pending">
+      {% for friend in auth.user.contact.getFriendsPending() %}
+      <li><img src="{{auth.user.get_gravatar(friend.email,40)}}"><span>{{friend.username}}</span><span style="{{auth.user.displayStatus(friend.energy.status)}}"></span> </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% if auth.user.contact.friends >= 1 %}
+    <label for="friends">ПРИЈАТЕЛИ</label>
+    <ul name="friends" class="friends">
+      {% for friend in auth.user.contact.getFriends() %}
+      <li><img src="{{auth.user.get_gravatar(friend.email,40)}}"><span>{{friend.username}}</span><span style="{{auth.user.displayStatus(friend.energy.status)}}"></span> </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <label for="clans">CLANS</label>
+    <ul name="clans" class="clans">
+      {% for clan in auth.user.getClans() %}
+      <li><img src="{{auth.user.get_gravatar(auth.user.email,40)}}"> <span>{{clan.name}}</span> <span style="background:var(--gray-dark)"></span> </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="search">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+      <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+      <path d="M0 0h24v24H0z" fill="none"/>
+    </svg>
+    <input type="text" id="search" placeholder="Пребарај">
+  </div>
+</div>
 <div class="sidebar-swipe"></div>
 <nav class="sidebar">
   <div class="profile">
@@ -45,7 +85,7 @@
         </span>
         <div class="progress-value">
          <span class="num">...</span>
-         <img src="{{baseUrl}}/resources/img/profile2.png"  width="92" height="92">
+         <img src="{{auth.user.get_gravatar(auth.user.email)}}" width="92" height="92">
         </div>
       </div>
       <div class="name">
@@ -54,10 +94,16 @@
       </div>
     </div>
     <ul class="nav navbar-nav">
-      <li>Мок: {{auth.user.prom.mok}}</li>
+      <li>
+        {%include 'templates/svg/mok.svg'%}
+        {{auth.user.prom.mok}}
+      </li>
       <li>Почит: {{auth.user.prom.pocit}}</li>
       <li>Пари: {{auth.user.prom.pari}}</li>
-      <li>Држава: {{auth.user.prom.place}}</li>
+      <li>
+        {%include 'templates/svg/earth-globe.svg' %}
+        {{auth.user.prom.place}}
+      </li>
       <li>
         <div class="progress">
           <div class="progress-bar  bg-warning" role="progressbar" style="width:{{auth.user.energy.energija}}%">{{auth.user.energy.energija}}%
@@ -70,9 +116,9 @@
       </li>
       <li>
         <div class="progress">
-          <div class="progress-bar bg-danger" role="progressbar" style="width:{{auth.user.energy.energija}}%">{{auth.user.energy.energija}}%
+          <div class="progress-bar bg-danger" role="progressbar" style="width:{{auth.user.prom.health}}%">{{auth.user.prom.health}}%
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-               viewBox="0 0 51.997 51.997" xml:space="preserve" fill="#dc3545" style="left:{{auth.user.energy.energija - 10}}%">
+               viewBox="0 0 51.997 51.997" xml:space="preserve" fill="#dc3545" style="left:{{auth.user.prom.health - 10}}%">
             <path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
               c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
               c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
@@ -117,6 +163,7 @@
                   <path clip-path="url(#b)" d="M19.5 9.5c-1.03 0-1.9.62-2.29 1.5h-2.92c-.39-.88-1.26-1.5-2.29-1.5s-1.9.62-2.29 1.5H6.79c-.39-.88-1.26-1.5-2.29-1.5C3.12 9.5 2 10.62 2 12s1.12 2.5 2.5 2.5c1.03 0 1.9-.62 2.29-1.5h2.92c.39.88 1.26 1.5 2.29 1.5s1.9-.62 2.29-1.5h2.92c.39.88 1.26 1.5 2.29 1.5 1.38 0 2.5-1.12 2.5-2.5s-1.12-2.5-2.5-2.5z"/>
               </svg>
               Planiran Kriminal
+              <input type="hidden" value="planed_crime">
             </li>
             <li>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
@@ -218,7 +265,7 @@
           <input type="hidden" value="garaza">
         </li>
         </ul>
-        <li  data-toggle="collapse" data-target="#profil" class="collapsed ">
+        <li  data-toggle="collapse" data-target="#kazino" class="collapsed ">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M0 0h24v24H0z" fill="none"/>
               <path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/>
@@ -229,14 +276,27 @@
               <path d="M0 0h24v24H0z" fill="none"/>
           </svg>
         </li>
+        <ul class="sub-menu collapse" id="kazino">
+          <li>Trkalo na sreka</li>
+          <li>BlackJek</li>
+        </ul>
+        <li  data-toggle="collapse" data-target="#profil" class="collapsed ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" fill="none"/>
+              <path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/>
+          </svg>
+          <span>PROFIL</span>
+          <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+          </svg>
+        </li>
         <ul class="sub-menu collapse" id="profil">
-          <li>Zlostorstva</li>
-          <li>Organiziran Kriminal</li>
-          <li>Droga</li>
-          <li>Alxoxol</li>
-          <li>Avtomobili</li>
-          <li>Trki</li>
-          <li>Rabota</li>
+          <li>Blacklist</li>
+          <li>Clan</li>
+            <li>Prijateli</li>
+              <li>Pocit</li>
+
         </ul>
     </ul>
   </div>

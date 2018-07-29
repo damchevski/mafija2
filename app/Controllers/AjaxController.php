@@ -8,15 +8,103 @@ use App\Models\Clan;
 use App\Models\Shop;
 use App\Models\Car;
 use App\Models\DrinksDrugs;
+use App\Models\User\User;
 
 class AjaxController extends Controller
 {
+  public function getSearch($request, $response)
+  {
+    $key = $request->getParam('key');
+    if (isset($key) && !empty($key)){
+      $user = $this->auth->user();
+      /*$ids = explode('_', $user->contact->friends_ids);
+      echo"  <label for='friends'>ПРИЈАТЕЛИ</label>
+      <ul name='friends' people='friends'> ";
+      foreach ($ids as $id) {
+        $friend = User::find($id);
+        if (isset($friend) && !empty($friend)){
+        $count = 0;
+        for ($i=0 ; $i < strlen($key) ; $i++){
+          if($friend->username[$i] == $key[$i]){$count++;}
+        }
+        if($count == strlen($key)){
+          switch ($friend->energy->status) {
+            case 0:
+              $status = "background:var(--red)";
+              break;
+            case 1:
+              $status = "background:var(--green)";
+              break;
+            case 2:
+              $status = "background:var(--yellow)";
+              break;
+            default:
+              $status = "background:var(--gray-dark)";
+              break;
+          }
+        echo "<li><img src='".$user->get_gravatar($friend->email,40)."'>".$friend->username."<span style='$status'></span> </li>";
+        }
+      }
+      }
+      echo"</ul>";*/
+      $users = User::where('username','LIKE', $key.'%')->where('id','<>',$user->id)->limit(5)->get();
+      if($users->count() > 0){
+        echo"  <label for='people'>МАФИЈАШИ</label>
+        <ul name='people' class='people'> ";
+        foreach ($users as $val){
+          echo "<li><img src='".$user->get_gravatar($val->email,40)."'><span>".$val->username."</span><span style='".$user->displayStatus($val->energy->status)."'></span> </li>";
+        }
+        echo"</ul>";
+      }
+      $clans = Clan::where('name','LIKE', $key.'%')->limit(5)->get();
+        if($clans->count() > 0){
+        echo"  <label for='clans'>CLANS</label>
+        <ul name='clans' class='clans'> ";
+        foreach ($clans as $id => $clan) {
+        echo "<li><img src='".$user->get_gravatar($clan->email,40)."'><span>".$clan->name."</span><span style='background:var(--gray-dark)'></span> </li>";
+        }
+        echo"</ul>";
+      }
+    }
+  }
   public function getStatus($request, $response)
   {
-      $val = $request->getParam('val');
-      $user = $this->auth->user();
-      $user->prom->updateRank();
-      $user->energy->update(['status' => $val ]);
+    $val = $request->getParam('val');
+    $user = $this->auth->user();
+    $user->prom->updateRank();
+    $user->energy->update(['status' => $val ]);
+  }
+  public function getStats($request, $response)
+  {
+    $user = $this->auth->user();
+    return"
+      <li>Мок: {$user->prom->mok}</li>
+      <li>Почит: {$user->prom->pocit}</li>
+      <li>Пари: {$user->prom->pari}</li>
+      <li>Држава: {$user->prom->place}</li>
+      <li>
+        <div class='progress'>
+          <div class='progress-bar  bg-warning' role='progressbar' style='width:{$user->energy->energija}%'>{$user->energy->energija}%
+            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill=' #ffc107'style='left:".($user->energy->energija - 10)."%'>
+              <path d='M0 0h24v24H0z' fill='none'/>
+              <path d='M7 2v11h3v9l7-12h-4l4-8z' stroke='#e9ecef'/>
+            </svg>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class='progress'>
+          <div class='progress-bar bg-danger' role='progressbar' style='width:{$user->prom->health}%'>{$user->prom->health}%
+            <svg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'
+               viewBox='0 0 51.997 51.997' xml:space='preserve' fill='#dc3545' style='left:".($user->prom->health - 10)."%'>
+            <path d='M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
+              c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
+              c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
+              C52.216,18.553,51.97,16.611,51.911,16.242z' stroke='#e9ecef'/>
+            </svg>
+          </div>
+        </div>
+      </li>";
   }
   public function getValidation($request, $response)
   {
@@ -49,85 +137,77 @@ class AjaxController extends Controller
   {
     $type = $request->getParam('type');
     $raboti = Rabota::where('type',$type)->get();
-    foreach ($raboti as $id=>$rabota) {
-      $html = "<div class='card bg-light'>
-      <div class='card-body'>
-      <h4 class='card-title'> ".$rabota->title."</h4> ";
-          $html.= "<div class='row'>
-            <div class='col'>
-           <span id='dolg'> Sansi na uspees: ".$rabota->chance." </span>  </div>
-            <div class='col'>
-              </svg> <span id='dolg'> Energija potrebno: ".$rabota->energija."</span>  </div>
-            <div class='col'>
-             <span id='dolg'>Vreme na izvrsuvanje ".$rabota->complete_time." </span></div>
-            </div>
-            <span class='input-group-btn'>
-               <button class='btn btn-secondary $rabota->type' type='button'>Raboti</button>
-               </span>
-            ";
-         if($type == 'rabota'){$id +=3;}  $id++;
-          $html .="  <input type='hidden' value='$id'> </div> </div>";
-
-     echo $html;
+    if ($type == 'rabota') {
+      $options = array(1=>'SMALL', 2=>'BIG', 3=>'INSANE', 4 =>'webp',5=>'RABOTI');
+    }else{
+      $options = array(1=>'KLOSAR', 2=>'PFF', 3=>'TOP', 4 =>'png',5=>'KRADI');
     }
+    $row1 = $row2 = $row3 = array();
+    foreach ($raboti as $rabota) {
+      switch (true) {
+        case $rabota->rank >= 1 && $rabota->rank <=3:
+          array_push($row1,$rabota);
+          break;
+        case $rabota->rank >= 4 && $rabota->rank <=7:
+          array_push($row2,$rabota);
+          break;
+        case $rabota->rank >= 8 && $rabota->rank <=10:
+          array_push($row3,$rabota);
+          break;
+      }
+    }
+    return $this->view->render($response, '/templates/cards/rabota.twig',[
+      'row1'  => $row1,
+      'row2'  => $row2,
+      'row3'  => $row3,
+      'x' => $options
+    ]);
   }
   public function getDrinks($request, $response)
   {
     $type = $request->getParam('type');
-    $drinks = DrinksDrugs::where('type',$type)->get();
-    foreach ($drinks as $id=>$drink) {
-      $html = "<div class='card bg-light''>
-      <div class='card-body'>
-      <h4 class='card-title'> ".$drink->title."</h4> ";
-          $html.= "<div class='row'>
-            <div class='col'>
-           <span id='dolg'>Cena: ".$drink->price." </span>  </div>
-            <div class='col'>
-              </svg> <span id='dolg'>Zalixa: ".$drink->zaliha."</span>  </div>
-            </div>
-            <div class='row'>
-              <div class='col'>
-             <span id='dolg'>".$drink->description." </span></div>
-            </div>
-            <input type='number' name='kolicina'>
-            <span class='input-group-btn'>
-              <button class='btn btn-secondary add' type='button'>Dodadi</button>
-            </span>
-            ";
-         if($type == 'drinks'){$id +=8;}  $id++;
-          $html .=" <input type='hidden' value='$id'> </div> </div>";
-
-     echo $html;
+    $drinks_drugs = DrinksDrugs::where('type',$type)->get();
+    $options = array(1=>'so da napravi');
+    $row1 = $row2 = $row3 = array();
+    foreach ($drinks_drugs as $drink_drug) {
+          array_push($row1,$drink_drug);
     }
+    return $this->view->render($response, '/templates/cards/drinks_drugs.twig',[
+      'row1'  => $row1,
+      'row2'  => $row2,
+      'row3'  => $row3,
+      'x' => $options
+    ]);
   }
   public function getCars($request, $response)
   {
     $cars = Car::all();
-    foreach ($cars as $id=>$car) {
-      $html = "<div class='card bg-light''>
-      <div class='card-body'>
-      <h4 class='card-title'> ".$car->title."</h4> ";
-          $html.= "<div class='row'>
-            <div class='col'>
-           <span id='dolg'>Cena: ".$car->price." </span>  </div>
-            <div class='col'>
-              </svg> <span id='dolg'>Energija potrebno: ".$car->energija."</span>  </div>
-            <div class='col'>
-             <span id='dolg'>Brzina: ".$car->speed." </span></div>
-             <div class='col'>
-              <span id='dolg'>Moknost: ".$car->power." </span></div>
-            </div>
-            <span class='input-group-btn'>
-              <button class='btn btn-secondary car' type='button'>Ukradi</button>
-            </span>";
-            $id++;
-          $html .=" <input type='hidden' value='$id'> </div> </div>";
-
-     echo $html;
+    $row1 = $row2 = $row3 = array();
+    $options = array(1=>'MIDRANGE', 2=>'FAST', 3=>'TOP',4=>'car',5=>"UKRADI");
+    foreach ($cars as $car) {
+      switch ($car->type) {
+        case "middle":
+          array_push($row1,$car);
+          break;
+        case "fast":
+          array_push($row2,$car);
+          break;
+        case "top":
+          array_push($row3,$car);
+          break;
+      }
     }
+    return $this->view->render($response, '/templates/cards/cars.twig',[
+      'row1'  => $row1,
+      'row2'  => $row2,
+      'row3'  => $row3,
+      'x' => $options
+    ]);
   }
   public function getTrki($request, $response)
   {
+    $row1 = $row2 = $row3 = $car_id = array();
+    $options = array(1=>'MIDRANGE', 2=>'FAST', 3=>'TOP',4=>'race',5=>"TRKAJ",6=>true);
     $user = $this->auth->user();
     $carsIds = json_decode($user->inventory->cars,true);
     foreach ($carsIds as $id=>$val) {
@@ -135,31 +215,30 @@ class AjaxController extends Controller
         $dmg = explode('_', $val);
         for ($i=1; $i <= $dmg[0] ; $i++) {
           if($dmg[$i]>50){
-          $html = "<div class='card bg-light''>
-          <div class='card-body'>
-          <h4 class='card-title'> ".$car->title."</h4> ";
-              $html.= "<div class='row'>
-                <div class='col'>
-               <span id='dolg'>Cena: ".$car->price." </span>  </div>
-                <div class='col'>
-                  </svg> <span id='dolg'>Energija potrebno: ".$car->energija."</span>  </div>
-                <div class='col'>
-                 <span id='dolg'>Brzina: ".$car->speed." </span></div>
-                 <div class='col'>
-                  <span id='dolg'>Moknost: ".$car->power." </span></div>
-                  <div class='col'>
-                   <span id='dolg'>Steta: ".$dmg[$i]." </span></div>
-                </div>
-                <span class='input-group-btn'>
-                  <button class='btn btn-secondary race' type='button'>Trkaj</button>
-                </span>";
+            //ne e skros napraveno
+            switch ($car->type) {
+              case "middle":
+                array_push($row1,$car);
+                array_push($car_id,"$id"."_"."$i");
+                break;
+              case "fast":
+                array_push($row2,$car);
+                break;
+              case "top":
+                array_push($row3,$car);
+                break;
+            }
 
-              $html .=" <input type='hidden' value='".$id."_".$i."'> </div> </div>";
-
-         echo $html;
         }
       }
     }
+    return $this->view->render($response, '/templates/cards/cars.twig',[
+      'row1'  => $row1,
+      'row2'  => $row2,
+      'row3'  => $row3,
+      'x' => $options,
+      'car_id'=>$car_id
+    ]);
   }
   public function getTravel($request, $response)
   {
@@ -187,31 +266,38 @@ class AjaxController extends Controller
   }
   public function getGaraza($request, $response)
   {
+    $row1 = $row2 = $row3 = $car_id = array();
+    $options = array(1=>'MIDRANGE', 2=>'FAST', 3=>'TOP',4=>'sellCar',5=>"PRODAJ",6=>true);
     $user = $this->auth->user();
     $carsIds = json_decode($user->inventory->cars,true);
     foreach ($carsIds as $id=>$val) {
-        $car = Car::find($id);
-        $dmg = explode('_', $val);
-        for ($i=1; $i <= $dmg[0] ; $i++) {
-          $html = "<div class='card bg-light''>
-          <div class='card-body'>
-          <h4 class='card-title'> ".$car->title."</h4> ";
-              $html.= "<div class='row'>
-                <div class='col'>
-               <span id='dolg'>Cena: ".$car->price." </span>  </div>
-                <div class='col'>
-                  </svg> <span id='dolg'>Energija potrebno: ".$car->energija."</span>  </div>
-                <div class='col'>
-                 <span id='dolg'>Brzina: ".$car->speed." </span></div>
-                 <div class='col'>
-                  <span id='dolg'>Moknost: ".$car->power." </span></div>
-                  <div class='col'>
-                   <span id='dolg'>Steta: ".$dmg[$i]." </span></div>
-                </div>";
-              $html .=" <input type='hidden' value='".$id."_".$i."'> </div> </div>";
-         echo $html;
+      $car = Car::find($id);
+      $dmg = explode('_', $val);
+      for ($i=1; $i <= $dmg[0] ; $i++) {
+        if($dmg[$i]>50){
+          //ne e skros napraveno
+          switch ($car->type) {
+            case "middle":
+              array_push($row1,$car);
+              array_push($car_id,"$id"."_"."$i");
+              break;
+            case "fast":
+              array_push($row2,$car);
+              break;
+            case "top":
+              array_push($row3,$car);
+              break;
+          }
+        }
       }
     }
+    return $this->view->render($response, '/templates/cards/cars.twig',[
+      'row1'  => $row1,
+      'row2'  => $row2,
+      'row3'  => $row3,
+      'x' => $options,
+      'car_id'=>$car_id
+    ]);
   }
   public function getBank($request, $response)
   {
@@ -231,6 +317,22 @@ class AjaxController extends Controller
               $html .="</div> </div>";
          echo $html;
       }
+  }
+
+  public function getShop($request, $response)
+  {
+    $weapons = Shop::where('type','weapons')->get();
+    $options = array(1=>'so da napravi');
+    $row1 = $row2 = $row3 = array();
+    foreach ($weapons as $weapon) {
+          array_push($row1,$weapon);
+    }
+    return $this->view->render($response, '/templates/cards/shop.twig',[
+      'row1'  => $row1,
+      'row2'  => $row2,
+      'row3'  => $row3,
+      'x' => $options
+    ]);
   }
 
 }

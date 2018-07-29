@@ -1,15 +1,14 @@
-$(document).ready(function(){
-
-});
 $(window).on('load', function(){
     $(".wrap").delay(2500).fadeOut("slow");
     status(1);
 });
 function isMobile() {
-    if(/Android|webOS|iPhone|iPad|iPod|pocket|psp|kindle|avantgo|blazer|midori|Tablet|Palm|maemo|plucker|phone|BlackBerry|symbian|IEMobile|mobile|ZuneWP7|Windows Phone|Opera Mini/i.test(navigator.userAgent)) {
-     return true;
-    }
-    return false;
+  return /Android|webOS|iPhone|iPad|iPod|pocket|psp|kindle|avantgo|blazer|midori|Tablet|Palm|maemo|plucker|phone|BlackBerry|symbian|IEMobile|mobile|ZuneWP7|Windows Phone|Opera Mini/i.test(navigator.userAgent)? true:false;
+}
+function refreshStats() {
+  $.get("/mafija2/public/stats",function(data){
+    $('.sidebar').children('.profile').children('.nav').html(data);
+  });
 }
 function status(val){
   $.get("/mafija2/public/status",{val:val});
@@ -42,8 +41,8 @@ function countdown(endDate) {
       timeRemaining = (timeRemaining % 60);
 
       seconds = parseInt(timeRemaining);
-      console.log(days+':'+hours+':'+minutes+':'+seconds);
-      $('#loading').children('h1').children('span').html(seconds);
+    //  console.log(days+':'+hours+':'+minutes+':'+seconds);
+      $('#loading').find('h1').children('span').html(seconds);
     }else{
       $("#loading").fadeOut("slow");//tuka loadingot stop
       clearTimeout(count);

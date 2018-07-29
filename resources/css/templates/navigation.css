@@ -2,9 +2,9 @@ nav.navbar #logo {
   margin-right: 5px; }
 nav.navbar{
   background-color: #000000;
-  -webkit-box-shadow: 2px 8px 20px 6px rgba(0,0,0,0.75);
-  -moz-box-shadow: 2px 8px 20px 6px rgba(0,0,0,0.75);
-  box-shadow: 2px 8px 20px 6px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 8px 20px 6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 8px 20px 6px rgba(0,0,0,0.75);
+  box-shadow: 0px 8px 20px 6px rgba(0,0,0,0.75);
 }
 
 .fixed-top{
@@ -65,15 +65,76 @@ nav.navbar .hamburger {
       transform: rotate(-45deg) translate(5px, -5px);
       width: 100%;
       margin-left: 0; }
-
+      .chat-swipe {
+        position: fixed;
+        top: 100px;
+        right: 0;
+        width: 30px;
+        height: 100%;
+        z-index: 3; }
+      .chat {
+        position: fixed;
+        right: 0;
+        width: 265px;
+        height: 100%;
+        z-index: 3;
+        -ms-touch-action: none;
+        touch-action: none;
+        background-color: #e9ebee; }
+        .chat .expand {
+          position: absolute;
+          left: 265px; }
+          .chat .expand button {
+            padding-left: 15px;
+            padding-right: 15px; }
+        .chat .content label {
+          margin-left: 5px;
+          margin-bottom: .3rem;
+          color: #4a4a4a;
+          font-weight: 500; }
+        .chat .content ul {
+          list-style: none;
+          padding-left: 0;
+          margin: 0px 5px 10px 5px; }
+          .chat .content ul li {
+            cursor: pointer;
+            margin: 3px 0; }
+            .chat .content ul li img {
+              margin-right: 10px;
+              border-radius: 50%;}
+            .chat .content ul li span:last-child {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              float: right;
+              margin: 14px 8px 0 0; }
+              .chat .search {
+                position: fixed;
+                width: 100%;
+                height: 35px;
+                background-color: white; }
+                .chat .search input {
+                  top: 0;
+                  height: 35px;
+                  width: 80%;
+                  outline: none;
+                  font-size: 18px;
+                  border: none;
+                  float: left; }
+                .chat .search svg {
+                  fill: #939394;
+                  margin-top: 3px;
+                  margin-right: 5px;
+                  float: left; }
       .sidebar-swipe {
         position: fixed;
-        top: 50px;
+        top: 100px;
         left: 0;
-        width: 50px;
+        width: 30px;
         height: 100%;
         z-index: 3; }
       nav.sidebar {
+        touch-action: none;
         background-color: #301011;
         z-index: 3;
         position: fixed;
@@ -91,6 +152,7 @@ nav.navbar .hamburger {
             display: inline-block; }
             nav.sidebar .profile .img img {
               position: absolute;
+              border-radius: 50%;
               top: 4px;
               left: 4px; }
             nav.sidebar .profile .img .name {
@@ -106,6 +168,9 @@ nav.navbar .hamburger {
             nav.sidebar .profile .nav .progress {
               margin-top: 8px;
               margin-bottom: 5px; }
+            nav.sidebar .profile .nav li svg{
+              margin-bottom: -5px;
+            }
               nav.sidebar .profile .nav .progress svg {
                 position: absolute;
                 width: 26px;
@@ -153,30 +218,6 @@ nav.navbar .hamburger {
               display: -webkit-inline-box;
               display: -ms-inline-flexbox;
               display: inline-flex; }
-
-      @media only screen and (max-width: 600px) {
-        nav.sidebar {
-          top: 0;
-          left: -265px;
-         }
-         nav.sidebar .desktop {
-           display: none;
-         }
-        #navbar {
-          margin: 0; }
-        .container-fluid{
-          padding-left: 15px;
-          margin-bottom: 100%
-        }
-        .spinner{
-          margin-top:50%!important;
-        }
-        nav.navbar #navbar ul{
-          margin-left: 0;
-        }
-      }
-
-
       .card {
         -webkit-box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.7);
         box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.7); }
@@ -244,3 +285,36 @@ nav.navbar .hamburger {
 
       .profile .img .progress.blue .progress-bar {
         border-color: #28a745; }
+        @media only screen and (max-width: 600px) {
+          nav.sidebar {
+            top: 0;
+            left: -265px;
+           }
+           nav.sidebar .desktop {
+             display: none;
+           }
+           .chat{
+             top: 0;
+             right: -265px;
+           }
+           .search{
+             position: sticky!important;
+            }
+          #navbar {
+            margin: 0; }
+          .container-fluid{
+            padding-left: 15px;
+            padding-right: 15px;
+          }
+          .container-fluid .card-navigation{
+            left:0;
+            right:0;
+            width: 100%;
+          }
+          .spinner{
+            margin-top:60%!important;
+          }
+          nav.navbar #navbar ul{
+            margin-left: 0;
+          }
+        }

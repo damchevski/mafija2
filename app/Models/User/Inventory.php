@@ -47,6 +47,13 @@ class Inventory Extends Model
 		 return true;
 	 }
 	 return false;
-}
-
+  }
+	public function zaliha($type,$id)
+	{
+		return json_decode($this->{$type},true)[$id];
+	}
+	public function chance($type,$id)
+	{
+		return explode('_', $this->crime_chance)[$id-1];
+	}
 }

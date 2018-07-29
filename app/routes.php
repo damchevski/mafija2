@@ -38,14 +38,21 @@ $app->group('',function() use ($app){
   $app->get('/ajax/drinks', 'AjaxController:getDrinks')->setName('drinks');
   $app->get('/ajax/cars', 'AjaxController:getCars')->setName('cars');
   $app->get('/ajax/trki', 'AjaxController:getTrki')->setName('trki');
+  $app->get('/ajax/planed_crime', 'AjaxController:getCrime')->setName('cri');
   //get lokacii
   $app->get('/ajax/travel', 'AjaxController:getTravel')->setName('traveling');
   $app->get('/ajax/garaza', 'AjaxController:getGaraza')->setName('garaza');
   $app->get('/ajax/shop', 'AjaxController:getShop')->setName('shops');
   $app->get('/ajax/bank', 'AjaxController:getBank')->setName('banks');
 
+  $app->get('/ajax/search', 'AjaxController:getSearch')->setName('search');
+
 
   $app->get('/status', 'AjaxController:getStatus')->setName('status');
+  $app->get('/stats', 'AjaxController:getStats')->setName('stats');
+  $app->get('/add/friend', 'HomeController:getAddFriend')->setName('add-friend');
+  $app->get('/confirm/friend', 'HomeController:getConfirmFriend')->setName('confirm-friend');
+  $app->get('/delete/friend', 'HomeController:getDeleteFriend')->setName('delete-friend');
 
 })->add(new AuthMiddleware($container));
 
@@ -67,5 +74,6 @@ $app->group('',function() use ($app){
   //post lokacii
   $app->get('/travel', 'HomeController:getTravel')->setName('travel');
   $app->get('/bank', 'HomeController:getBank')->setName('bank');
+  $app->get('/shop', 'HomeController:getShop')->setName('shop');
 
 })->add(new TaskMiddleware($container));

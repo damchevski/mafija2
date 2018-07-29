@@ -8,6 +8,8 @@ let touchendY = 0;
 const limit = Math.tan(45 * 1.5 / 180 * Math.PI);
 const gestureZone1 = document.getElementsByClassName('sidebar-swipe')[0];
 const gestureZone2 = document.getElementsByClassName('sidebar')[0];
+const gestureZone3 = document.getElementsByClassName('chat-swipe')[0];
+const gestureZone4 = document.getElementsByClassName('chat')[0];
 
 gestureZone1.addEventListener('touchstart', function(event) {
     touchstartX = event.changedTouches[0].screenX;
@@ -33,7 +35,30 @@ gestureZone2.addEventListener('touchend', function(event) {
       sidebarAnimateOut();
      }
 }, false);
+gestureZone3.addEventListener('touchstart', function(event) {
+    touchstartX = event.changedTouches[0].screenX;
+    touchstartY = event.changedTouches[0].screenY;
+}, false);
 
+gestureZone3.addEventListener('touchend', function(event) {
+    touchendX = event.changedTouches[0].screenX;
+    touchendY = event.changedTouches[0].screenY;
+    if (handleGesture(event)=="left"){
+     chatAnimateIn();
+    }
+}, false);
+gestureZone4.addEventListener('touchstart', function(event) {
+    touchstartX = event.changedTouches[0].screenX;
+    touchstartY = event.changedTouches[0].screenY;
+}, false);
+
+gestureZone4.addEventListener('touchend', function(event) {
+    touchendX = event.changedTouches[0].screenX;
+    touchendY = event.changedTouches[0].screenY;
+     if (handleGesture(event)=="right"){
+      chatAnimateOut();
+     }
+}, false);
 function handleGesture(e) {
     let x = touchendX - touchstartX;
     let y = touchendY - touchstartY;

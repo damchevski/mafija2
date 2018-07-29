@@ -31,4 +31,8 @@ class Shop Extends Model
 		}
 		return false;
 	}
+	public function reward($val)
+	{
+		return json_decode($this->reward,true)[$val];
+	}
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Clan;
 
 class User Extends Model
 {
@@ -53,7 +54,35 @@ class User Extends Model
 	{
 		return $this->hasOne('App\Models\User\UserPermission');
 	}
-
+	function get_gravatar( $email, $s = 92, $d = 'mp', $r = 'g', $img = false, $atts = array() ) {
+    $url = 'https://www.gravatar.com/avatar/';
+    $url .= md5( strtolower( trim( $email ) ) );
+    $url .= "?s=$s&d=$d&r=$r";
+    if ( $img ) {
+        $url = '<img src="' . $url . '"';
+        foreach ( $atts as $key => $val )
+            $url .= ' ' . $key . '="' . $val . '"';
+        $url .= ' />';
+    }
+    return $url;
+  }
+	public function displayStatus($val)
+	{
+		switch ($val) {
+			case 0:
+				return "background:var(--red)";
+			case 1:
+		  	return "background:var(--green)";
+			case 2:
+				return "background:var(--yellow)";
+			default:
+				return "background:var(--gray-dark)";
+		}
+	}
+	public function getClans()
+	{
+	  return Clan::limit(5)->get();
+	}
 	public function updateRememberCredentials($identifier, $token)
 	{
 		$this->update([

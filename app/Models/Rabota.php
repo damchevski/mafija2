@@ -13,10 +13,14 @@ class Rabota Extends Model
 		'rank',
 		'title',
 		'chance',
-		'complete_time',
+		'time',
 		'energija',
 		'price'
 	];
+  public function getPrice()
+  {
+  return json_decode($this->price,true)['pari'];
+  }
 	public function calculate($user,$chance)
 	{
 		$user->energy->update([ 'energija' => $user->energy->energija - $this->energija ]);
