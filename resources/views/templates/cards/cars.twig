@@ -45,6 +45,7 @@
 <div class="card-columns" id="first">
   {% for key, item in row1 %}
     <div class="card">
+        {% if auth.user.prom.rank < item.rank %} <div class="unavailable"></div> {% endif %}
     <img class="card-img-top" src="{{baseUrl}}/resources/img/cars/{{item.id}}.png" alt="Card image cap">
     <h3 class="title">{{item.title}}</h3>
     <div class="card-body">
@@ -93,6 +94,7 @@
 <div class="card-columns" id="second"style="display:none">
   {% for item in row2 %}
   <div class="card">
+      {% if auth.user.prom.rank < item.rank %} <div class="unavailable"></div> {% endif %}
   <img class="card-img-top" src="{{baseUrl}}/resources/img/cars/{{item.id}}.png" alt="Card image cap">
   <h3 class="title">{{item.title}}</h3>
   <div class="card-body">
@@ -141,6 +143,7 @@
 <div class="card-columns" id="last" style="display:none">
   {% for item in row3 %}
   <div class="card">
+      {% if auth.user.prom.rank < item.rank %} <div class="unavailable"></div> {% endif %}
   <img class="card-img-top" src="{{baseUrl}}/resources/img/cars/{{item.id}}.png" alt="Card image cap">
   <h3 class="title">{{item.title}}</h3>
   <div class="card-body">

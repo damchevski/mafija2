@@ -24,7 +24,10 @@ $(function(){
             $(window).scrollTop(0);
           });
       $(".slider").on("input", function(){
-        $(this).siblings().text(this.value);
+        $(this).siblings('input').val(this.value);
+      });
+      $(".result").on("input", function(){
+        $(this).siblings('.slider').val(this.value);
       });
     });
   }

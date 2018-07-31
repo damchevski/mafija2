@@ -18,9 +18,9 @@ class Bank Extends Model
   {
     return (bool)json_decode($this->{$bank},true)['permission'];
   }
-	public function money($bank)
+	public function stuff($bank,$type)
 	{
-		return json_decode($this->{$bank},true)['pari'];
+		return json_decode($this->{$bank},true)[$type];
 	}
   public function isLeft($bank,$val){
 		return (json_decode($this->{$bank},true)['pari'] -$val >= 0 ? true:false);

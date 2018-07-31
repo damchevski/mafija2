@@ -43,6 +43,7 @@ function countdown(endDate) {
       seconds = parseInt(timeRemaining);
     //  console.log(days+':'+hours+':'+minutes+':'+seconds);
       $('#loading').find('h1').children('span').html(seconds);
+      $('#loading').find('span').children('span').html(seconds);
     }else{
       $("#loading").fadeOut("slow");//tuka loadingot stop
       clearTimeout(count);

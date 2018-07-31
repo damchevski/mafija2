@@ -17,36 +17,6 @@ class AjaxController extends Controller
     $key = $request->getParam('key');
     if (isset($key) && !empty($key)){
       $user = $this->auth->user();
-      /*$ids = explode('_', $user->contact->friends_ids);
-      echo"  <label for='friends'>ПРИЈАТЕЛИ</label>
-      <ul name='friends' people='friends'> ";
-      foreach ($ids as $id) {
-        $friend = User::find($id);
-        if (isset($friend) && !empty($friend)){
-        $count = 0;
-        for ($i=0 ; $i < strlen($key) ; $i++){
-          if($friend->username[$i] == $key[$i]){$count++;}
-        }
-        if($count == strlen($key)){
-          switch ($friend->energy->status) {
-            case 0:
-              $status = "background:var(--red)";
-              break;
-            case 1:
-              $status = "background:var(--green)";
-              break;
-            case 2:
-              $status = "background:var(--yellow)";
-              break;
-            default:
-              $status = "background:var(--gray-dark)";
-              break;
-          }
-        echo "<li><img src='".$user->get_gravatar($friend->email,40)."'>".$friend->username."<span style='$status'></span> </li>";
-        }
-      }
-      }
-      echo"</ul>";*/
       $users = User::where('username','LIKE', $key.'%')->where('id','<>',$user->id)->limit(5)->get();
       if($users->count() > 0){
         echo"  <label for='people'>МАФИЈАШИ</label>
@@ -302,23 +272,13 @@ class AjaxController extends Controller
   public function getBank($request, $response)
   {
     $user = $this->auth->user();
-    $title = array('drzavna','svetska','small','big');
-
-        for ($i=0; $i <4 ; $i++) {
-          $html = "<div class='card bg-light''>
-          <div class='card-body'>
-          <h4 class='card-title'> ".$title[$i]."</h4> ";
-              $html.= "
-             <span >Finansii: ".$user->bank->money($title[$i])." </span>
-                  <input type='text' name='pari'>
-                  <input type='submit' class='bank' value='add'>
-                  <input type='submit' class='bank' value='odzemi'>
-              ";
-              $html .="</div> </div>";
-         echo $html;
-      }
+    $name = array('drzavna','svetska','small','big');
+    $title = array('DRZAVNA BANKA','SVETSKA BANKA','MAL SEF','GOLEM SEF');
+    return $this->view->render($response, '/templates/cards/bank.twig',[
+      'name'  => $name,
+      'title' => $title
+    ]);
   }
-
   public function getShop($request, $response)
   {
     $weapons = Shop::where('type','weapons')->get();
@@ -334,5 +294,16 @@ class AjaxController extends Controller
       'x' => $options
     ]);
   }
+  public function getCrime($request, $response)
+  {
+    $row1 = $row2 = $row3 = $options = array();
+    return $this->view->render($response, '/templates/cards/crime.twig',[
+      'row1'  => $row1,
+      'row2'  => $row2,
+      'row3'  => $row3,
+      'x' => $options
+    ]);
+  }
+
 
 }

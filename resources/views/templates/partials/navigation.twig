@@ -14,9 +14,11 @@
         <li class="nav-item active">
           <a class="nav-link" href="{{path_for('home') }}"> <span>ПОЧЕТНА</span></a>
         </li>
+        {% if auth.user.permissions.hasPermission('is_admin')%}
         <li class="nav-item active">
           <a class="nav-link" href="{{path_for('admin') }}"> <span>АДМИН</span></a>
         </li>
+        {% endif %}
         <li class="nav-item active ">
           <a class="nav-link " href="{{path_for('auth.signout') }}"> <span>ОДЈАВИ</span></a>
         </li>
@@ -36,7 +38,6 @@
 <div class="chat" data-simplebar>
   <div class="expand btn-group" role="group">
     <button type="button" class="btn btn-secondary add">ADD</button>
-    <button type="button" class="btn btn-secondary chatBtn">CHAT</button>
     <button type="button" class="btn btn-secondary block">BLOCK</button>
   </div>
   <div class="content">

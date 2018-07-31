@@ -1,5 +1,5 @@
-#main{
-  padding-top: 100px;
+#container{
+  color: white;
 }
 h2{
   color: white;
@@ -36,6 +36,11 @@ button{
   font-size: 13px;
   font-weight: 200;
   margin-top: 10px;
+}
+.form-check-input{
+  width: auto;
+  height: auto;
+  margin: 0;
 }
 .row{
   margin-left: 50px;

@@ -1,11 +1,9 @@
 <style media="screen">
+.container-fluid .card-columns{
+  column-count: 1;
+}
 .container-fluid .card-columns .card {
   border: none; }
-.container-fluid .card-columns .title {
-  margin-top: -40px;
-  margin-left: 15px;
-  text-shadow: 3px 0px 0px black;
-  color: white; }
 .container-fluid .card-columns .card-body button {
   position: absolute;
   left: 0;
@@ -51,10 +49,13 @@
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
 }
-.container-fluid .card-columns .card-body .row .col output {
+.container-fluid .card-columns .card-body .row .col .result {
     float: right;
     height: 25px;
     color: white;
+    padding: 0;
+    border: 0;
+    outline-color: red;
     background-color: #4CAF50;
     text-align: center;
     border-radius: 4px;
@@ -68,7 +69,7 @@
   .container-fluid .card-columns .card-body .row .col .slider {
     width: 85%;
   }
-  .container-fluid .card-columns .card-body .row .col output {
+  .container-fluid .card-columns .card-body .row .col .result {
     width: 15%;
   }
 }
@@ -76,13 +77,13 @@
 <div class="card-navigation">
   <ul class="nav nav-fill">
     <li class="nav-item" id="1">
-      <a class="nav-link">PUSKI</a>
+      <a class="nav-link">VO TEK</a>
     </li>
     <li class="nav-item" id="2">
-      <a class="nav-link">PRODAJ</a>
+      <a class="nav-link">PONUDI</a>
     </li>
     <li class="nav-item" id="3">
-      <a class="nav-link">SOSTOJBA</a>
+      <a class="nav-link">SOZDADI</a>
     </li>
   </ul>
 </div>
@@ -90,8 +91,7 @@
 <div class="card-columns" id="first">
   {% for item in row1 %}
     <div class="card" >
-        {% if auth.user.prom.rank < item.rank %} <div class="unavailable"></div> {% endif %}
-    <img class="card-img-top" src="{{baseUrl}}/resources/img/{{item.type}}/{{item.id}}.png">
+    <img class="card-img-top" src="{{baseUrl}}/resources/img/{{item.type}}/{{item.id}}.jpg">
     <h3 class="title">{{item.title}}</h3>
     <div class="card-body">
       <div class="row">
@@ -100,27 +100,26 @@
           <span>{{item.price}}$</span>
         </div>
         <div class="col">
-          {%include 'templates/svg/mok.svg'%}
-          <span>{{item.reward('mok')}}</span>
+          {%include 'templates/svg/zaliha.svg'%}
+          <span>{{item.zaliha}}</span>
         </div>
         <div class="w-100"></div>
         <div class="col">
-          <input type="range" min="{{auth.user.inventory.zaliha(item.type,item.id)}}" max="100" value="{{auth.user.inventory.zaliha(item.type,item.id)}}" class="slider">
+          <input type="range" min="{{auth.user.inventory.zaliha(item.type,item.id)}}" max="{{item.zaliha}}" value="{{auth.user.inventory.zaliha(item.type,item.id)}}" class="slider">
           <output name="result">{{auth.user.inventory.zaliha(item.type,item.id)}}</output>
         </div>
       </div>
-      <button class="btn btn-primary shop">KUPI</button>
+      <button class="btn btn-primary add">KUPI</button>
       <input type="hidden" value="{{item.id}}">
     </div>
     </div>
     {% else %}
-     <span style="color:white">Nema uste staveno</span>
+    <span style="color:white">Nema uste staveno</span>
   {% endfor %}
 </div>
 <div class="card-columns" id="second"style="display:none">
   {% for item in row2 %}
   <div class="card" >
-      {% if auth.user.prom.rank < item.rank %} <div class="unavailable"></div> {% endif %}
   <img class="card-img-top" src="{{baseUrl}}/resources/img/{{item.type}}/{{item.id}}.{{x[4]}}">
   <h3 class="title">{{item.title}}</h3>
   <div class="card-body">
@@ -155,39 +154,28 @@
   {% endfor %}
 </div>
 <div class="card-columns" id="last" style="display:none">
-  {% for item in row3 %}
   <div class="card" >
-      {% if auth.user.prom.rank < item.rank %} <div class="unavailable"></div> {% endif %}
-  <img class="card-img-top" src="{{baseUrl}}/resources/img/{{item.type}}/{{item.id}}.{{x[4]}}">
-  <h3 class="title">{{item.title}}</h3>
+  <img class="card-img-top" src="{{baseUrl}}/resources/img/crimeCar.jpg">
   <div class="card-body">
     <div class="row">
-    <div class="col">
-      {%include 'templates/svg/money-bag.svg'%}
-      <span>{{item.getPrice()}}$</span>
+      <div class="col">
+        <label for="hitmen">Hitmen</label>
+        <input type="text" class="form-control"  aria-describedby="hitmen" name="hitmen" placeholder="Himen.....">
+        <small id="hitmen" class="form-text text-muted">Glavniot dostavatel na puski.</small>
+      </div>
+      <div class="w-100"></div>
+      <div class="col">
+        <label for="hitmen">Sofer</label>
+        <input type="text" class="form-control"  aria-describedby="sofer" name="sofer" placeholder="Sofer.....">
+        <small id="sofer" class="form-text text-muted">Vozac na kola.</small>
+      </div>
+      <div class="w-100"></div>
+      <div class="col">
+        <input  type="range" min="5000" max="50000" value="5000" class="slider">
+         <input type="number" class="result" value="5000">
+      </div>
     </div>
-    <div class="col">
-      {%include 'templates/svg/timer.svg'%}
-      <span>{{item.time}}s</span>
-    </div>
-    <div class="w-100"></div>
-    <div class="col">
-      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="#ffc107">
-          <path d="M0 0h24v24H0z" fill="none"/>
-          <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
-      </svg>
-      <span>{{item.energija}}%</span>
-    </div>
-    <div class="col">
-      {%include 'templates/svg/chance.svg'%}
-      <span>{{item.chance}}%</span>
-    </div>
-    </div>
-    <button class="btn btn-primary {{item.type}}">{{x[5]}}</button>
-    <input type="hidden" value="{{item.id}}">
+    <button class="btn btn-primary ">SOZDADI</button>
   </div>
   </div>
-  {% else %}
-   <span style="color:white">Nema uste staveno</span>
-  {% endfor %}
 </div>

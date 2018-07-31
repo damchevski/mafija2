@@ -136,6 +136,7 @@ class HomeController extends Controller
     $id = $request->getParam('id');
     $rabota = Rabota::find($id);
     $user = $this->auth->user();
+    if($user->prom->rank >= $rabota->rank){
     if($user->task->add($rabota->time)){
       if($user->energy->check($rabota->energija)){
        if($rabota->calculate($user,$this->randomlib->generateInt(0, 100))){
@@ -148,16 +149,18 @@ class HomeController extends Controller
       echo "<input type='hidden' value='1'>";
       return $this->view->render($response, '/templates/partials/flash.twig');
     }
-    }
+    }}
     $this->flashres->addMessage('error','Rabotata e neuspesna.');
     echo "<input type='hidden' value='$rabota->time'>";
     return $this->view->render($response, '/templates/partials/flash.twig');
+
   }
   public function getCrime($request, $response)
   {
     $id = $request->getParam('id');
     $crime = Rabota::find($id);
     $user = $this->auth->user();
+    if($user->prom->rank >= $crime->rank){
     if($user->task->add($crime->time)){
       if($user->energy->check($crime->energija)){
         $num = $crime->crime($user,$this->randomlib->generateInt(0, 100));
@@ -183,9 +186,9 @@ class HomeController extends Controller
         echo "<input type='hidden' value='1'>";
         return $this->view->render($response, '/templates/partials/flash.twig');
       }
-    }
-    $this->flashres->addMessage('error','Rabotata e neuspesna.');
-    echo "<input type='hidden' value='$rabota->time'>";
+    }}
+    $this->flashres->addMessage('error','Kriminalot e neuspesen.');
+    echo "<input type='hidden' value='1'>";
     return $this->view->render($response, '/templates/partials/flash.twig');
   }
   public function getDrinksDrugs($request, $response)
@@ -207,7 +210,6 @@ class HomeController extends Controller
     $id = $request->getParam('id');
     $car = Car::find($id);
     $user = $this->auth->user();
-    if($user->task->add($car->time)){
     if($user->task->add($car->time)){
       if($user->energy->check($car->energija)){
       $num = $car->steal($user,$this->randomlib->generateInt(0, 100),$this->randomlib->generateInt(0, 5));
@@ -233,7 +235,10 @@ class HomeController extends Controller
         echo "<input type='hidden' value='1'>";
         return $this->view->render($response, '/templates/partials/flash.twig');
       }
-    }}
+    }
+    $this->flashres->addMessage('error','Error');
+    echo "<input type='hidden' value='1'>";
+    return $this->view->render($response, '/templates/partials/flash.twig');
   }
   public function getRace($request, $response)
   {
@@ -290,11 +295,19 @@ class HomeController extends Controller
   }
   public function getBank($request, $response)
   {
-    $title = $request->getParam('title');
-    $btn = $request->getParam('operation');
-    $money =(int)$request->getParam('kolicina');
     $user = $this->auth->user();
-    $num = $user->bank->transfer($user,$money,trim($title),$btn);
+    $name = trim($request->getParam('name'));
+
+    $money =(int)$request->getParam('kolicina');
+    if($money >  $user->bank->stuff($name,'pari')){
+      $money -= $user->bank->stuff($name,'pari');
+      $btn = 'add';
+    }else{
+      $btn = 'retrive';
+      $money = $user->bank->stuff($name,'pari') - $money;
+    }
+
+    $num = $user->bank->transfer($user,$money,$name,$btn);
    switch ($num) {
        case 1:
          $this->flashres->addMessage('info','Nemas dovolno pari ili nemas pravo');

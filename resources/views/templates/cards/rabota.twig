@@ -43,6 +43,7 @@
 <div class="card-columns" id="first">
   {% for item in row1 %}
     <div class="card" >
+      {% if auth.user.prom.rank < item.rank %} <div class="unavailable"></div> {% endif %}
     <img class="card-img-top" src="{{baseUrl}}/resources/img/{{item.type}}/{{item.id}}.{{x[4]}}">
     <h3 class="title">{{item.title}}</h3>
     <div class="card-body">
@@ -51,7 +52,7 @@
         {%include 'templates/svg/money-bag.svg'%}
         <span>{{item.getPrice()}}$</span>
       </div>
-      <div class="col">
+      <div class="col" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
         {%include 'templates/svg/timer.svg'%}
         <span>{{item.time}}s</span>
       </div>
@@ -81,6 +82,7 @@
 <div class="card-columns" id="second"style="display:none">
   {% for item in row2 %}
   <div class="card" >
+    {% if auth.user.prom.rank < item.rank %} <div class="unavailable"></div> {% endif %}
   <img class="card-img-top" src="{{baseUrl}}/resources/img/{{item.type}}/{{item.id}}.{{x[4]}}">
   <h3 class="title">{{item.title}}</h3>
   <div class="card-body">
@@ -119,6 +121,7 @@
 <div class="card-columns" id="last" style="display:none">
   {% for item in row3 %}
   <div class="card" >
+    {% if auth.user.prom.rank < item.rank %} <div class="unavailable"></div> {% endif %}
   <img class="card-img-top" src="{{baseUrl}}/resources/img/{{item.type}}/{{item.id}}.{{x[4]}}">
   <h3 class="title">{{item.title}}</h3>
   <div class="card-body">
