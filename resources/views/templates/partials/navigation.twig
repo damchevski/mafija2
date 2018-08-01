@@ -20,14 +20,14 @@
         </li>
         {% endif %}
         <li class="nav-item active ">
-          <a class="nav-link " href="{{path_for('auth.signout') }}"> <span>ОДЈАВИ</span></a>
+          <a class="nav-link " href="{{path_for('auth.signout') }}"> <span>ОДЈАВА</span></a>
         </li>
       {% else %}
         <li class="nav-item active ">
-          <a class="nav-link " href="{{path_for('auth.signup') }}"> <span>РЕГИСТРИРАЈ</span></a>
+          <a class="nav-link " href="{{path_for('auth.signup') }}"> <span>РЕГИСТРАЦИЈА</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="{{path_for('auth.signin') }}"> <span>ЛОГИРАЈ</span></a>
+          <a class="nav-link" href="{{path_for('auth.signin') }}"> <span>НАЈАВА</span></a>
         </li>
       {% endif %}
     </ul>
@@ -37,12 +37,12 @@
 <div class="chat-swipe"></div>
 <div class="chat" data-simplebar>
   <div class="expand btn-group" role="group">
-    <button type="button" class="btn btn-secondary add">ADD</button>
-    <button type="button" class="btn btn-secondary block">BLOCK</button>
+    <button type="button" class="btn btn-secondary add">ДОДАДИ</button>
+    <button type="button" class="btn btn-secondary block">БЛОКИРАЈ</button>
   </div>
   <div class="content">
     {% if auth.user.contact.friends_pending|length >= 2 %}
-    <label for="pending">FRIENDS PENDING</label>
+    <label for="pending">Пријатели во исчекување...</label>
     <ul name="pending" class="pending">
       {% for friend in auth.user.contact.getFriendsPending() %}
       <li><img src="{{auth.user.get_gravatar(friend.email,40)}}"><span>{{friend.username}}</span><span style="{{auth.user.displayStatus(friend.energy.status)}}"></span> </li>
@@ -58,7 +58,7 @@
     </ul>
     {% endif %}
 
-    <label for="clans">CLANS</label>
+    <label for="clans">ФАМИЛИИ</label>
     <ul name="clans" class="clans">
       {% for clan in auth.user.getClans() %}
       <li><img src="{{auth.user.get_gravatar(auth.user.email,40)}}"> <span>{{clan.name}}</span> <span style="background:var(--gray-dark)"></span> </li>
@@ -70,7 +70,7 @@
       <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
       <path d="M0 0h24v24H0z" fill="none"/>
     </svg>
-    <input type="text" id="search" placeholder="Пребарај">
+    <input type="text" id="search" placeholder="Пребарувај...">
   </div>
 </div>
 <div class="sidebar-swipe"></div>
@@ -150,7 +150,7 @@
                   <path d="M0 0h24v24H0z" fill="none"/>
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"/>
               </svg>
-              Злосорства
+              Злосторства
               <input type="hidden" value="crime">
             </li>
             <li>
@@ -163,7 +163,7 @@
                   </clipPath>
                   <path clip-path="url(#b)" d="M19.5 9.5c-1.03 0-1.9.62-2.29 1.5h-2.92c-.39-.88-1.26-1.5-2.29-1.5s-1.9.62-2.29 1.5H6.79c-.39-.88-1.26-1.5-2.29-1.5C3.12 9.5 2 10.62 2 12s1.12 2.5 2.5 2.5c1.03 0 1.9-.62 2.29-1.5h2.92c.39.88 1.26 1.5 2.29 1.5s1.9-.62 2.29-1.5h2.92c.39.88 1.26 1.5 2.29 1.5 1.38 0 2.5-1.12 2.5-2.5s-1.12-2.5-2.5-2.5z"/>
               </svg>
-              Planiran Kriminal
+              Планиран криминал
               <input type="hidden" value="planed_crime">
             </li>
             <li>
@@ -171,7 +171,7 @@
                   <path d="M2 16h15v3H2zm18.5 0H22v3h-1.5zM18 16h1.5v3H18zm.85-8.27c.62-.61 1-1.45 1-2.38C19.85 3.5 18.35 2 16.5 2v1.5c1.02 0 1.85.83 1.85 1.85S17.52 7.2 16.5 7.2v1.5c2.24 0 4 1.83 4 4.07V15H22v-2.24c0-2.22-1.28-4.14-3.15-5.03zm-2.82 2.47H14.5c-1.02 0-1.85-.98-1.85-2s.83-1.75 1.85-1.75v-1.5c-1.85 0-3.35 1.5-3.35 3.35s1.5 3.35 3.35 3.35h1.53c1.05 0 1.97.74 1.97 2.05V15h1.5v-1.64c0-1.81-1.6-3.16-3.47-3.16z"/>
                   <path fill="none" d="M0 0h24v24H0z"/>
               </svg>
-              Droga
+              Дрога
               <input type="hidden" value="drugs">
             </li>
             <li>
@@ -179,7 +179,7 @@
                   <path d="M21 5V3H3v2l8 9v5H6v2h12v-2h-5v-5l8-9zM7.43 7L5.66 5h12.69l-1.78 2H7.43z"/>
                   <path fill="none" d="M0 0h24v24H0z"/>
               </svg>
-              Alxoxol
+              Алкохол
               <input type="hidden" value="drinks">
             </li>
             <li>
@@ -187,7 +187,7 @@
                   <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
                   <path d="M0 0h24v24H0z" fill="none"/>
               </svg>
-              Avtomobili
+              Автомобили
               <input type="hidden" value="cars">
             </li>
             <li>
@@ -195,7 +195,7 @@
                   <path d="M18.92 5.01C18.72 4.42 18.16 4 17.5 4h-11c-.66 0-1.21.42-1.42 1.01L3 11v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 15c-.83 0-1.5-.67-1.5-1.5S5.67 12 6.5 12s1.5.67 1.5 1.5S7.33 15 6.5 15zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 10l1.5-4.5h11L19 10H5z"/>
                   <path d="M0 0h24v24H0z" fill="none"/>
               </svg>
-              Trki
+              Автомобилски трки
               <input type="hidden" value="trki">
             </li>
             <li>
@@ -208,7 +208,7 @@
                   </clipPath>
                   <path clip-path="url(#b)" d="M8.5 14.5L4 19l1.5 1.5L9 17h2l-2.5-2.5zM15 1c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 20.01L18 24l-2.99-3.01V19.5l-7.1-7.09c-.31.05-.61.07-.91.07v-2.16c1.66.03 3.61-.87 4.67-2.04l1.4-1.55c.19-.21.43-.38.69-.5.29-.14.62-.23.96-.23h.03C15.99 6.01 17 7.02 17 8.26v5.75c0 .84-.35 1.61-.92 2.16l-3.58-3.58v-2.27c-.63.52-1.43 1.02-2.29 1.39L16.5 18H18l3 3.01z"/>
               </svg>
-              Rabota
+              Работа
               <input type="hidden" value="rabota">
             </li>
         </ul>
@@ -229,40 +229,40 @@
                   <path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10S2 17.52 2 12zm10 6c3.31 0 6-2.69 6-6s-2.69-6-6-6-6 2.69-6 6 2.69 6 6 6z"/>
                   <path fill="none" d="M0 0h24v24H0z"/>
               </svg>
-              Ztvor
+              Затвор
           </li>
           <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                   <path d="M0 0h24v24H0z" fill="none"/>
                   <path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/>
               </svg>
-              Bolnica
+              Болница
           </li>
           <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M0 0h24v24H0z" fill="none"/>
               <path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/>
           </svg>
-          Finansii
+          Финансии
           <input type="hidden" value="bank">
           </li>
           <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M0 0h24v24H0z" fill="none"/>
               <path d="M19 7V4H5v3H2v13h8v-4h4v4h8V7h-3zm-8 3H9v1h2v1H8V9h2V8H8V7h3v3zm5 2h-1v-2h-2V7h1v2h1V7h1v5z"/>
           </svg>
-          Prodavnica
+          Продавница
           <input type="hidden" value="shop">
           </li>
           <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
           </svg>
-          Patuvaj
+          Патувај
           <input type="hidden" value="travel">
           </li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M0 0h48v48H0z" fill="none"/>
               <path d="M24 14V6H4v36h40V14H24zM12 38H8v-4h4v4zm0-8H8v-4h4v4zm0-8H8v-4h4v4zm0-8H8v-4h4v4zm8 24h-4v-4h4v4zm0-8h-4v-4h4v4zm0-8h-4v-4h4v4zm0-8h-4v-4h4v4zm20 24H24v-4h4v-4h-4v-4h4v-4h-4v-4h16v20zm-4-16h-4v4h4v-4zm0 8h-4v4h4v-4z"/>
           </svg>
-          Garaza
+          Гаража
           <input type="hidden" value="garaza">
         </li>
         </ul>
@@ -278,25 +278,25 @@
           </svg>
         </li>
         <ul class="sub-menu collapse" id="kazino">
-          <li>Trkalo na sreka</li>
-          <li>BlackJek</li>
+          <li>Тркало на среќа</li>
+          <li>Black Jack</li>
         </ul>
         <li  data-toggle="collapse" data-target="#profil" class="collapsed ">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M0 0h24v24H0z" fill="none"/>
               <path d="M11 17h2v-1h1c.55 0 1-.45 1-1v-3c0-.55-.45-1-1-1h-3v-1h4V8h-2V7h-2v1h-1c-.55 0-1 .45-1 1v3c0 .55.45 1 1 1h3v1H9v2h2v1zm9-13H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V6h16v12z"/>
           </svg>
-          <span>PROFIL</span>
+          <span>ПРОФИЛ</span>
           <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" >
               <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
           </svg>
         </li>
         <ul class="sub-menu collapse" id="profil">
-          <li>Blacklist</li>
-          <li>Clan</li>
-            <li>Prijateli</li>
-              <li>Pocit</li>
+          <li>Црна листа</li>
+          <li>Фамилија</li>
+            <li>Пријатели</li>
+              <li>Почит</li>
 
         </ul>
     </ul>
