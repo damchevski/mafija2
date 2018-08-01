@@ -108,7 +108,7 @@ class AjaxController extends Controller
     $type = $request->getParam('type');
     $raboti = Rabota::where('type',$type)->get();
     if ($type == 'rabota') {
-      $options = array(1=>'Ниско платени', 2=>'Просечно платени', 3=>'Високо платени', 4 =>'[none]',5=>'РАБОТИ');
+      $options = array(1=>'Ниско платени', 2=>'Просечно платени', 3=>'Високо платени', 4 =>'webp',5=>'РАБОТИ');
     }else{
       $options = array(1=>'ПОЧЕТНИК', 2=>'ЗАВИСНИК', 3=>'ГУРУ', 4 =>'png',5=>'ИЗВРШИ');
     }
