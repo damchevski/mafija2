@@ -140,17 +140,17 @@ class HomeController extends Controller
     if($user->task->add($rabota->time)){
       if($user->energy->check($rabota->energija)){
        if($rabota->calculate($user,$this->randomlib->generateInt(0, 100))){
-          $this->flashres->addMessage('success','Rabotata e uspesna.');
+          $this->flashres->addMessage('success','Успешно ја извршивте работата, па затоа ќе бидете наградени.');
           echo "<input type='hidden' value='$rabota->time'>";
           return $this->view->render($response, '/templates/partials/flash.twig');
         }
       }else{
-      $this->flashres->addMessage('error','Nemas dovolno energija.');
+      $this->flashres->addMessage('error','Немате доволно енергија.');
       echo "<input type='hidden' value='1'>";
       return $this->view->render($response, '/templates/partials/flash.twig');
     }
     }}
-    $this->flashres->addMessage('error','Rabotata e neuspesna.');
+    $this->flashres->addMessage('error','Жалам, овој пат не ја извршивте добро работата.');
     echo "<input type='hidden' value='$rabota->time'>";
     return $this->view->render($response, '/templates/partials/flash.twig');
 
@@ -166,28 +166,28 @@ class HomeController extends Controller
         $num = $crime->crime($user,$this->randomlib->generateInt(0, 100));
         switch ($num) {
           case 0:
-            $this->flashres->addMessage('success','Kriminalot e uspesen.');
+            $this->flashres->addMessage('success','Успешно го извршивте злосторството.');
             echo "<input type='hidden' value='$crime->time'>";
             return $this->view->render($response, '/templates/partials/flash.twig');
             break;
           case 1:
-            $this->flashres->addMessage('info','Kriminalot e neuspesen i ne te fati policija');
+            $this->flashres->addMessage('info','Не успеавте да го извршите злосторството, но и за среќа ѝ побегнавте на полицијата.');
             echo "<input type='hidden' value='$crime->time'>";
             return $this->view->render($response, '/templates/partials/flash.twig');
             break;
           case 2:
-            $this->flashres->addMessage('error','Kriminalot e neuspesen i  te fati policija');
+            $this->flashres->addMessage('error','Полицијата ве виде и фати, сега сте во затвор. Доколку имате пријател, побарајте да ве извади од затвор со аукција');
             echo "<input type='hidden' value='$crime->time'>";
             return $this->view->render($response, '/templates/partials/flash.twig');
             break;
         }
       }else{
-        $this->flashres->addMessage('error','Nemas dovolno energija');
+        $this->flashres->addMessage('error','Немате доволно енергија');
         echo "<input type='hidden' value='1'>";
         return $this->view->render($response, '/templates/partials/flash.twig');
       }
     }}
-    $this->flashres->addMessage('error','Kriminalot e neuspesen.');
+    $this->flashres->addMessage('error','Безуспешен криминал.');
     echo "<input type='hidden' value='1'>";
     return $this->view->render($response, '/templates/partials/flash.twig');
   }
@@ -199,10 +199,10 @@ class HomeController extends Controller
     $drink = DrinksDrugs::find($id);
     $kolicina -= $user->inventory->zaliha($drink->type,$drink->id);
     if($drink->add($user,$kolicina)){
-     $this->flashres->addMessage('info','Uspesno nadopolni '.$drink->title);
+     $this->flashres->addMessage('info','Успешно купивте '.$drink->title);
      return $this->view->render($response, '/templates/partials/flash.twig');
     }
-    $this->flashres->addMessage('info','Neuspeso nemate dovolno pari ili go postignavte limitot');
+    $this->flashres->addMessage('info','Грешка! Немате доволно пари или го достигнавте лимитот');
     return $this->view->render($response, '/templates/partials/flash.twig');
   }
   public function getCar($request, $response)
@@ -215,28 +215,28 @@ class HomeController extends Controller
       $num = $car->steal($user,$this->randomlib->generateInt(0, 100),$this->randomlib->generateInt(0, 5));
       switch ($num) {
        case 0:
-          $this->flashres->addMessage('success','Uspesno ja ukradovte kolata '.$car->title);
+          $this->flashres->addMessage('success','Успешно украдовте '.$car->title);
           echo "<input type='hidden' value='$car->time'>";
           return $this->view->render($response, '/templates/partials/flash.twig');
          break;
        case 1:
-          $this->flashres->addMessage('info','Kriminalot e neuspesen i ne te fati policija');
+         $this->flashres->addMessage('info','Не успеавте да го извршите злосторството, но и за среќа ѝ побегнавте на полицијата.');
           echo "<input type='hidden' value='$car->time'>";
           return $this->view->render($response, '/templates/partials/flash.twig');
          break;
        case 2:
-          $this->flashres->addMessage('error','Kriminalot e neuspesen i  te fati policija');
+          $this->flashres->addMessage('error','Полицијата ве виде и фати, сега сте во затвор. Доколку имате пријател, побарајте да ве извади од затвор со аукција!');
           echo "<input type='hidden' value='$car->time'>";
           return $this->view->render($response, '/templates/partials/flash.twig');
          break;
       }
       }else{
-        $this->flashres->addMessage('error','Nemas dovolno energija');
+        $this->flashres->addMessage('error','Немате доволно енергија!');
         echo "<input type='hidden' value='1'>";
         return $this->view->render($response, '/templates/partials/flash.twig');
       }
     }
-    $this->flashres->addMessage('error','Error');
+    $this->flashres->addMessage('error','ГРЕШКА!');
     echo "<input type='hidden' value='1'>";
     return $this->view->render($response, '/templates/partials/flash.twig');
   }
@@ -249,27 +249,27 @@ class HomeController extends Controller
       $num = $car->race($id[1],$user,$this->randomlib->generateInt(0, 100),$this->randomlib->generateInt(0, 5));
       switch ($num) {
         case 0:
-          $this->flashres->addMessage('success','Uspea so kolata'.$car->title);
+          $this->flashres->addMessage('success','Честитки! Успешно украдовте '.$car->title);
           echo "<input type='hidden' value='90'>";
           return $this->view->render($response, '/templates/partials/flash.twig');
         break;
         case 1:
-          $this->flashres->addMessage('info','Neuspea i ne te fana policija');
+          $this->flashres->addMessage('info','Уф добра е, барем не те фати полиција ! Пробај друг пат, можеби ќе успееш!');
           echo "<input type='hidden' value='90'>";
           return $this->view->render($response, '/templates/partials/flash.twig');
         break;
         case 2:
-          $this->flashres->addMessage('info','Neuspea i te fati policija i kolata otide');
+          $this->flashres->addMessage('info','Ах, те фана полиција и те притвори! Доколку имаш пријател, замоли го да те извади од затвор со аукција! ');
           echo "<input type='hidden' value='90'>";
           return $this->view->render($response, '/templates/partials/flash.twig');
         break;
         case 3:
-          $this->flashres->addMessage('error','Kolata ti e unistena');
+          $this->flashres->addMessage('error','Твојот автомобил е уништен!');
           echo "<input type='hidden' value='1'>";
           return $this->view->render($response, '/templates/partials/flash.twig');
         break;
         default:
-          $this->flashres->addMessage('error','Ima greska obidete se povtorno');
+          $this->flashres->addMessage('error','ГРЕШКА! Обиди се повторно !');
           echo "<input type='hidden' value='1'>";
           return $this->view->render($response, '/templates/partials/flash.twig');
         break;
@@ -284,11 +284,11 @@ class HomeController extends Controller
     $from = Drzava::where('name',$user->prom->place)->first();
     $next = Drzava::where('name',$grad)->first();
     if($from->travel($user,$next)){
-      $this->flashres->addMessage('success','Ke letate pocekajte 3 minuti');
+      $this->flashres->addMessage('success','Ќе полетате за 3 минути');
       echo "<input type='hidden' value='180'>";
       return $this->view->render($response, '/templates/partials/flash.twig');
     }
-    $this->flashres->addMessage('error','Neuspesno obidete se povtorno');
+    $this->flashres->addMessage('error','ГРЕШКА! Обиди се повторно!');
     echo "<input type='hidden' value='1'>";
     return $this->view->render($response, '/templates/partials/flash.twig');
     }
@@ -310,23 +310,23 @@ class HomeController extends Controller
     $num = $user->bank->transfer($user,$money,$name,$btn);
    switch ($num) {
        case 1:
-         $this->flashres->addMessage('info','Nemas dovolno pari ili nemas pravo');
+         $this->flashres->addMessage('info','Немаш доволно пари!');
          return $this->view->render($response, '/templates/partials/flash.twig');
          break;
        case 2:
-         $this->flashres->addMessage('info','Limitot e dostignat');
+         $this->flashres->addMessage('info','Твојот лимит е достигнат!');
          return $this->view->render($response, '/templates/partials/flash.twig');
          break;
        case 3:
-         $this->flashres->addMessage('info','Yspesno gi prenesovte parite');
+         $this->flashres->addMessage('info','Успешно направивте трансфер на пари!');
          return $this->view->render($response, '/templates/partials/flash.twig');
          break;
        case 4:
-         $this->flashres->addMessage('info','Nemas dovolno pari vo banka');
+         $this->flashres->addMessage('info','Немате доволно пари во банка!');
          return $this->view->render($response, '/templates/partials/flash.twig');
          break;
        case 0:
-         $this->flashres->addMessage('info','Ima greska obidete se povtorno');
+         $this->flashres->addMessage('info','ГРЕШКА! Обиди се повторно');
          return $this->view->render($response, '/templates/partials/flash.twig');
          break;
    }
@@ -338,10 +338,10 @@ class HomeController extends Controller
    $user = $this->auth->user();
    $gun = Shop::find($id);
    if($gun->add_wepons($user,$kolicina)){
-     $this->flashres->addMessage('success','Uspesno nadopolni gunovi');
+     $this->flashres->addMessage('success','Успешно купи оружје');
      return $this->view->render($response, '/templates/partials/flash.twig');
    }
-   $this->flashres->addMessage('error','Neuspeso nemate dovolno pari');
+   $this->flashres->addMessage('error','ГРЕШКА! Немате доволно пари!');
    return $this->view->render($response, '/templates/partials/flash.twig');
  }
  public function getAddFriend($request, $response)
@@ -351,13 +351,13 @@ class HomeController extends Controller
    $user = User::where('username',trim($username))->first();
    if(!$me->contact->isFriend($user->id)){
      if($user->contact->add($me->id)){
-       $this->flashres->addMessage('success','Isprati poraka za prijatelstvo na '.$user->username);
+       $this->flashres->addMessage('success','Испрати понуда за пријателство на '.$user->username);
        return $this->view->render($response, '/templates/partials/flash.twig');
      }
-     $this->flashres->addMessage('error','Veke imas prateno poraka za prijatelstvo');
+     $this->flashres->addMessage('error','Во исчекување е понудата за пријателство');
      return $this->view->render($response, '/templates/partials/flash.twig');
    }else{
-     $this->flashres->addMessage('info','Veke ste prijateli so '.$user->username);
+     $this->flashres->addMessage('info','Вие веќе сте пријател со '.$user->username);
      return $this->view->render($response, '/templates/partials/flash.twig');
    }
    $this->flashres->addMessage('error','Neyspesno prakanje na poraka');
@@ -370,14 +370,14 @@ class HomeController extends Controller
     $user = User::where('username',trim($username))->first();
     if(!$me->contact->isFriend($user->id)){
       if($me->contact->confirm($user)){
-        $this->flashres->addMessage('success','Go prifati '.$user->username);
+        $this->flashres->addMessage('success','Ја прифативте понудата за пријателство од '.$user->username);
         return $this->view->render($response, '/templates/partials/flash.twig');
       }
     }else{
-      $this->flashres->addMessage('info','Veke ste prijateli');
+      $this->flashres->addMessage('info','Веќе сте пријатели');
        return $this->view->render($response, '/templates/partials/flash.twig');
     }
-    $this->flashres->addMessage('error','Neyspesno prifakanje');
+    $this->flashres->addMessage('error','ГРЕШКА! Неуспешна понуда за пријателство');
      return $this->view->render($response, '/templates/partials/flash.twig');
   }
   public function getDeleteFriend($request, $response)
@@ -387,14 +387,14 @@ class HomeController extends Controller
     $user = User::where('username',trim($username))->first();
     if($me->contact->isFriend($user->id)){
       if($me->contact->remove($user)){
-        $this->flashres->addMessage('success','Go delitna '.$user->username);
+        $this->flashres->addMessage('success','Го избришавте '.$user->username);
         return $this->view->render($response, '/templates/partials/flash.twig');
       }
     }else{
-      $this->flashres->addMessage('info','Ne ste prijateli');
+      $this->flashres->addMessage('info','Не сте пријатели!');
        return $this->view->render($response, '/templates/partials/flash.twig');
     }
-    $this->flashres->addMessage('error','Neyspesno deleteiranje');
+    $this->flashres->addMessage('error','ГРЕШКА! Безуспешно бришење на пријател!');
      return $this->view->render($response, '/templates/partials/flash.twig');
   }
 }

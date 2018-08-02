@@ -20,10 +20,10 @@ class AdminController extends Controller
     $drink = DrinksDrugs::find(1);
      //opp done zivis iod id so ke se odbere
      if($drink->add($user,$kolicina)){
-       $this->flash->addMessage('info','Uspesno nadopolni kokanin');
+       $this->flash->addMessage('info','Успешно купивте КОКАИН');
        return $response->withRedirect($this->router->pathFor('admin'));
      }
-     $this->flash->addMessage('info','Neuspeso nemate dovolno pari ili go postignavte limitot');
+     $this->flash->addMessage('info','Грешка! Немате доволно пари или веќе го достигнавте лимитот');
      return $response->withRedirect($this->router->pathFor('admin'));
   }
 

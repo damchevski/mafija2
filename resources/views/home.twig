@@ -20,33 +20,33 @@
  <div class="card-columns" style="column-count: 1">
  <div class="card">
  <div class="card-body">
-   <h3 class="title">NOVOSTI</h3>
+   <h3 class="title">НОВОСТИ</h3>
      <div class="col">
-      ABBABABABAA
+      Новост1
      </div>
      <div class="col">
-       VASADASDASDASD
+       Новост2
      </div>
      <div class="col">
-      SADSADASDASDSAD
+      Новост3
      </div>
  </div>
 </div>
  <div class="card">
-   <label for="clan">Sozdadi klan</label>
+   <label for="clan">Создади фамилија</label>
    <form action="{{path_for('home')}}" method="post" autocomplete="off">
-       <input type="text" name="name" placeholder="Name of clan....">
-       <input type="text" name="moto" placeholder="Moto of clan...">
+       <input type="text" name="name" placeholder="Име на фамилијата....">
+       <input type="text" name="moto" placeholder="Мото на фамилијата...">
 
          {{ csrf_field() | raw }}
    </form>
  </div>
 
  <div class="card">
-   <label for="clan">Organiziran kriminal</label>
+   <label for="clan">Планиран криминал</label>
    <form action="{{path_for('home')}}" method="post" autocomplete="off">
-       <input type="text" name="sofer" placeholder="Sofer.....">
-       <input type="text" name="hitmen" placeholder="Himen.....">
+       <input type="text" name="sofer" placeholder="Корисничко име на шоферот.....">
+       <input type="text" name="hitmen" placeholder="Корисничко име на гуруто за оружје.....">
        <input type="text" name="pari" placeholder="Pari">
 
          {{ csrf_field() | raw }}

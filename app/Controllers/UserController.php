@@ -36,7 +36,7 @@ class UserController extends Controller
         $message->subject('Akaynt Apdejt');
       });
 
-      $this->flash->addMessage('info','Твојата лозинка е променета');
+      $this->flash->addMessage('info','Твојата лозинка е променета.');
       return $response->withRedirect($this->router->pathFor('home'));
     }else {
       if(!empty($name)&&!empty($school)){
@@ -46,7 +46,7 @@ class UserController extends Controller
           'name' => $name,
           'school' => $school
           ]);
-          $this->flash->addMessage('info','Персоналните детали се сменети');
+          $this->flash->addMessage('info','Вашите информации се променети.');
           return $response->withRedirect($this->router->pathFor('home'));
         }
       }
@@ -65,7 +65,7 @@ class UserController extends Controller
     if ($v->passes()){
       $user = User::where('email', $email)->first();
       if(!$user){
-        $this->flash->addMessage('error','Емаилот не се сопфаѓа');
+        $this->flash->addMessage('error','Вашата електронска пошта не се совпаѓа.');
         return $response->withRedirect($this->router->pathFor('password.recover'));
       }else{
         $recover_hash = $this->randomlib->generateString(128);
@@ -74,9 +74,9 @@ class UserController extends Controller
         ]);
         $this->Mail->send('email/auth/recover.twig',['user' => $user, 'recover_hash' => $recover_hash],function($message) use ($user){
           $message->to($user->email);
-          $message->subject('Povrati ja lozinkata');
+          $message->subject('Поврати лозинка');
         });
-        $this->flash->addMessage('info','Ви пративме емаил деталите за враќање на лозинката се во пораката');
+        $this->flash->addMessage('info','Ви пративме дополнителни информации на вашата електронска пошта за промена на вашата лозинка');
       }
       return $response->withRedirect($this->router->pathFor('home'));
     }else {

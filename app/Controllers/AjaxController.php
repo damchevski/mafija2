@@ -28,7 +28,7 @@ class AjaxController extends Controller
       }
       $clans = Clan::where('name','LIKE', $key.'%')->limit(5)->get();
         if($clans->count() > 0){
-        echo"  <label for='clans'>CLANS</label>
+        echo"  <label for='clans'>ФАМИЛИИ</label>
         <ul name='clans' class='clans'> ";
         foreach ($clans as $id => $clan) {
         echo "<li><img src='".$user->get_gravatar($clan->email,40)."'><span>".$clan->name."</span><span style='background:var(--gray-dark)'></span> </li>";
@@ -48,7 +48,7 @@ class AjaxController extends Controller
   {
     $user = $this->auth->user();
     return"
-      <li>Мок: {$user->prom->mok}</li>
+      <li>Моќ: {$user->prom->mok}</li>
       <li>Почит: {$user->prom->pocit}</li>
       <li>Пари: {$user->prom->pari}</li>
       <li>Држава: {$user->prom->place}</li>
@@ -108,9 +108,9 @@ class AjaxController extends Controller
     $type = $request->getParam('type');
     $raboti = Rabota::where('type',$type)->get();
     if ($type == 'rabota') {
-      $options = array(1=>'SMALL', 2=>'BIG', 3=>'INSANE', 4 =>'webp',5=>'RABOTI');
+      $options = array(1=>'НИСКИ', 2=>'ПРОСЕЧНИ', 3=>'ВИСОКИ', 4 =>'webp',5=>'РАБОТИ');
     }else{
-      $options = array(1=>'KLOSAR', 2=>'PFF', 3=>'TOP', 4 =>'png',5=>'KRADI');
+      $options = array(1=>'ПОЧЕТНИК', 2=>'ЗАВИСНИК', 3=>'ГУРУ', 4 =>'png',5=>'ИЗВРШИ');
     }
     $row1 = $row2 = $row3 = array();
     foreach ($raboti as $rabota) {
@@ -137,7 +137,7 @@ class AjaxController extends Controller
   {
     $type = $request->getParam('type');
     $drinks_drugs = DrinksDrugs::where('type',$type)->get();
-    $options = array(1=>'so da napravi');
+    $options = array(1=>'[none]');
     $row1 = $row2 = $row3 = array();
     foreach ($drinks_drugs as $drink_drug) {
           array_push($row1,$drink_drug);
@@ -153,7 +153,7 @@ class AjaxController extends Controller
   {
     $cars = Car::all();
     $row1 = $row2 = $row3 = array();
-    $options = array(1=>'MIDRANGE', 2=>'FAST', 3=>'TOP',4=>'car',5=>"UKRADI");
+    $options = array(1=>'НИСКА', 2=>'СРЕДНА', 3=>'ВИСОКА',4=>'car',5=>"УКРАДИ");
     foreach ($cars as $car) {
       switch ($car->type) {
         case "middle":
@@ -177,7 +177,7 @@ class AjaxController extends Controller
   public function getTrki($request, $response)
   {
     $row1 = $row2 = $row3 = $car_id = array();
-    $options = array(1=>'MIDRANGE', 2=>'FAST', 3=>'TOP',4=>'race',5=>"TRKAJ",6=>true);
+    $options = array(1=>'НИСКА', 2=>'СРЕДНА', 3=>'ВИСОКА',4=>'race',5=>"ТРКАЈ СЕ",6=>true);
     $user = $this->auth->user();
     $carsIds = json_decode($user->inventory->cars,true);
     foreach ($carsIds as $id=>$val) {
@@ -214,19 +214,19 @@ class AjaxController extends Controller
   {
     $html = "<div class='card bg-light''>
     <div class='card-body'>
-    <h4 class='card-title'>Smeni mesto na ziveenje:</h4> ";
+    <h4 class='card-title'>Купи билет за патување во:</h4> ";
         $html.= "
              <select name='grad' style='margin-right:20px'>
-                 <option value='MK'>Makegonija</option>
-                   <option value='SR'>Srbija</option>
-                     <option value='AL'>Alabanija</option>
-                       <option value='BG'>Bugarija</option>
-                         <option value='GR'>Germanija</option>
-                           <option value='US'>Amerika</option>
-                             <option value='IT'>Italija</option>
+                 <option value='MK'>Македонија</option>
+                   <option value='SR'>Србија</option>
+                     <option value='AL'>Албанија</option>
+                       <option value='BG'>Бугарија</option>
+                         <option value='GER'>Германија</option>
+                           <option value='US'>САД</option>
+                             <option value='IT'>Италија</option>
              </select>
           <span class='input-group-btn'>
-            <button class='btn btn-secondary travel' type='button'>Patuvaj</button>
+            <button class='btn btn-secondary travel' type='button'>ПАТУВАЈ</button>
           </span>";
 
         $html .=" </div> </div>";
@@ -237,7 +237,7 @@ class AjaxController extends Controller
   public function getGaraza($request, $response)
   {
     $row1 = $row2 = $row3 = $car_id = array();
-    $options = array(1=>'MIDRANGE', 2=>'FAST', 3=>'TOP',4=>'sellCar',5=>"PRODAJ",6=>true);
+    $options = array(1=>'НИСКА', 2=>'СРЕДНА', 3=>'ВИСОКА',4=>'sellCar',5=>"ПРОДАЈ",6=>true);
     $user = $this->auth->user();
     $carsIds = json_decode($user->inventory->cars,true);
     foreach ($carsIds as $id=>$val) {
@@ -273,7 +273,7 @@ class AjaxController extends Controller
   {
     $user = $this->auth->user();
     $name = array('drzavna','svetska','small','big');
-    $title = array('DRZAVNA BANKA','SVETSKA BANKA','MAL SEF','GOLEM SEF');
+    $title = array('ДРЖАВНА БАНКА','СВЕТСКА БАНКА','МАЛ СЕФ','ГОЛЕМ СЕФ');
     return $this->view->render($response, '/templates/cards/bank.twig',[
       'name'  => $name,
       'title' => $title

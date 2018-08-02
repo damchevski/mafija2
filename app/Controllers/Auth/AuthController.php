@@ -28,14 +28,14 @@ class AuthController extends Controller
         'active' => true,
         'active_hash' => null
       ]);
-      $this->flash->addMessage('info','Вашиот акаунт е активиран можете да се логирате');
+      $this->flash->addMessage('info','Вашиот акаунт е успешно активиран, можете да се најавите');
       return $response->withRedirect($this->router->pathFor('auth.signin'));
     }
   }
   public function getSignOut($request, $response)
   {
     $this->auth->logout();
-    $this->flash->addMessage('info','Вие се одјавени');
+    $this->flash->addMessage('info','Само што се одјавивте');
     return $response->withRedirect($this->router->pathFor('home'));
   }
   public function getSignUp($request, $response){
@@ -77,10 +77,10 @@ class AuthController extends Controller
 
       $this->Mail->send('email/auth/activate.twig',['user' => $user, 'activate' => $activate],function($message) use ($user){
         $message->to($user->email);
-        $message->subject('Vi blagodarime za registracijata');
+        $message->subject('Ви благодариме на регистрацијата');
       });
 
-      $this->flash->addMessage('info','Успешно се регистриравте проверете емаил за активација на профилот');
+      $this->flash->addMessage('info','Успешно се регистриравте, проверете емаил за активација на акаунтот');
       return $response->withRedirect($this->router->pathFor('home'));
     }else {
       return $this->view->render($response, 'auth/signup.twig',[
@@ -100,10 +100,10 @@ class AuthController extends Controller
 
     $auth = $this->auth->attempt($username, $password, $remember);
     if(!$auth){
-      $this->flash->addMessage('error','Неуспешно логирање. Обидетесе повторно');
+      $this->flash->addMessage('error','Неуспешно најавување. Обиди се повторно');
       return $response->withRedirect($this->router->pathFor('auth.signin'));
     }
-    $this->flash->addMessage('info','Успешно се логиравте');
+    $this->flash->addMessage('info','Успешно се најавивте');
     return $response->withRedirect($this->router->pathFor('home'));
   }
 }

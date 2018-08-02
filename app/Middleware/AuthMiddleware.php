@@ -7,7 +7,7 @@ class AuthMiddleware extends Middleware
 	{
 		if(!$this->auth->check()){
 			//neznam zosto ovde odi
-			//$this->flash->addmessage('error', 'Треба да се логирате');
+			//$this->flash->addmessage('error', 'Морате прво да се најавите!');
 			return $response->withRedirect($this->router->pathFor('auth.signin'));
     }
 		$response = $next($request, $response);

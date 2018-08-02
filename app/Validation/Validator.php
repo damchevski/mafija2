@@ -14,16 +14,16 @@ class Validator extends Violin
       $this->container = $container;
       $this->addFieldMessages([
         'email' =>[
-          'uniqueEmail' => 'Тој емаил е превземен'
+          'uniqueEmail' => 'Веќе е преземено!'
         ],
         'username' =>[
-          'uniqueUsername' => 'Тоа корисничко име е превземено'
+          'uniqueUsername' => 'Ова корисничко име е преземено!'
         ]
       ]);
       //mejavanje na rulse na mk i angliski
       $this->addRuleMessages([
-        'checkPassword' => 'That dosent match you`re curent password',
-        'required'=> 'You better fill in the {field} field, or else.'
+        'checkPassword' => 'Не внесовте исти лозинки',
+        'required'=> 'Не смеете да ги оставите празните полиња кои се задожителни!'
       ]);
   }
   public function validate_uniqueEmail($value, $input , $args)

@@ -18,8 +18,8 @@ class Inventory Extends Model
 		'car_chance'
 	];
 	public static $defaults=[
-		'drinks' => "{'pivo':0,'rakija':0}",
-		'drugs' => "{'kokain':0,'marihuana':0}",
+		'drinks' => "{'Пиво':0,'Ракија':0}",
+		'drugs' => "{'Кокаин':0,'Марихуана':0}",
 		'finished_missions' => "",
 		'weapons' => "",
 		'crime_chance' => "0_0_0"
