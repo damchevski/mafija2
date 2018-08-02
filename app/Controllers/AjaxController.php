@@ -108,7 +108,7 @@ class AjaxController extends Controller
     $type = $request->getParam('type');
     $raboti = Rabota::where('type',$type)->get();
     if ($type == 'rabota') {
-      $options = array(1=>'Ниско платени', 2=>'Просечно платени', 3=>'Високо платени', 4 =>'webp',5=>'РАБОТИ');
+      $options = array(1=>'НИСКИ', 2=>'ПРОСЕЧНИ', 3=>'ВИСОКИ', 4 =>'webp',5=>'РАБОТИ');
     }else{
       $options = array(1=>'ПОЧЕТНИК', 2=>'ЗАВИСНИК', 3=>'ГУРУ', 4 =>'png',5=>'ИЗВРШИ');
     }
@@ -153,7 +153,7 @@ class AjaxController extends Controller
   {
     $cars = Car::all();
     $row1 = $row2 = $row3 = array();
-    $options = array(1=>'Ниска класа', 2=>'Средна класа', 3=>'Висока класа',4=>'car',5=>"УКРАДИ");
+    $options = array(1=>'НИСКА', 2=>'СРЕДНА', 3=>'ВИСОКА',4=>'car',5=>"УКРАДИ");
     foreach ($cars as $car) {
       switch ($car->type) {
         case "middle":
@@ -177,7 +177,7 @@ class AjaxController extends Controller
   public function getTrki($request, $response)
   {
     $row1 = $row2 = $row3 = $car_id = array();
-    $options = array(1=>'Ниска класа', 2=>'Средна класа', 3=>'Висока',4=>'race',5=>"ТРКАЈ СЕ",6=>true);
+    $options = array(1=>'НИСКА', 2=>'СРЕДНА', 3=>'ВИСОКА',4=>'race',5=>"ТРКАЈ СЕ",6=>true);
     $user = $this->auth->user();
     $carsIds = json_decode($user->inventory->cars,true);
     foreach ($carsIds as $id=>$val) {
@@ -237,7 +237,7 @@ class AjaxController extends Controller
   public function getGaraza($request, $response)
   {
     $row1 = $row2 = $row3 = $car_id = array();
-    $options = array(1=>'Ниска класа', 2=>'Средна класа', 3=>'Висока класа',4=>'sellCar',5=>"ПРОДАЈ",6=>true);
+    $options = array(1=>'НИСКА', 2=>'СРЕДНА', 3=>'ВИСОКА',4=>'sellCar',5=>"ПРОДАЈ",6=>true);
     $user = $this->auth->user();
     $carsIds = json_decode($user->inventory->cars,true);
     foreach ($carsIds as $id=>$val) {
