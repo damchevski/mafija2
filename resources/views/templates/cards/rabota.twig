@@ -39,7 +39,7 @@
     </li>
   </ul>
 </div>
-<div class='container'></div>
+<div class='container'style="padding:0"></div>
 <div class="card-columns" id="first">
   {% for item in row1 %}
     <div class="card" >
@@ -73,7 +73,7 @@
         {% endif %}
       </div>
       </div>
-      <button class="btn btn-primary {{item.type}}">{{x[5]}}</button>
+      <button class="btn btn-danger {{item.type}}">{{x[5]}}</button>
       <input type="hidden" value="{{item.id}}">
     </div>
     </div>
@@ -112,7 +112,7 @@
       {% endif %}
     </div>
     </div>
-    <button class="btn btn-primary {{item.type}}">{{x[5]}}</button>
+    <button class="btn btn-danger {{item.type}}">{{x[5]}}</button>
     <input type="hidden" value="{{item.id}}">
   </div>
   </div>
@@ -151,7 +151,7 @@
       {% endif %}
     </div>
     </div>
-    <button class="btn btn-primary {{item.type}}">{{x[5]}}</button>
+    <button class="btn btn-danger {{item.type}}">{{x[5]}}</button>
     <input type="hidden" value="{{item.id}}">
   </div>
   </div>

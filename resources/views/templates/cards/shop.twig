@@ -86,7 +86,7 @@
     </li>
   </ul>
 </div>
-<div class='container'></div>
+<div class='container'style="padding:0"></div>
 <div class="card-columns" id="first">
   {% for item in row1 %}
     <div class="card" >
@@ -109,7 +109,7 @@
           <output name="result">{{auth.user.inventory.zaliha(item.type,item.id)}}</output>
         </div>
       </div>
-      <button class="btn btn-primary shop">КУПИ</button>
+      <button class="btn btn-danger shop">КУПИ</button>
       <input type="hidden" value="{{item.id}}">
     </div>
     </div>
@@ -146,7 +146,7 @@
       <span>{{item.chance}}%</span>
     </div>
     </div>
-    <button class="btn btn-primary {{item.type}}">{{x[5]}}</button>
+    <button class="btn btn-danger {{item.type}}">{{x[5]}}</button>
     <input type="hidden" value="{{item.id}}">
   </div>
   </div>
@@ -183,7 +183,7 @@
       <span>{{item.chance}}%</span>
     </div>
     </div>
-    <button class="btn btn-primary {{item.type}}">{{x[5]}}</button>
+    <button class="btn btn-danger {{item.type}}">{{x[5]}}</button>
     <input type="hidden" value="{{item.id}}">
   </div>
   </div>

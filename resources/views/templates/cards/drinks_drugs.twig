@@ -51,10 +51,13 @@
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
 }
-.container-fluid .card-columns .card-body .row .col output {
+.container-fluid .card-columns .card-body .row .col .result {
     float: right;
     height: 25px;
     color: white;
+    padding: 0;
+    border: 0;
+    outline-color: #4CAF50;
     background-color: #4CAF50;
     text-align: center;
     border-radius: 4px;
@@ -68,7 +71,7 @@
   .container-fluid .card-columns .card-body .row .col .slider {
     width: 85%;
   }
-  .container-fluid .card-columns .card-body .row .col output {
+  .container-fluid .card-columns .card-body .row .col .result {
     width: 15%;
   }
 }
@@ -79,14 +82,14 @@
       <a class="nav-link">КУПИ</a>
     </li>
     <li class="nav-item" id="2">
-      <a class="nav-link">ПРОДАЖБА</a>
+      <a class="nav-link">ПРОДАДИ</a>
     </li>
     <li class="nav-item" id="3">
-      <a class="nav-link">ПАЗАРНА СОСТОЈБА</a>
+      <a class="nav-link">СОСТОЈБА</a>
     </li>
   </ul>
 </div>
-<div class='container'></div>
+<div class='container' style="padding:0"></div>
 <div class="card-columns" id="first">
   {% for item in row1 %}
     <div class="card" >
@@ -106,10 +109,10 @@
         <div class="w-100"></div>
         <div class="col">
           <input type="range" min="{{auth.user.inventory.zaliha(item.type,item.id)}}" max="{{item.zaliha}}" value="{{auth.user.inventory.zaliha(item.type,item.id)}}" class="slider">
-          <output name="result">{{auth.user.inventory.zaliha(item.type,item.id)}}</output>
+          <input type="number" class="result" value="{{auth.user.inventory.zaliha(item.type,item.id)}}">
         </div>
       </div>
-      <button class="btn btn-primary add">КУПИ</button>
+      <button class="btn btn-danger add">КУПИ</button>
       <input type="hidden" value="{{item.id}}">
     </div>
     </div>

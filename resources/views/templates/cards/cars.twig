@@ -41,7 +41,7 @@
     </li>
   </ul>
 </div>
-<div class='container'></div>
+<div class='container' style="padding:0"></div>
 <div class="card-columns" id="first">
   {% for key, item in row1 %}
     <div class="card">
@@ -79,7 +79,7 @@
           <span>{{item.seats}}</span>
         </div>
       </div>
-      <button class="btn btn-primary {{x[4]}}">{{x[5]}}</button>
+      <button class="btn btn-danger {{x[4]}}">{{x[5]}}</button>
       {% if x[6] %}
         <input type="hidden" value="{{car_id[key]}}">
       {% else %}
@@ -128,7 +128,7 @@
         <span>{{item.seats}}</span>
       </div>
     </div>
-    <button class="btn btn-primary {{x[4]}}">{{x[5]}}</button>
+    <button class="btn btn-danger {{x[4]}}">{{x[5]}}</button>
     {% if x[6] %}
       <input type="hidden" value="{{car_id[key]}}">
     {% else %}
@@ -177,7 +177,7 @@
         <span>{{item.seats}}</span>
       </div>
     </div>
-    <button class="btn btn-primary {{x[4]}}">{{x[5]}}</button>
+    <button class="btn btn-danger {{x[4]}}">{{x[5]}}</button>
     {% if x[6] %}
       <input type="hidden" value="{{car_id[key]}}">
     {% else %}

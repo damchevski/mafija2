@@ -76,7 +76,7 @@
   }
 }
 </style>
-<div class='container'></div>
+<div class='container'style="padding:0"></div>
 <div class="card-columns">
   {% for id, item in name %}
     <div class="card" >
@@ -102,7 +102,7 @@
            <input type="number" class="result" value="{{auth.user.bank.stuff(item,'pari')}}">
         </div>
       </div>
-      <button class="btn btn-primary bank">ТРАНСФЕР</button>
+      <button class="btn btn-danger bank">ТРАНСФЕР</button>
       <input type="hidden" value="{{item}}">
     </div>
     </div>

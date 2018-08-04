@@ -47,7 +47,7 @@ $app->group('',function() use ($app){
 
   $app->get('/ajax/search', 'AjaxController:getSearch')->setName('search');
 
-
+  $app->get('/profile', 'AjaxController:getProfile')->setName('profile');
   $app->get('/status', 'AjaxController:getStatus')->setName('status');
   $app->get('/stats', 'AjaxController:getStats')->setName('stats');
   $app->get('/add/friend', 'HomeController:getAddFriend')->setName('add-friend');

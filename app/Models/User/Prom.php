@@ -69,5 +69,29 @@ class Prom Extends Model
 				break;
 		}
 	}
-
+	public function procent()
+	{
+		switch ($this->rank) {
+			case 1:
+				return round(($this->iskustvo / 2200)*100);
+			case 2:
+				return round((($this->iskustvo - 2200) / 2800)*100);
+			case 3:
+				return round((($this->iskustvo - 5000) / 4000)*100);
+			case 4:
+				return round((($this->iskustvo - 9000) / 5500)*100);
+			case 5:
+				return round((($this->iskustvo - 14500) / 7000)*100);
+			case 6:
+				return round((($this->iskustvo - 21500) / 8500)*100);
+			case 7:
+				return round((($this->iskustvo - 30000) / 10000)*100);
+			case 8:
+				return round((($this->iskustv - 40000) / 14500)*100);
+			case 9:
+				return round((($this->iskustvo - 54500) / 17500)*100);
+			case 10:
+				return 100;
+		}
+	}
 }
