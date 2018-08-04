@@ -1,6 +1,7 @@
 $(function(){
   function getData(val,type){
     $.get(val,{type:type},function(data){
+      $('#container').css('padding-top','120px');
       $('#container').html(data);
       $(window).scrollTop(0);
       var nav = $('.navbar').position().top +$('.navbar').outerHeight(true);
@@ -9,18 +10,18 @@ $(function(){
           $('.card-navigation').children('ul').children('li').click(function(){
             $('.card-navigation').children('ul').children('li').css("border-bottom","none");
             $(this).css("border-bottom","3px solid #E61924");
-            $('.card-columns').css('display','none');
-            switch ($(this).attr('id')){
-              case '1':
-                $("#first").fadeIn("slow");
-                break;
-              case '2':
-                $("#second").fadeIn("slow");
-                break;
-              case '3':
-                $("#last").fadeIn("slow");
-                break;
-            }
+              $('.card-columns').css('display','none');
+              switch ($(this).attr('id')){
+                case '1':
+                  $("#first").fadeIn("slow");
+                  break;
+                case '2':
+                  $("#second").fadeIn("slow");
+                  break;
+                case '3':
+                  $("#last").fadeIn("slow");
+                  break;
+              }
             $(window).scrollTop(0);
           });
       $(".slider").on("input", function(){
@@ -31,6 +32,12 @@ $(function(){
       });
     });
   }
+  $('.progress.blue').click(function(){
+    $.get("/mafija2/public/profile", function(data){
+      if(isMobile()){sidebarAnimateOut();}
+      $('#container').html(data);
+    });
+  });
   $('.sub-menu').children('li').click(function(){
     if(isMobile()){sidebarAnimateOut();}
     $('.navigation').children('.nav').children('li').children('.svg').rotate(0);
@@ -55,6 +62,4 @@ $(function(){
         $('.chat .content').html('');
        }
      });
-
-
 });

@@ -1,5 +1,5 @@
-#main{
-  padding-top: 100px;
+#container{
+  padding: 100px 15px 0 15px;
 }
 h2{
   color: white;
@@ -20,6 +20,10 @@ input{
 #checkbox{
   width: auto;
   height: auto;
+  margin-left: 0;
+}
+#container span{
+  margin-left: 15px;
 }
 .form-check-label{
   color: #fff;
@@ -42,9 +46,6 @@ button{
   color: #fff;
   font-size: 13px;
   font-weight: 200;
-}
-.row{
-  margin-top: 40px;
 }
 @-webkit-keyframes hvr-buzz-out {
   10% {

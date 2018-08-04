@@ -44,6 +44,25 @@ class AjaxController extends Controller
     $user->prom->updateRank();
     $user->energy->update(['status' => $val ]);
   }
+  public function getProfile($request, $response)
+  {
+    $user = $this->auth->user();
+    $prom = $user->prom;
+    return "<div class='card' >
+    <h3 class='title'>$user->username Rank: $prom->rank</h3>
+    <div class='card-body'>
+      <div class='text'>
+        Pari: $prom->pari<br>
+        Mok: $prom->mok<br>
+        Iskustvo: $prom->iskustvo<br>
+        Drzava: $prom->place<br>
+        Pocit: $prom->pocit<br>
+        Ybistva: $prom->ubistva<br>
+        Poeni: $prom->points<br>
+      </div>
+    </div>
+    </div>";
+  }
   public function getStats($request, $response)
   {
     $user = $this->auth->user();

@@ -14,7 +14,7 @@ $(function(){
   });
     $('.search').children('input').focus(function(){
       $('.expand').css('left','265px');
-      $('.simplebar-scroll-content').scrollTop(1000);
+      $('.simplebar-scroll-content').scrollTop(2000);
     });
     $('.content').on('click','li',function(){
       var username = $(this).children('span').first().html();
@@ -50,20 +50,20 @@ $(function(){
     });
 });
 function chatAnimateIn(){
-  $('.chat').css('box-shadow','-5px -3px 30px 18px rgba(0,0,0,0.9)');
-  $(".chat").animate({right: '0'},300);
+  $(".chat").animate({right: '0'},function(){
+    $('.cover').css('display','block');
+  });
 }
 function chatAnimateOut(){
-  $(".chat").animate({right: '-'+$(".chat").outerWidth(true)},300,function(){
-   $('.chat').css('box-shadow','none');
-   });
+  $('.cover').css('display','none');
+  $(".chat").animate({right: '-'+$(".chat").outerWidth(true)});
 }
 function sidebarAnimateIn(){
-  $('.sidebar').css('box-shadow','0px -3px 30px 18px rgba(0,0,0,0.9)');
-  $(".sidebar").animate({left: '0'},300);
+  $(".sidebar").animate({left: '0'},function(){
+    $('.cover').css('display','block');
+  });
 }
 function sidebarAnimateOut(){
-  $(".sidebar").animate({left: '-'+$(".sidebar").outerWidth(true)},300,function(){
-   $('.sidebar').css('box-shadow','none');
-   });
+  $('.cover').css('display','none');
+  $(".sidebar").animate({left: '-'+$(".sidebar").outerWidth(true)});
 }

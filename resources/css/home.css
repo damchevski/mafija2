@@ -1,7 +1,3 @@
-.container-fluid{
-  padding: 120px 300px 0 300px;
-  margin-bottom: 0;
-}
   .container-fluid .card-navigation {
     position: fixed;
     top: 60px;
